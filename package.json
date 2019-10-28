@@ -1,0 +1,25 @@
+{
+  "name": "music-player",
+  "version": "1.0.0",
+  "description": "Music Player",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Z-P-J/SoftwareEngineeringProject.git"
+  },
+  "keywords": [
+    "12345678"
+  ],
+  "author": "Z-P-J",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Z-P-J/SoftwareEngineeringProject/issues"
+  },
+  "homepage": "https://github.com/Z-P-J/SoftwareEngineeringProject#readme",
+  "devDependencies": {
+    "electron": "^6.0.12"
+  }
+}
