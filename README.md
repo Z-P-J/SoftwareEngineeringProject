@@ -24,7 +24,8 @@
 7. [Vue.js教程](https://www.runoob.com/vue2/vue-tutorial.html)
 8. [vue-electron脚手架安装](https://www.jianshu.com/p/7f64daa9264c)
 9. [electron-vue文档](https://simulatedgreg.gitbooks.io/electron-vue/content/)
-10. [~~React教程~~](https://www.runoob.com/react/react-tutorial.html)
+10. [electron-vue架构解析]( https://blog.csdn.net/u010961631/article/details/80648712 )
+11. [~~React教程~~](https://www.runoob.com/react/react-tutorial.html)
 
 ## 运行该项目？
 
