@@ -10,8 +10,7 @@
 
 1. 配置node.js环境并熟悉node.js
 2. 熟悉electron
-3. ~~熟悉React~~
-4. 熟悉Vue
+3. 熟悉Vue
 
 ## 参考资料
 
@@ -25,11 +24,11 @@
 8. [vue-electron脚手架安装](https://www.jianshu.com/p/7f64daa9264c)
 9. [electron-vue文档](https://simulatedgreg.gitbooks.io/electron-vue/content/)
 10. [electron-vue架构解析]( https://blog.csdn.net/u010961631/article/details/80648712 )
-11. [~~React教程~~](https://www.runoob.com/react/react-tutorial.html)
+11. [element-ui]( https://element.eleme.cn/#/zh-CN/component/installation )
 
-## 运行该项目？
+## 如何运行
 
-    1.同步或克隆最新代码
-    2.确保已配置好node.js环境，然后在控制台中切换到工程目录
-    3.控制台中至少运行一次：npm install
-    4.控制台输入npm start启动程序
+1. 同步或克隆最新代码
+2. 确保已配置好node.js环境，然后在控制台中切换到工程目录
+3. 控制台中至少运行一次：npm install
+4. 控制台输入npm run dev启动程序
