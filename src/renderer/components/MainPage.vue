@@ -7,11 +7,13 @@
         </el-aside>
         <el-container>
           <el-header>头部</el-header>
+          <el-divider></el-divider>
           <el-main class="main">
             <keep-alive>
               <router-view></router-view>
             </keep-alive>
           </el-main>
+          <el-divider></el-divider>
           <el-footer>底部</el-footer>
         </el-container>
       </el-container>
