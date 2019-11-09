@@ -1,27 +1,21 @@
 <template>
   <div>
-    <el-container class="container" id="main">
-      <el-aside width="230px" class="aside">
-        <side-bar />
-      </el-aside>
-      <el-container>
-        <el-dropdown @command="setting" style="float: right">
-          <span class="el-dropdown-link">
-            <i style="font-size: 22px" class="el-icon-setting"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="about">关于</el-dropdown-item>
-            <el-dropdown-item command="setting">设置</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-        <el-dialog @closed="dataReload" title="设置" :visible.sync="dialogAbout" width="40%">
-          <div>关于弹窗</div>
-        </el-dialog>
-        <el-dialog @closed="dataReload" title="设置" :visible.sync="dialogSetting" width="40%">
-          <div>设置弹窗</div>
-        </el-dialog>
+    <el-card class="box-card" body-style="padding: 0">
+      <el-container class="container">
+        <el-aside width="230px" class="aside">
+          <side-bar />
+        </el-aside>
+        <el-container>
+          <el-header>头部</el-header>
+          <el-main class="main">
+            <keep-alive>
+              <router-view></router-view>
+            </keep-alive>
+          </el-main>
+          <el-footer>底部</el-footer>
+        </el-container>
       </el-container>
-    </el-container>
+    </el-card>
   </div>
 </template>
 
@@ -32,12 +26,6 @@ export default {
   components: {
     SideBar
   },
-  data() {
-    return {
-      dialogSetting: false,
-      dialogAbout: false
-    };
-  },
   methods: {
     setting(name) {
       if (name === "about") {
@@ -45,7 +33,8 @@ export default {
       } else if (name === "setting") {
         this.dialogSetting = true;
       }
-    }
+    },
+    dataReload() {}
   }
 };
 </script>
@@ -72,11 +61,15 @@ export default {
   background-color: #919191;
 }
 
-*,
+/* *,
 *::after,
 *::before {
   box-sizing: border-box;
   max-height: 999999px;
+} */
+
+html {
+  background: transparent;
 }
 
 body {
@@ -88,6 +81,7 @@ body {
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
   line-height: 1.15;
+  background: transparent;
 }
 
 .container {

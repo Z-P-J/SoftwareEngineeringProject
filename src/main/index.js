@@ -40,10 +40,13 @@ function createWindow () {
     show: true,
     center: true,
     fullscreenable: false,
-    resizable: true,
+    resizable: false,
     title: 'music-player',
-    vibrancy: 'ultra-dark',
-    backgroundColor: '#ffffff', // 背景色
+    // vibrancy: 'ultra-dark',
+    // backgroundColor: '#ffffff', // 背景色
+    transparent: true,
+    frame: false,
+    hasShadow: false,
     webPreferences: {
       backgroundThrottling: false,
       webSecurity: false
