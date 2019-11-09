@@ -128,12 +128,12 @@ export default {
       });
     },
     showSongListDetail(pos) {
-      this.$router.push({ path: '/songlist' + pos, query: { userId: 123 }});
-      this.$router.push({ name: 'songlist', params: { index: this.createdSongList[pos], position: pos }})
-      this.$message({
-        message: "成功！" + this.$route.name + " " + this.$route.path + " " + this.$route.params,
-        type: "success"
-      });
+      // this.$router.push({ path: '/songlist' + pos, query: { userId: 123 }});
+      // this.$router.push({ name: 'songlist', params: { index: this.createdSongList[pos], position: pos }})
+      // this.$message({
+      //   message: "成功！" + this.$route.name + " " + this.$route.path + " " + this.$route.params,
+      //   type: "success"
+      // });
     },
     deleteSongList(i) {
       this.createdSongList.splice(i, 1);
