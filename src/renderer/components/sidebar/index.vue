@@ -11,11 +11,11 @@
         <el-row>
           <!-- <el-button icon="el-icon-search" circle></el-button> -->
           <el-tooltip class="item" effect="dark" content="编辑用户信息" placement="bottom">
-            <el-button type="primary" icon="el-icon-edit" size="mini" circle></el-button>
+            <el-button type="primary" icon="el-icon-edit" size="small" circle></el-button>
           </el-tooltip>
           <!-- <el-button type="success" icon="el-icon-check" circle></el-button> -->
           <el-tooltip class="item" effect="dark" content="用户消息" placement="bottom">
-            <el-button type="info" icon="el-icon-message" size="mini" circle></el-button>
+            <el-button type="info" icon="el-icon-message" size="small" circle></el-button>
           </el-tooltip>
           <!-- <el-button type="warning" icon="el-icon-star-off" circle></el-button>
           <el-button type="danger" icon="el-icon-delete" circle></el-button>-->
@@ -127,13 +127,13 @@ export default {
         type: 'success'
       })
     },
-    showSongListDetail (pos) {
-      this.$router.push({path: '/songlist' + pos, query: { userId: 123 }})
-      this.$router.push({name: 'songlist', params: { index: this.createdSongList[pos], position: pos }})
-      this.$message({
-        message: '成功！' + this.$route.name + ' ' + this.$route.path + ' ' + this.$route.params,
-        type: 'success'
-      })
+    showSongListDetail(pos) {
+      // this.$router.push({ path: '/songlist' + pos, query: { userId: 123 }});
+      // this.$router.push({ name: 'songlist', params: { index: this.createdSongList[pos], position: pos }})
+      // this.$message({
+      //   message: "成功！" + this.$route.name + " " + this.$route.path + " " + this.$route.params,
+      //   type: "success"
+      // });
     },
     deleteSongList (i) {
       this.createdSongList.splice(i, 1)

@@ -1,10 +1,12 @@
 import Vue from 'vue'
+// import { Vue } from 'vue'
 import axios from 'axios'
 
 import App from './App'
 import router from './router'
 import store from './store'
 import ElementUI from 'element-ui'
+// import { ElementUI } from 'element-ui'
 import NMPlayer from 'nmplayer/dist/NMPlayer.esm'
 import 'element-ui/lib/theme-chalk/index.css'
 
