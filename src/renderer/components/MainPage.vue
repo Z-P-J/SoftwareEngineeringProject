@@ -6,7 +6,9 @@
           <side-bar />
         </el-aside>
         <el-container>
-          <el-header>头部</el-header>
+          <el-header class="header">
+            <top-bar></top-bar>
+          </el-header>
           <el-main class="main">
             <keep-alive>
               <router-view></router-view>
@@ -20,23 +22,25 @@
 </template>
 
 <script>
-import SideBar from "../components/sidebar/";
+import SideBar from '../components/sidebar/'
+import TopBar from './topbar'
 export default {
-  name: "MainPage",
+  name: 'MainPage',
   components: {
-    SideBar
+    SideBar,
+    TopBar
   },
   methods: {
-    setting(name) {
-      if (name === "about") {
-        this.dialogAbout = true;
-      } else if (name === "setting") {
-        this.dialogSetting = true;
+    setting (name) {
+      if (name === 'about') {
+        this.dialogAbout = true
+      } else if (name === 'setting') {
+        this.dialogSetting = true
       }
     },
-    dataReload() {}
+    dataReload () {}
   }
-};
+}
 </script>
 
 <style>
@@ -102,5 +106,8 @@ body {
   display: flex;
   flex: 1;
   flex-shrink: 0;
+}
+.header {
+  height: 30px;
 }
 </style>

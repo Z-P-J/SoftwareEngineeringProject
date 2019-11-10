@@ -4,16 +4,16 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      input: "" + this.$route.fullPath
-    };
+      input: '' + this.$route.fullPath
+    }
   },
   watch: {
-    $route(to, from) {
-      var str = "" + to.fullPath;
-      this.input = str.replace("/songlist#", "");
+    $route (to, from) {
+      var str = '' + to.fullPath
+      this.input = str.replace('/songlist#', '')
     }
   }
-};
+}
 </script>

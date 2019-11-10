@@ -6,6 +6,6 @@
 
 <script>
 export default {
-    name: 'recent-play'
+  name: 'recent-play'
 }
 </script>

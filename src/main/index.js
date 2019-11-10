@@ -60,7 +60,7 @@ function createWindow () {
     Menu.setApplicationMenu(null)
   }
   if (process.platform === 'win32') { // 针对windows平台做出不同的配置
-    options.frame = true // 创建一个frameless窗口
+    options.frame = false // 创建一个frameless窗口
     options.transparent = true
     options.titleBarStyle = 'hidden'
     Menu.setApplicationMenu(null)
@@ -147,6 +147,12 @@ ipcMain.on('DataOP', (event, arg) => {
   }
 })
 
+ipcMain.on('close',e=>{
+  mainWindow.close()
+})
+ipcMain.on('minimize',e=>{
+  mainWindow.minimize()
+})
 /**
  * Auto Updater
  *

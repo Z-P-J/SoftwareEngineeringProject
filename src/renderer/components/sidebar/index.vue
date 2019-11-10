@@ -95,51 +95,51 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      input: "",
+      input: '',
       createdSongList: [
-        { index: "6-" },
-        { index: "6-" },
-        { index: "/songlist#" },
-        { index: "/songlist#" },
-        { index: "/songlist#" },
-        { index: "/songlist#" },
-        { index: "/songlist#" },
-        { index: "/songlist#" },
-        { index: "/songlist#" }
+        { index: '6-' },
+        { index: '6-' },
+        { index: '/songlist#' },
+        { index: '/songlist#' },
+        { index: '/songlist#' },
+        { index: '/songlist#' },
+        { index: '/songlist#' },
+        { index: '/songlist#' },
+        { index: '/songlist#' }
       ]
-    };
+    }
   },
   methods: {
-    login() {},
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+    login () {},
+    handleOpen (key, keyPath) {
+      console.log(key, keyPath)
     },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+    handleClose (key, keyPath) {
+      console.log(key, keyPath)
     },
-    createSongList() {
-      var indexStr = "6-" + (this.createdSongList.length + 3);
-      this.createdSongList.push({ index: indexStr });
+    createSongList () {
+      var indexStr = '6-' + (this.createdSongList.length + 3)
+      this.createdSongList.push({ index: indexStr })
       this.$message({
-        message: "新建歌单成功！" + indexStr,
-        type: "success"
-      });
+        message: '新建歌单成功！' + indexStr,
+        type: 'success'
+      })
     },
-    showSongListDetail(pos) {
-      this.$router.push({ path: '/songlist' + pos, query: { userId: 123 }});
-      this.$router.push({ name: 'songlist', params: { index: this.createdSongList[pos], position: pos }})
+    showSongListDetail (pos) {
+      this.$router.push({path: '/songlist' + pos, query: { userId: 123 }})
+      this.$router.push({name: 'songlist', params: { index: this.createdSongList[pos], position: pos }})
       this.$message({
-        message: "成功！" + this.$route.name + " " + this.$route.path + " " + this.$route.params,
-        type: "success"
-      });
+        message: '成功！' + this.$route.name + ' ' + this.$route.path + ' ' + this.$route.params,
+        type: 'success'
+      })
     },
-    deleteSongList(i) {
-      this.createdSongList.splice(i, 1);
+    deleteSongList (i) {
+      this.createdSongList.splice(i, 1)
     }
   }
-};
+}
 </script>
 
 <style>
