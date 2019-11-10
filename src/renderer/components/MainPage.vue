@@ -16,7 +16,9 @@
             </keep-alive>
           </el-main>
           <el-divider></el-divider>
-          <el-footer>底部</el-footer>
+          <el-footer>
+            <footer-view />
+          </el-footer>
         </el-container>
       </el-container>
     </el-card>
@@ -25,12 +27,14 @@
 
 <script>
 import SideBar from '../components/sidebar/'
+import FooterView from "../components/footer/";
 import TopBar from './topbar'
 export default {
   name: 'MainPage',
   components: {
     SideBar,
-    TopBar
+    TopBar,
+    FooterView
   },
   methods: {
     setting (name) {

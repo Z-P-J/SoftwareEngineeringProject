@@ -127,7 +127,7 @@ export default {
         type: 'success'
       })
     },
-    showSongListDetail(pos) {
+    showSongListDetail (pos) {
       // this.$router.push({ path: '/songlist' + pos, query: { userId: 123 }});
       // this.$router.push({ name: 'songlist', params: { index: this.createdSongList[pos], position: pos }})
       // this.$message({
