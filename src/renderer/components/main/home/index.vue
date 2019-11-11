@@ -68,8 +68,8 @@
 
 <script>
 export default {
-  name: "home",
-  data() {
+  name: 'home',
+  data () {
     return {
       activeName: "a",
       newMusics: [
@@ -93,19 +93,19 @@ export default {
         "国语"
       ],
       class_list: [
-        "情歌",
-        "网络歌曲",
-        "经典",
-        "KTV热歌",
-        "背景音乐",
-        "伤感",
-        "英语",
-        "国语",
-        "全部分类"
+        '情歌',
+        '网络歌曲',
+        '经典',
+        'KTV热歌',
+        '背景音乐',
+        '伤感',
+        '英语',
+        '国语',
+        '全部分类'
       ]
-    };
+    }
   }
-};
+}
 </script>
 
 <style>

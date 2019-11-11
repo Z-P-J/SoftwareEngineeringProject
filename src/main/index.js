@@ -147,10 +147,10 @@ ipcMain.on('DataOP', (event, arg) => {
   }
 })
 
-ipcMain.on('close',e=>{
+ipcMain.on('close', e => {
   mainWindow.close()
 })
-ipcMain.on('minimize',e=>{
+ipcMain.on('minimize', e => {
   mainWindow.minimize()
 })
 /**

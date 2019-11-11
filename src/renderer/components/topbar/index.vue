@@ -50,33 +50,33 @@
 export default {
   props: {},
   methods: {
-    close() {
-      this.$confirm("是否退出?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
+    close () {
+      this.$confirm('是否退出?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
         .then(() => {
-          this.$electron.ipcRenderer.send("close");
+          this.$electron.ipcRenderer.send('close')
         })
-        .catch(() => {});
+        .catch(() => {})
     },
-    minimize() {
-      this.$electron.ipcRenderer.send("minimize");
+    minimize () {
+      this.$electron.ipcRenderer.send('minimize')
     },
-    back() {
-      if (this.$route.name !== "music") {
-        this.$router.go(-1);
+    back () {
+      if (this.$route.name !== 'music') {
+        this.$router.go(-1)
       }
     },
-    forward() {
-      this.$router.go(1);
+    forward () {
+      this.$router.go(1)
     },
-    refresh() {
-      this.$bus.$emit("page-refresh", this.$route.name);
+    refresh () {
+      this.$bus.$emit('page-refresh', this.$route.name)
     }
   }
-};
+}
 </script>
 
 <style>
