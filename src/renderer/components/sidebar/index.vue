@@ -2,9 +2,9 @@
   <div class="side-bar" style="padding: 10dp">
     <el-scrollbar class="menu-view scroll-page">
       <div class="user-info">
-        <div>
+        <!-- <div>
           <el-avatar icon="el-icon-user-solid"></el-avatar>
-        </div>
+        </div> -->
         <div class="avatar no-drag" @click="login" style="margin: 10px">
           <img src="../../assets/max.png" />
         </div>
@@ -86,7 +86,7 @@
             <i class="el-icon-s-order"></i>
             <span>收藏的歌单</span>
           </template>
-          <el-menu-item v-for="pos in 7" :key="pos" :index="'7-' + pos" @click="showSongListDetail">歌单{{pos}}</el-menu-item>
+          <el-menu-item v-for="pos in 7" :key="pos" :index="'/songlist#' + pos">歌单{{pos}}</el-menu-item>
         </el-submenu>
       </el-menu>
     </el-scrollbar>
@@ -221,7 +221,7 @@ export default {
 } */
 
 .user-info {
-  -webkit-app-region: drag;
+  /* -webkit-app-region: drag; */
   height: 120px;
   display: flex;
   flex-direction: column;
