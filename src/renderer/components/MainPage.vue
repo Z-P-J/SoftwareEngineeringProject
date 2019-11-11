@@ -14,8 +14,7 @@
               <router-view></router-view>
             </keep-alive>
           </el-main>
-          <el-divider></el-divider>
-          <el-footer>
+          <el-footer height="100px">
             <footer-view></footer-view>
           </el-footer>
         </el-container>
@@ -27,7 +26,7 @@
 <script>
 import SideBar from './sidebar/'
 import TopBar from './topbar'
-import FooterView from './sidebar/'
+import FooterView from './footer/'
 export default {
   name: 'MainPage',
   components: {
@@ -126,7 +125,7 @@ body {
   padding-bottom: 10px;
   /* height: 30px; */
 }
-el-header {
+.el-header {
   -webkit-app-region: drag;
 }
 </style>
