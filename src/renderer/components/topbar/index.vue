@@ -85,6 +85,5 @@ export default {
 }
 .no-drag {
   -webkit-app-region: no-drag;
-
 }
 </style>

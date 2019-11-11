@@ -14,8 +14,7 @@
               <router-view></router-view>
             </keep-alive>
           </el-main>
-          <el-divider></el-divider>
-          <el-footer>
+          <el-footer height="100px">
             <footer-view></footer-view>
           </el-footer>
         </el-container>

@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow, Menu, dialog, ipcMain, Tray } from 'electron'
+import { app, BrowserWindow, Menu, dialog, ipcMain, Tray, screen } from 'electron'
 import * as fs from 'fs'
 import path from 'path'
 const low = require('lowdb')
@@ -34,9 +34,12 @@ function createWindow () {
   /**
    * Initial window options
    */
+  let size = screen.getPrimaryDisplay().workAreaSize
+  let width = parseInt(size.width * 0.7)
+  let height = parseInt(size.height * 0.8)
   const options = {
-    height: 800,
-    width: 1200,
+    height: height,
+    width: width,
     show: true,
     center: true,
     fullscreenable: false,
@@ -84,7 +87,7 @@ function createWindow () {
     })
 
     const contextMenu = Menu.buildFromTemplate([
-      {label: '退出', click: () => { mainWindow.destroy() }} // 我们需要在这里有一个真正的退出（这里直接强制退出）
+      { label: '退出', click: () => { mainWindow.destroy() } } // 我们需要在这里有一个真正的退出（这里直接强制退出）
     ])
 
     tray.setToolTip('music-player')
@@ -130,7 +133,7 @@ app.got_remote = require('got')
 app.fs = fs
 app.dialog = dialog
 
-db.defaults({setting: { saveDir: '', redotAbout: true, remoteSearch: true }, playlist: []})
+db.defaults({ setting: { saveDir: '', redotAbout: true, remoteSearch: true }, playlist: [] })
   .write()
 
 ipcMain.on('DataOP', (event, arg) => {
@@ -143,7 +146,7 @@ ipcMain.on('DataOP', (event, arg) => {
   if (arg['method'] === 'get') {
     let setting = db.get('setting').value()
     let playlist = db.get('playlist').value()
-    event.returnValue = {setting: setting, playlist: playlist}
+    event.returnValue = { setting: setting, playlist: playlist }
   }
 })
 
