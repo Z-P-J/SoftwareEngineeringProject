@@ -6,7 +6,7 @@
           <side-bar />
         </el-aside>
         <el-container>
-          <el-header class="header">
+          <el-header class="header drag">
             <top-bar class="top-bar"></top-bar>
           </el-header>
           <el-main class="main">
@@ -125,7 +125,7 @@ body {
   padding-bottom: 10px;
   /* height: 30px; */
 }
-.el-header {
+.drag {
   -webkit-app-region: drag;
 }
 </style>
