@@ -1,6 +1,9 @@
 <template>
   <div>
-    <p style="font-size: 25px; color: #333">发现音乐</p>
+    <el-divider content-position="left">
+      <span style="font-size: 25px;">发现音乐</span>
+    </el-divider>
+    <!-- <p style="font-size: 25px; color: #333">发现音乐</p> -->
     <div class="div-tabs">
       <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="推荐" name="a">
@@ -12,15 +15,15 @@
             </el-carousel>
             <div class="test">
               <el-row>
-                <el-button icon="el-icon-search" circle></el-button>
-                <el-button type="primary" icon="el-icon-edit" circle></el-button>
-                <el-button type="success" icon="el-icon-check" circle></el-button>
-                <el-button type="info" icon="el-icon-message" circle></el-button>
-                <el-button type="warning" icon="el-icon-star-off" circle></el-button>
-                <el-button type="danger" icon="el-icon-delete" circle></el-button>
+                <el-button class="nav-button" icon="el-icon-search" circle></el-button>
+                <el-button class="nav-button" type="primary" icon="el-icon-edit" circle></el-button>
+                <el-button class="nav-button" type="success" icon="el-icon-check" circle></el-button>
+                <el-button class="nav-button" type="info" icon="el-icon-message" circle></el-button>
+                <el-button class="nav-button" type="warning" icon="el-icon-star-off" circle></el-button>
+                <el-button class="nav-button" type="danger" icon="el-icon-delete" circle></el-button>
               </el-row>
             </div>
-            <div class="personalized">
+            <div class="new">
               <el-divider content-position="left">
                 <span style="font-size: 25px;">最新音乐</span>
               </el-divider>
@@ -33,12 +36,20 @@
                 <el-tag type="danger">标签五</el-tag>
                 <el-tag type="danger">标签五</el-tag>
                 <el-tag type="danger">标签五</el-tag>
-                <!-- <div class="class-item hover-bg" v-for="item in class_list" :key="item">{{item}}</div> -->
               </div>
               <el-row :gutter="15" class="mt-10">
-                <el-col :span="6" v-for="(item,index) in personalized" :key="index">
-                  <!-- <personalized-item :item="item" /> -->
-                  <el-card style="padding: 20px">{{item}}</el-card>
+                <el-col :span="6" v-for="(item,index) in newMusics" :key="index">
+                  <el-card style="margin: 5px; padding: 30px">{{item}}</el-card>
+                </el-col>
+              </el-row>
+            </div>
+            <div class="recommand-songlist" style="padding-top: 20px;">
+              <el-divider content-position="left">
+                <span style="font-size: 25px;">推荐歌单</span>
+              </el-divider>
+              <el-row :gutter="15" class="mt-10">
+                <el-col :span="6" v-for="(item,index) in songlist" :key="index">
+                  <el-card style="margin: 5px; padding: 30px">{{item}}</el-card>
                 </el-col>
               </el-row>
             </div>
@@ -60,41 +71,26 @@ export default {
   name: 'home',
   data () {
     return {
-      activeName: 'a',
-      personalized: [
-        '情歌',
-        '网络歌曲',
-        '经典',
-        'KTV热歌',
-        '背景音乐',
-        '伤感',
-        '英语',
-        '国语',
-        '全部分类',
-        '网络歌曲',
-        '经典',
-        'KTV热歌',
-        '背景音乐',
-        '伤感',
-        '英语',
-        '国语',
-        '全部分类',
-        '网络歌曲',
-        '经典',
-        'KTV热歌',
-        '背景音乐',
-        '伤感',
-        '英语',
-        '国语',
-        '全部分类',
-        '网络歌曲',
-        '经典',
-        'KTV热歌',
-        '背景音乐',
-        '伤感',
-        '英语',
-        '国语',
-        '全部分类'
+      activeName: "a",
+      newMusics: [
+        "情歌",
+        "网络歌曲",
+        "经典",
+        "KTV热歌",
+        "背景音乐",
+        "伤感",
+        "英语",
+        "国语"
+      ],
+      songlist: [
+        "情歌",
+        "网络歌曲",
+        "经典",
+        "KTV热歌",
+        "背景音乐",
+        "伤感",
+        "英语",
+        "国语"
       ],
       class_list: [
         '情歌',
@@ -130,12 +126,16 @@ export default {
 }
 
 .test {
-  -webkit-app-region: drag;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+.test.nav-button {
+  margin: 15px;
+}
+
 .div-tabs {
   display: flex;
   overflow: hidden;

@@ -7,9 +7,8 @@
         </el-aside>
         <el-container>
           <el-header class="header">
-            <top-bar></top-bar>
+            <top-bar class="top-bar"></top-bar>
           </el-header>
-          <el-divider></el-divider>
           <el-main class="main">
             <keep-alive>
               <router-view></router-view>
@@ -17,7 +16,7 @@
           </el-main>
           <el-divider></el-divider>
           <el-footer>
-            <footer-view />
+            <footer-view></footer-view>
           </el-footer>
         </el-container>
       </el-container>
@@ -26,9 +25,9 @@
 </template>
 
 <script>
-import SideBar from '../components/sidebar/'
-import FooterView from "../components/footer/";
+import SideBar from './sidebar/'
 import TopBar from './topbar'
+import FooterView from './sidebar/'
 export default {
   name: 'MainPage',
   components: {
@@ -114,6 +113,20 @@ body {
   flex-shrink: 0;
 }
 .header {
-  height: 30px;
+  /* height: 30px; */
+  /* padding: 10px; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  align-items: center;
+}
+.top-bar {
+  /* margin: 10px; */
+  margin-top: 10px;
+  padding-bottom: 10px;
+  /* height: 30px; */
+}
+el-header {
+  -webkit-app-region: drag;
 }
 </style>

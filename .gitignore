@@ -3,4 +3,4 @@ npm-debug.log
 npm-debug.log.*
 build/*
 /build
-dist
+dist/electron/main.js

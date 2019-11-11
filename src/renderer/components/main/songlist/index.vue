@@ -6,7 +6,7 @@
 export default {
   data () {
     return {
-      input: '' + this.$route.fullPath
+      input: ('' + this.$route.fullPath).replace('/songlist#', '')
     }
   },
   watch: {
