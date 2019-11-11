@@ -1,7 +1,7 @@
 <template>
   <div class="side-bar" style="padding: 10dp">
     <el-scrollbar class="menu-view scroll-page">
-      <div class="user-info">
+      <div class="user-info drag">
         <!-- <div>
           <el-avatar icon="el-icon-user-solid"></el-avatar>
         </div> -->
@@ -10,11 +10,11 @@
         </div>
         <el-row>
           <!-- <el-button icon="el-icon-search" circle></el-button> -->
-          <el-tooltip class="item" effect="dark" content="编辑用户信息" placement="bottom">
+          <el-tooltip class="item no-drag" effect="dark" content="编辑用户信息" placement="bottom">
             <el-button type="primary" icon="el-icon-edit" size="small" circle></el-button>
           </el-tooltip>
           <!-- <el-button type="success" icon="el-icon-check" circle></el-button> -->
-          <el-tooltip class="item" effect="dark" content="用户消息" placement="bottom">
+          <el-tooltip class="item no-drag" effect="dark" content="用户消息" placement="bottom">
             <el-button type="info" icon="el-icon-message" size="small" circle></el-button>
           </el-tooltip>
           <!-- <el-button type="warning" icon="el-icon-star-off" circle></el-button>
