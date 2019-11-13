@@ -55,7 +55,9 @@
             </div>
           </el-scrollbar>
         </el-tab-pane>
-        <el-tab-pane label="排行" name="b">排行</el-tab-pane>
+        <el-tab-pane label="排行" name="b">
+          <song-ranking></song-ranking>
+        </el-tab-pane>
         <el-tab-pane label="歌手" name="c">歌手</el-tab-pane>
         <el-tab-pane label="歌单" name="d">歌单</el-tab-pane>
         <el-tab-pane label="电台" name="e">电台</el-tab-pane>
@@ -67,10 +69,15 @@
 </template>
 
 <script>
+import SongRanking from "./SongRanking";
 export default {
-  name: 'home',
-  data () {
+  name: "home",
+  components: {
+    SongRanking
+  },
+  data() {
     return {
+      
       activeName: "a",
       newMusics: [
         "情歌",
@@ -93,19 +100,19 @@ export default {
         "国语"
       ],
       class_list: [
-        '情歌',
-        '网络歌曲',
-        '经典',
-        'KTV热歌',
-        '背景音乐',
-        '伤感',
-        '英语',
-        '国语',
-        '全部分类'
+        "情歌",
+        "网络歌曲",
+        "经典",
+        "KTV热歌",
+        "背景音乐",
+        "伤感",
+        "英语",
+        "国语",
+        "全部分类"
       ]
-    }
+    };
   }
-}
+};
 </script>
 
 <style>
