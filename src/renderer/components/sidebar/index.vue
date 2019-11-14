@@ -1,7 +1,6 @@
 <template>
   <div class="side-bar" style="padding: 10dp">
-    <el-scrollbar class="menu-view scroll-page">
-      <div class="user-info drag">
+    <div class="user-info drag">
         <!-- <div>
           <el-avatar icon="el-icon-user-solid"></el-avatar>
         </div> -->
@@ -89,7 +88,6 @@
           <el-menu-item v-for="pos in 7" :key="pos" :index="'/songlist#' + pos">歌单{{pos}}</el-menu-item>
         </el-submenu>
       </el-menu>
-    </el-scrollbar>
   </div>
 </template>
 

@@ -24,7 +24,7 @@
 
 <script>
 import RecommendPage from "./Recommend";
-import SongList from "./SongList";
+import SongList from "./songlist/SongList";
 export default {
   name: "home",
   components: {
