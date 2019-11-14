@@ -9,7 +9,9 @@
         <el-tab-pane label="推荐" name="a">
           <recommend-page/>
         </el-tab-pane>
-        <el-tab-pane label="排行" name="b">排行</el-tab-pane>
+        <el-tab-pane label="排行" name="b">
+          <song-ranking></song-ranking>
+        </el-tab-pane>
         <el-tab-pane label="歌手" name="c">歌手</el-tab-pane>
         <el-tab-pane label="歌单" name="d">
           <song-list />
@@ -25,14 +27,17 @@
 <script>
 import RecommendPage from "./Recommend";
 import SongList from "./songlist/SongList";
+import SongRanking from "./SongRanking";
 export default {
   name: "home",
   components: {
     SongList,
-    RecommendPage
+    RecommendPage,
+    SongRanking
   },
   data() {
     return {
+      
       activeName: "a",
       tab_labels: [
         "情歌",
