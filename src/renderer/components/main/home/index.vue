@@ -56,7 +56,9 @@
           </el-scrollbar>
         </el-tab-pane>
         <el-tab-pane label="排行" name="b">排行</el-tab-pane>
-        <el-tab-pane label="歌手" name="c">歌手</el-tab-pane>
+        <el-tab-pane label="歌手" name="singer">
+          <singer/>
+        </el-tab-pane>
         <el-tab-pane label="歌单" name="d">歌单</el-tab-pane>
         <el-tab-pane label="电台" name="e">电台</el-tab-pane>
         <el-tab-pane label="MV" name="f">MV</el-tab-pane>
@@ -66,9 +68,15 @@
   </div>
 </template>
 
+
 <script>
+import Singer from './singer/'
+
 export default {
   name: 'home',
+  components: {
+    Singer,
+  },
   data () {
     return {
       activeName: "a",
