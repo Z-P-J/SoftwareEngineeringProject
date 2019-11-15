@@ -37,19 +37,7 @@ export default {
   },
   data() {
     return {
-      
-      activeName: "a",
-      tab_labels: [
-        "情歌",
-        "网络歌曲",
-        "经典",
-        "KTV热歌",
-        "背景音乐",
-        "伤感",
-        "英语",
-        "国语",
-        "全部分类"
-      ]
+      activeName: "a"
     };
   }
 };

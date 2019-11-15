@@ -1,13 +1,13 @@
 <template>
   <div>
     <el-divider content-position="left">
-      <span style="font-size: 25px;">播放历史</span>
+      <span style="font-size: 25px; color: #000; font-weight: bold;">播放历史</span>
     </el-divider>
 
     <!-- <el-row>
       <span>共9首</span>
     </el-row>-->
-    <el-row type="flex" justify="space-between" style="padding: 10px">
+    <el-row type="flex" justify="space-between" style="padding: 20px 10px">
       <el-col span="12">
         <el-button type="primary" size="small" round>播放全部</el-button>
         <el-button size="small" round>下载</el-button>
@@ -28,7 +28,7 @@
     </el-row>
     <el-table
       :data="tableData"
-      style="width: 100%"
+      style="width: 100%;"
       ref="multipleTable"
       tooltip-effect="dark"
       @selection-change="handleSelectionChange"

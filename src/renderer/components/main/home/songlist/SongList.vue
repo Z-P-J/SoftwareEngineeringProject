@@ -14,18 +14,19 @@
       >{{item}}</el-tag>
     </el-col>
     <el-dropdown>
-  <!-- <span class="el-dropdown-link" slot="reference">
+      <!-- <span class="el-dropdown-link" slot="reference">
     下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
-  </span> -->
-  <el-popover
-    placement="bottom"
-    title="标题"
-    width="200"
-    trigger="hover"
-    content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
-    <el-button slot="reference" class="el-icon-arrow-down el-icon--right" size="mini">hover 激活</el-button>
-  </el-popover>
-</el-dropdown>
+      </span>-->
+      <el-popover
+        placement="bottom"
+        title="标题"
+        width="200"
+        trigger="hover"
+        content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+      >
+        <el-button slot="reference" class="el-icon-arrow-down el-icon--right" size="mini">hover 激活</el-button>
+      </el-popover>
+    </el-dropdown>
     <el-row :gutter="15" class="mt-10">
       <el-col :span="6" v-for="(item,index) in songlist" :key="index">
         <el-card :body-style="{ padding: '0px' }" style="margin: 5px;">
