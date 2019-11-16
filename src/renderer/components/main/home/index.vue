@@ -30,8 +30,8 @@
 <script>
 import RecommendPage from "./Recommend";
 import Singer from './singer/'
+import SongList from "./songlist/SongList";
 import SongRanking from "./SongRanking";
-import SongList from "./SongList";
 export default {
   name: "home",
   components: {
@@ -42,19 +42,7 @@ export default {
   },
   data() {
     return {
-      
-      activeName: "a",
-      tab_labels: [
-        "情歌",
-        "网络歌曲",
-        "经典",
-        "KTV热歌",
-        "背景音乐",
-        "伤感",
-        "英语",
-        "国语",
-        "全部分类"
-      ]
+      activeName: "a"
     };
   }
 };
