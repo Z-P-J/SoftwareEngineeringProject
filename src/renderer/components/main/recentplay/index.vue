@@ -73,113 +73,113 @@
 
 <script>
 export default {
-  name: "recent-play",
-  data() {
+  name: 'recent-play',
+  data () {
     return {
       tableData: [
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         }
       ]
-    };
+    }
   },
   methods: {
-    toggleSelection(rows) {
+    toggleSelection (rows) {
       if (rows) {
         rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row);
-        });
+          this.$refs.multipleTable.toggleRowSelection(row)
+        })
       } else {
-        this.$refs.multipleTable.clearSelection();
+        this.$refs.multipleTable.clearSelection()
       }
     },
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
+    handleSelectionChange (val) {
+      this.multipleSelection = val
     },
-    starSong(index, row) {
+    starSong (index, row) {
       this.$message({
-        message: "我喜欢 index=" + index + " row=" + row,
-        type: "success"
-      });
+        message: '我喜欢 index=' + index + ' row=' + row,
+        type: 'success'
+      })
     },
-    playSong(index, row) {
+    playSong (index, row) {
       this.$message({
-        message: "播放音乐 index=" + index + " row=" + row,
-        type: "success"
-      });
+        message: '播放音乐 index=' + index + ' row=' + row,
+        type: 'success'
+      })
     },
-    playSongHistory(index, row) {
-      this.tableData.splice(index, 1);
+    playSongHistory (index, row) {
+      this.tableData.splice(index, 1)
       this.$message({
-        message: "删除音乐历史 index=" + index + " row=" + row,
-        type: "success"
-      });
+        message: '删除音乐历史 index=' + index + ' row=' + row,
+        type: 'success'
+      })
     }
   }
-};
+}
 </script>
 
 <style>
