@@ -63,110 +63,110 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      input: ("" + this.$route.fullPath).replace("/songlist#", ""),
+      input: ('' + this.$route.fullPath).replace('/songlist#', ''),
       tableData: [
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         },
         {
-          song: "歌曲名",
-          singer: "歌手名",
-          album: "专辑名",
-          time: "4:00"
+          song: '歌曲名',
+          singer: '歌手名',
+          album: '专辑名',
+          time: '4:00'
         }
       ]
-    };
+    }
   },
   watch: {
-    $route(to, from) {
-      var str = "" + to.fullPath;
-      this.input = str.replace("/songlist#", "");
+    $route (to, from) {
+      var str = '' + to.fullPath
+      this.input = str.replace('/songlist#', '')
     }
   },
   methods: {
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
+    handleSelectionChange (val) {
+      this.multipleSelection = val
     },
-    starSong(index, row) {
+    starSong (index, row) {
       this.$message({
-        message: "我喜欢 index=" + index + " row=" + row,
-        type: "success"
-      });
+        message: '我喜欢 index=' + index + ' row=' + row,
+        type: 'success'
+      })
     },
-    playSong(index, row) {
+    playSong (index, row) {
       this.$message({
-        message: "播放音乐 index=" + index + " row=" + row,
-        type: "success"
-      });
+        message: '播放音乐 index=' + index + ' row=' + row,
+        type: 'success'
+      })
     },
-    playSongHistory(index, row) {
-      this.tableData.splice(index, 1);
+    playSongHistory (index, row) {
+      this.tableData.splice(index, 1)
       this.$message({
-        message: "删除音乐历史 index=" + index + " row=" + row,
-        type: "success"
-      });
+        message: '删除音乐历史 index=' + index + ' row=' + row,
+        type: 'success'
+      })
     }
   }
-};
+}
 </script>
 
 <style>

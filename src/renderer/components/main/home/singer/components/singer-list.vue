@@ -72,7 +72,7 @@
   </div>
 </template>
 <script>
-import SingerItem from "./singer-item.vue";
+import SingerItem from './singer-item.vue'
 // import { singerlist } from "../../../../api";
 export default {
   components: {
@@ -82,27 +82,27 @@ export default {
     // cat:Number,
     // page:Number,
   },
-  data() {
+  data () {
     return {
       language: '全部',
       gender: '全部',
       initial: '热门',
       singers: [
-        "歌手1",
-        "歌手1",
-        "歌手1",
-        "歌手1",
-        "歌手1",
-        "歌手1",
-        "歌手1",
-        "歌手1",
-        "歌手1",
+        '歌手1',
+        '歌手1',
+        '歌手1',
+        '歌手1',
+        '歌手1',
+        '歌手1',
+        '歌手1',
+        '歌手1',
+        '歌手1'
       ],
       page: 0,
       cat: 0,
       activeIndex: 0
-    };
-  },
+    }
+  }
   // mounted() {
   //   this.getSingerlist();
   // },
@@ -129,7 +129,7 @@ export default {
   //     }
   //   }
   // }
-};
+}
 </script>
 <style>
 .singer-page{

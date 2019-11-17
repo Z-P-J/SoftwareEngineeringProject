@@ -9,11 +9,11 @@ export default {
   props: {
     item: Object
   },
-  data() {
-    return {};
+  data () {
+    return {}
   },
   methods: {}
-};
+}
 </script>
 <style>
 .singer-item {
