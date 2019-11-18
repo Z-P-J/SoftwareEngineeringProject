@@ -1,107 +1,71 @@
 <template>
-  <div>
-    <el-row class="top-bar" type="flex" justify="space-between">
-      <el-col class="left" span="6">
-        <div>
-          <el-col span="4">
-            <el-button
-              class="no-drag"
-              icon="el-icon-arrow-left"
-              circle
-              type="text"
-              size="medium"
-              @click="back"
-            ></el-button>
-          </el-col>
-          <el-col span="4">
-            <el-button
-              class="no-drag"
-              icon="el-icon-arrow-right"
-              circle
-              type="text"
-              size="medium"
-              @click="forward"
-            ></el-button>
-          </el-col>
-          <el-col span="4">
-            <el-button
-              class="no-drag"
-              icon="el-icon-refresh"
-              circle
-              type="text"
-              size="medium"
-              @click="refresh"
-            ></el-button>
-          </el-col>
-        </div>
-      </el-col>
-      <el-col class="search" span="8">
-        <el-autocomplete
-          class="search no-drag"
-          v-model="state"
-          :fetch-suggestions="querySearchAsync"
-          @select="handleSelect"
-          @keyup.enter.native="search"
-          prefix-icon="el-icon-search"
-          placeholder="搜索音乐、MV、歌单、用户"
-          clearable
-          size="mini"
-        ></el-autocomplete>
-      </el-col>
-      <el-col class="right" span="6">
-        <el-row type="flex" justify="end">
-          <el-col span="4">
-            <el-dropdown>
-              <el-button
-                class="no-drag"
-                icon="el-icon-arrow-down"
-                circle
-                type="text"
-                size="medium"
-                @click="more"
-              ></el-button>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>1</el-dropdown-item>
-                <el-dropdown-item>2</el-dropdown-item>
-                <el-dropdown-item>3</el-dropdown-item>
-                <el-dropdown-item>4</el-dropdown-item>
-                <el-dropdown-item>5</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </el-col>
-          <el-col span="4">
-            <el-button
-              class="no-drag"
-              icon="el-icon-minus"
-              circle
-              type="text"
-              size="medium"
-              @click="minimize"
-            ></el-button>
-          </el-col>
-          <el-col span="4">
-            <el-button
-              class="no-drag"
-              icon="el-icon-copy-document"
-              circle
-              type="text"
-              size="medium"
-              @click="fullScreen"
-            ></el-button>
-          </el-col>
-          <el-col span="4">
-            <el-button
-              class="no-drag"
-              icon="el-icon-close"
-              circle
-              type="text"
-              size="medium"
-              @click="close"
-            ></el-button>
-          </el-col>
-        </el-row>
-      </el-col>
-    </el-row>
+  <div class="header-view">
+    <div class="left-icon">
+      <el-row type="flex" justify="start">
+        <el-col offset="2">
+          <el-button class="no-drag" type="text" size="mini" @click="back">
+            <i class="btn el-icon-arrow-left"></i>
+          </el-button>
+        </el-col>
+        <el-col offset="2">
+          <el-button class="no-drag" type="text" size="mini" @click="forward">
+            <i class="btn el-icon-arrow-right"></i>
+          </el-button>
+        </el-col>
+        <el-col offset="2">
+          <el-button class="no-drag" type="text" size="mini" @click="refresh">
+            <i class="btn el-icon-refresh"></i>
+          </el-button>
+        </el-col>
+      </el-row>
+    </div>
+    <div class="middle-icon">
+      <el-autocomplete
+        class="search no-drag"
+        v-model="state"
+        :fetch-suggestions="querySearchAsync"
+        @select="handleSelect"
+        @keyup.enter.native="search"
+        prefix-icon="el-icon-search"
+        placeholder="搜索音乐、MV、歌单、用户"
+        clearable
+        :trigger-on-focus="false"
+        size="mini"
+      ></el-autocomplete>
+    </div>
+    <div class="right-icon">
+      <el-row type="flex" justify="end" offset="2">
+        <el-col>
+          <el-dropdown>
+            <el-button class="no-drag" type="text" size="mini" @click="more">
+              <i class="btn el-icon-arrow-down"></i>
+            </el-button>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>设置</el-dropdown-item>
+              <el-dropdown-item>2</el-dropdown-item>
+              <el-dropdown-item>3</el-dropdown-item>
+              <el-dropdown-item>4</el-dropdown-item>
+              <el-dropdown-item>5</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </el-col>
+        <el-col offset="2">
+          <el-button class="no-drag" type="text" size="mini" @click="minimize">
+            <i class="btn el-icon-minus"></i>
+          </el-button>
+        </el-col>
+        <el-col offset="2">
+          <el-button class="no-drag" type="text" size="mini" @click="fullScreen">
+            <i class="btn el-icon-copy-document"></i>
+          </el-button>
+        </el-col>
+        <el-col offset="2">
+          <el-button class="no-drag" type="text" size="mini" @click="close">
+            <i class="btn el-icon-close"></i>
+          </el-button>
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 
@@ -143,16 +107,15 @@ export default {
     },
     loadAll() {
       return [
-        { value: "三全鲜食（北新泾店）", address: "长宁区新渔路144号" },
+        { value: "1111111111111111111", address: "xxxxxxxxxxxxxxxxxx" },
         {
-          value: "Hot honey 首尔炸鸡（仙霞路）",
-          address: "上海市长宁区淞虹路661号"
+          value: "222222222222222222222",
+          address: "yyyyyyyyyyyyyyyyyyyyyyy"
         },
         {
-          value: "新旺角茶餐厅",
-          address: "上海市普陀区真北路988号创邑金沙谷6号楼113"
-        },
-        
+          value: "333333333333333333333",
+          address: "zzzzzzzzzzzzzzzzzzzzzzz"
+        }
       ];
     },
     querySearchAsync(queryString, cb) {
@@ -176,15 +139,14 @@ export default {
     handleSelect(item) {
       console.log(item);
       console.log(1111);
-     
     },
-    search(){
+    search() {
       this.$router.push({
-        path:'/searchResults',
-        query:{
-          state:this.state,
+        path: "/searchResults",
+        query: {
+          state: this.state
         }
-      })
+      });
     }
   },
   mounted() {
@@ -196,5 +158,34 @@ export default {
 <style>
 .no-drag {
   -webkit-app-region: no-drag;
+}
+.search .el-input__inner {
+  /* border: 1px solid #c5c5c5; */
+  border: none;
+  border-radius: 20px;
+  background: #f4f4f4;
+  color: #8c8c8c;
+}
+.btn {
+  font-size: 15px;
+  color: #999;
+}
+.btn:hover {
+  color: #31c27c;
+}
+.header-view {
+  height: 45;
+  padding: 0;
+  margin: 0;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  /* flex: auto; */
+}
+.middle-icon {
+  /* display: flex;
+  align-self: middle; */
 }
 </style>
