@@ -25,22 +25,22 @@
 </template>
 
 <script>
-import RecommendPage from "./Recommend";
-import SongList from "./songlist/SongList";
-import SongRanking from "./SongRanking";
+import RecommendPage from './Recommend'
+import SongList from './songlist/SongList'
+import SongRanking from './SongRanking'
 export default {
-  name: "home",
+  name: 'home',
   components: {
     SongList,
     RecommendPage,
     SongRanking
   },
-  data() {
+  data () {
     return {
-      activeName: "a"
-    };
+      activeName: 'a'
+    }
   }
-};
+}
 </script>
 
 <style>

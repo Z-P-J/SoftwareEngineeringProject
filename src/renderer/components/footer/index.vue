@@ -4,20 +4,20 @@
     <el-row type="flex" justify="space-between">
       <el-col :span="6">
         <el-row type="flex" justify="start">
-          <div class="cover">
+          <div class="cover" @click="toggleLyrics">
             <img class="cover-image" style="height: 50px;" src="../../assets/default_cover.jpg" />
             <!-- <audio v-show="false" ref="audio" v-if="play_url" :src="play_url.url" preload /> -->
           </div>
         </el-row>
       </el-col>
       <el-col :span="6">
-          <i class="el-icon-edit" style="padding: 10px;height: 20px;"></i>
+        <i class="el-icon-edit" style="padding: 10px;height: 20px;"></i>
         <el-button type="primary" icon="el-icon-arrow-left" size="mini" circle></el-button>
         <el-button type="primary" icon="el-icon-video-play" size="medium" circle></el-button>
         <el-button type="primary" icon="el-icon-arrow-right" size="mini" circle></el-button>
         <i class="el-icon-edit" style="padding: 10px;height: 20px;"></i>
       </el-col>
-      <el-col :span="6"  type="flex" justify="center">
+      <el-col :span="6" type="flex" justify="center">
         <div class="tone">
           <el-dropdown trigger="click" placement="top">
             <span class="tone-dropdown">
@@ -80,6 +80,16 @@
     </el-row>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    toggleLyrics () {
+      this.$router.push({path: `/player`});
+    }
+  }
+}
+</script>
 
 <style>
 /* .cover {

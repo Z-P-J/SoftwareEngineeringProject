@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import player from '../components/player/index.vue'
 import home from '../components/main/home/index.vue'
 import local from '../components/main/local/index.vue'
 import download from '../components/main/download/index.vue'
@@ -48,6 +49,11 @@ export default new Router({
           component: songlist
         }
       ]
+    },
+    {
+      path: '/player',
+      name: 'player',
+      component: player
     },
     {
       path: '*',
