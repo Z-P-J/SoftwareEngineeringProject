@@ -19,7 +19,7 @@
       <el-divider content-position="left">
         <span style="font-size: 25px;">最新音乐</span>
       </el-divider>
-      <div class="class-list mt-5" style="padding: 10px">
+      <div class="tag-list mt-5" style="padding: 10px">
         <el-tag>标签一</el-tag>
         <el-tag type="success">标签二</el-tag>
         <el-tag type="info">标签三</el-tag>

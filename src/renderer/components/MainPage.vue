@@ -1,7 +1,10 @@
 <template>
+<transition>
   <div>
-    <el-card class="box-card" body-style="padding: 0">
-      <el-container class="container">
+    <!-- <el-card class="box-card" body-style="padding: 0">
+      
+    </el-card> -->
+    <el-container class="container">
         <el-aside width="230px" class="aside">
           <side-bar />
         </el-aside>
@@ -19,8 +22,8 @@
           </el-footer>
         </el-container>
       </el-container>
-    </el-card>
   </div>
+</transition>
 </template>
 
 <script>
@@ -92,8 +95,24 @@ body {
   background: transparent;
 }
 
+/* .box-card {
+  height: 100%;
+  width: 100%;
+  position:absolute;
+  padding: 0;
+  margin: 0;
+} */
+
 .container {
-  height: 100vh;
+  height: 100%;
+  width: 100%;
+  position:absolute;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  flex: 1;
+  flex-shrink: 0;
 }
 
 .aside {

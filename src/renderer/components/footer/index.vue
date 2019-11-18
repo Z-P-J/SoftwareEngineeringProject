@@ -22,6 +22,16 @@ export default {
 </script>
 
 
+<script>
+export default {
+  methods: {
+    toggleLyrics () {
+      this.$router.push({path: `/player`});
+    }
+  }
+}
+</script>
+
 <style>
 /* .cover {
   width: 70px;

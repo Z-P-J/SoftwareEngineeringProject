@@ -20,11 +20,13 @@
 4. [我的第一个Electron应用](https://github.com/electron/electron/blob/master/docs/tutorial/first-app.md)
 5. [Electron快速入门](https://github.com/electron/electron-quick-start)
 6. [Vue.js入门](https://cn.vuejs.org/v2/guide/)
-7. [Vue.js教程](https://www.runoob.com/vue2/vue-tutorial.html)
+7. [Vuex的使用](https://segmentfault.com/a/1190000015782272)
 8. [vue-electron脚手架安装](https://www.jianshu.com/p/7f64daa9264c)
 9. [electron-vue文档](https://simulatedgreg.gitbooks.io/electron-vue/content/)
 10. [electron-vue架构解析]( https://blog.csdn.net/u010961631/article/details/80648712 )
 11. [element-ui]( https://element.eleme.cn/#/zh-CN/component/installation )
+12. [聚合音乐api](https://github.com/sunzongzheng/musicApi)
+13. [网易云api](https://github.com/Binaryify/NeteaseCloudMusicApi)
 
 ## 如何运行
 
