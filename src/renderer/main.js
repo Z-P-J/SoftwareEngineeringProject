@@ -1,6 +1,7 @@
 import Vue from 'vue'
 // import { Vue } from 'vue'
 import axios from 'axios'
+import APlayer from '@moefe/vue-aplayer';
 
 import App from './App'
 import router from './router'
@@ -15,6 +16,7 @@ Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(NMPlayer)
+Vue.use(APlayer);
 
 /* eslint-disable no-new */
 new Vue({

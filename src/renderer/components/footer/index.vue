@@ -1,85 +1,26 @@
 <template>
   <div class="footer-view">
-    <el-slider :show-tooltipss="true" v-model="play_time" input-size="mini" :min="0" :max="100"></el-slider>
-    <el-row type="flex" justify="space-between">
-      <el-col :span="6">
-        <el-row type="flex" justify="start">
-          <div class="cover">
-            <img class="cover-image" style="height: 50px;" src="../../assets/default_cover.jpg" />
-            <!-- <audio v-show="false" ref="audio" v-if="play_url" :src="play_url.url" preload /> -->
-          </div>
-        </el-row>
-      </el-col>
-      <el-col :span="6">
-          <i class="el-icon-edit" style="padding: 10px;height: 20px;"></i>
-        <el-button type="primary" icon="el-icon-arrow-left" size="mini" circle></el-button>
-        <el-button type="primary" icon="el-icon-video-play" size="medium" circle></el-button>
-        <el-button type="primary" icon="el-icon-arrow-right" size="mini" circle></el-button>
-        <i class="el-icon-edit" style="padding: 10px;height: 20px;"></i>
-      </el-col>
-      <el-col :span="6"  type="flex" justify="center">
-        <div class="tone">
-          <el-dropdown trigger="click" placement="top">
-            <span class="tone-dropdown">
-              标准
-              <i class="el-icon-edit"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown" style="width: 220px">
-              <el-dropdown-item>
-                <div class="flex-c-l">
-                  <div class="check" style="width: 30px">
-                    <i class="el-icon-edit" style="color: #31c27c;"></i>
-                  </div>
-                  <span>标准品质</span>
-                </div>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <div class="flex-c-l">
-                  <div class="check" style="width: 30px"></div>
-                  <span>HQ高品质</span>
-                </div>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <div class="flex-c-l">
-                  <div class="check" style="width: 30px"></div>
-                  <span>SQ无损品质</span>
-                  <img src="../../assets/svip.png" style="margin-left: 5px; width: 22px" />
-                  <img src="../../assets/sui.png" style="margin-left: 5px; width: 22px" />
-                </div>
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-          <el-dropdown class="mt-10" trigger="click" placement="top" size="medium">
-            <span class="tone-dropdown">
-              音效
-              <i class="el-icon-arrow-up el-icon--right"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown" style="width: 200px">
-              <el-dropdown-item>关闭</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-        </div>
-        <el-row type="flex" justify="end">
-          <el-button type="text">
-            <i class="el-icon-edit"></i>
-          </el-button>
-          <el-button type="text">
-            <i class="el-icon-edit"></i>
-          </el-button>
-          <el-button type="text">
-            <i class="el-icon-edit"></i>
-          </el-button>
-          <el-popover placement="top-start" width="300" popper-class="ls" trigger="click">
-            <playlist />
-            <el-button type="text" slot="reference">
-              <i class="el-icon-edit"></i>
-            </el-button>
-          </el-popover>
-        </el-row>
-      </el-col>
-    </el-row>
+     <aplayer :audio="audio" :lrcType="3" />
+    
   </div>
 </template>
+<script>
+export default {
+  name: 'App',
+  data() {
+    return {
+      audio: {
+        name: 'The Party We Have Never Seen',
+        artist: 'Nana Takahashi',
+        url: 'https://cdn.moefe.org/music/mp3/thepartywehaveneverseen.mp3',
+        cover: 'https://p1.music.126.net/IwclpJu4gaqhSZrKunEFWg==/3297435379408525.jpg?param=300y300', // prettier-ignore
+        lrc: 'https://cdn.moefe.org/music/lrc/thepartywehaveneverseen.lrc',
+      },
+    };
+  },
+};
+</script>
+
 
 <style>
 /* .cover {
