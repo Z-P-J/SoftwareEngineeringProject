@@ -1,8 +1,8 @@
 {
   "name": "music-player",
   "version": "1.0.8",
-  "author": "liuzhuoling <liuzhuoling2011@hotmail.com>",
-  "description": "Download music in china market",
+  "author": "zpj,zzy,hx",
+  "description": "",
   "license": null,
   "main": "./dist/electron/main.js",
   "scripts": {

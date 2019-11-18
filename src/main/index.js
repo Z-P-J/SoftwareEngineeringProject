@@ -100,14 +100,14 @@ function createWindow () {
 
   mainWindow.loadURL(winURL)
 
-  mainWindow.on('close', (event) => {
-    mainWindow.webContents.send('main-process-messages', 'close')
-    if (process.platform === 'win32') {
-      mainWindow.hide()
-      mainWindow.setSkipTaskbar(true)
-      event.preventDefault()
-    }
-  })
+  // mainWindow.on('close', (event) => {
+  //   mainWindow.webContents.send('main-process-messages', 'close')
+  //   if (process.platform === 'win32') {
+  //     mainWindow.hide()
+  //     mainWindow.setSkipTaskbar(true)
+  //     event.preventDefault()
+  //   }
+  // })
 
   mainWindow.on('closed', () => {
     mainWindow = null

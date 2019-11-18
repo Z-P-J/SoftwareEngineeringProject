@@ -12,7 +12,9 @@
         <el-tab-pane label="排行" name="b">
           <song-ranking></song-ranking>
         </el-tab-pane>
-        <el-tab-pane label="歌手" name="c">歌手</el-tab-pane>
+        <el-tab-pane label="歌手" name="c">
+          <singer/>
+        </el-tab-pane>
         <el-tab-pane label="歌单" name="d">
           <song-list />
         </el-tab-pane>
@@ -24,14 +26,17 @@
   </div>
 </template>
 
+
 <script>
 import RecommendPage from './Recommend'
+import Singer from './singer/'
 import SongList from './songlist/SongList'
 import SongRanking from './SongRanking'
 export default {
   name: 'home',
   components: {
     SongList,
+    Singer,
     RecommendPage,
     SongRanking
   },
