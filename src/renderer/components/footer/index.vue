@@ -1,12 +1,16 @@
 <template>
   <div class="footer-view">
-     <aplayer :audio="audio" :lrcType="3" />
-    
+      <aaplayer ref="nmplayer" :audios="audios" :async-play="fetchAudioUrl" default-cover="https://p1.music.126.net/IwclpJu4gaqhSZrKunEFWg==/3297435379408525.jpg?param=300y300" unique="id1" :sheet-height="200" :default-play-mode="2"
+               :default-volume="0.75"></aaplayer>
   </div>
 </template>
 <script>
+import aaplayer from './player-controller'
 export default {
   name: 'App',
+  components: {
+    aaplayer
+  },
   data() {
     return {
       audio: {
@@ -16,20 +20,38 @@ export default {
         cover: 'https://p1.music.126.net/IwclpJu4gaqhSZrKunEFWg==/3297435379408525.jpg?param=300y300', // prettier-ignore
         lrc: 'https://cdn.moefe.org/music/lrc/thepartywehaveneverseen.lrc',
       },
+      audios: [
+        {
+          id: 1,
+          name: '沙漠骆驼',
+          author: '展展与罗罗'
+        },
+        {
+          id: 2,
+          name: '沙漠骆驼',
+          author: '展展与罗罗'
+        }
+      ],
+      list: [
+        {
+          id: 1,
+          name: '沙漠骆驼',
+          author: '展展与罗罗'
+        },
+        {
+          id: 2,
+          name: '沙漠骆驼',
+          author: '展展与罗罗'
+        }
+      ]
     };
   },
-};
-</script>
-
-
-<script>
-export default {
   methods: {
     toggleLyrics () {
       this.$router.push({path: `/player`});
     }
   }
-}
+};
 </script>
 
 <style>

@@ -1,10 +1,8 @@
 <template>
 <transition>
   <div>
-    <!-- <el-card class="box-card" body-style="padding: 0">
-      
-    </el-card> -->
-    <el-container class="container">
+    <el-card class="box-card" body-style="padding: 0">
+      <el-container class="container">
         <el-aside width="230px" class="aside">
           <side-bar />
         </el-aside>
@@ -17,12 +15,14 @@
               <router-view></router-view>
             </keep-alive>
           </el-main>
-          <el-footer height="100px">
+          <el-footer height="70px">
             <footer-view></footer-view>
           </el-footer>
         </el-container>
       </el-container>
-  </div>
+  
+    </el-card>
+    </div>
 </transition>
 </template>
 

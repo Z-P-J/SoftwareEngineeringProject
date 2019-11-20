@@ -40,7 +40,7 @@ function createWindow () {
   const options = {
     height: height,
     width: width,
-    show: true,
+    show: false,
     center: true,
     fullscreenable: false,
     resizable: false,
@@ -99,6 +99,9 @@ function createWindow () {
   }
 
   mainWindow.loadURL(winURL)
+  mainWindow.on('ready-to-show', function () {
+    mainWindow.show()
+  })
 
   // mainWindow.on('close', (event) => {
   //   mainWindow.webContents.send('main-process-messages', 'close')
@@ -155,6 +158,15 @@ ipcMain.on('close', e => {
 })
 ipcMain.on('minimize', e => {
   mainWindow.minimize()
+})
+ipcMain.on('open-directory-dialog', function (event, path) {
+  dialog.showOpenDialog({
+    properties: [path]
+  }, function (files) {
+    if (files) {
+      event.sender.send('selectedItem', files[0])
+    }
+  })
 })
 /**
  * Auto Updater
