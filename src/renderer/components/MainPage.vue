@@ -7,8 +7,8 @@
           <side-bar />
         </el-aside>
         <el-container>
-          <el-header class="header drag">
-            <top-bar class="top-bar"></top-bar>
+          <el-header class="header drag" height="45px">
+            <top-bar></top-bar>
           </el-header>
           <el-main class="main">
             <keep-alive>
@@ -131,18 +131,11 @@ body {
   flex-shrink: 0;
 }
 .header {
-  /* height: 30px; */
-  /* padding: 10px; */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
-  align-items: center;
-}
-.top-bar {
-  /* margin: 10px; */
-  margin-top: 10px;
-  padding-bottom: 10px;
-  /* height: 30px; */
+  /* margin: 0;
+  padding: 0; */
+  /* margin-top: 5px; */
+  /* padding-top: 5px; */
+  /* background: #bdbaba; */
 }
 .drag {
   -webkit-app-region: drag;
