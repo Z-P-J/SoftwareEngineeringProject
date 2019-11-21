@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <keep-alive>
-      <transition :name="transitionName" >
+    <transition :name="transitionName">
+      <keep-alive>
         <router-view class="content"></router-view>
-      </transition>
-    </keep-alive>
+      </keep-alive>
+    </transition>
+
     <!-- <transition :name="transitionName">
       <player :v-show="show_player"/>
-    </transition> -->
+    </transition>-->
   </div>
 </template>
 
@@ -45,18 +46,18 @@ export default {
   width: 100%;
   height: 100%;
   position: absolute;
-  transition: all .3s ease-out;
+  transition: all 0.3s ease-out;
 }
-.slide-up-enter{
+.slide-up-enter {
   transform: translate(0, 100%);
 }
-.slide-up-leave-active{
+.slide-up-leave-active {
   transform: translate(0, -50%);
 }
 .slide-down-enter {
   transform: translate(0, -50%);
 }
-.slide-down-leave-active{
+.slide-down-leave-active {
   transform: translate(0, 100%);
 }
 </style>

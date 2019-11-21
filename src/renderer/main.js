@@ -16,7 +16,7 @@ Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(NMPlayer)
-Vue.use(APlayer);
+Vue.use(APlayer)
 
 /* eslint-disable no-new */
 new Vue({

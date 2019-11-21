@@ -4,12 +4,14 @@
       <span style="font-size: 25px; color: #000; font-weight: bold;">本地音乐</span>
     </el-divider>
     <el-row type="flex" justify="space-between" style="padding: 20px 10px">
-      <el-col span="12">
+      <el-col>
         <el-button type="primary" size="small" round>播放全部</el-button>
         <el-button size="small" round>批量操作</el-button>
+        <el-button type="primary" size="small" @click="selectFolder" round>添加</el-button>
         <i class="el-icon-sort" style="padding: 5px;font-size: 14px;">排序</i>
       </el-col>
     </el-row>
+    
     <el-table
       :data="tableData"
       style="width: 100%;"
@@ -48,85 +50,156 @@
         </template>
       </el-table-column>
     </el-table>
+    <!-- <div v-else>
+      <el-button type="primary" size="small" round>添加</el-button>
+    </div> -->
   </div>
 </template>
 
 <script>
+const fs = require('fs');
+const pathModule = require('path');
+const audioLoader = require('audio-loader')
+const jsmediatags = require("jsmediatags");
 export default {
   name: 'recent-play',
   data () {
     return {
+      // hasMusic: true,
       tableData: [
-        {
-          song: '歌曲名',
-          singer: '歌手名',
-          album: '专辑名',
-          time: '4:00'
-        },
-        {
-          song: '歌曲名',
-          singer: '歌手名',
-          album: '专辑名',
-          time: '4:00'
-        },
-        {
-          song: '歌曲名',
-          singer: '歌手名',
-          album: '专辑名',
-          time: '4:00'
-        },
-        {
-          song: '歌曲名',
-          singer: '歌手名',
-          album: '专辑名',
-          time: '4:00'
-        },
-        {
-          song: '歌曲名',
-          singer: '歌手名',
-          album: '专辑名',
-          time: '4:00'
-        },
-        {
-          song: '歌曲名',
-          singer: '歌手名',
-          album: '专辑名',
-          time: '4:00'
-        },
-        {
-          song: '歌曲名',
-          singer: '歌手名',
-          album: '专辑名',
-          time: '4:00'
-        },
-        {
-          song: '歌曲名',
-          singer: '歌手名',
-          album: '专辑名',
-          time: '4:00'
-        },
-        {
-          song: '歌曲名',
-          singer: '歌手名',
-          album: '专辑名',
-          time: '4:00'
-        },
-        {
-          song: '歌曲名',
-          singer: '歌手名',
-          album: '专辑名',
-          time: '4:00'
-        },
-        {
-          song: '歌曲名',
-          singer: '歌手名',
-          album: '专辑名',
-          time: '4:00'
-        }
+        // {
+        //   song: '歌曲名',
+        //   singer: '歌手名',
+        //   album: '专辑名',
+        //   time: '4:00'
+        // },
+        // {
+        //   song: '歌曲名',
+        //   singer: '歌手名',
+        //   album: '专辑名',
+        //   time: '4:00'
+        // },
+        // {
+        //   song: '歌曲名',
+        //   singer: '歌手名',
+        //   album: '专辑名',
+        //   time: '4:00'
+        // },
+        // {
+        //   song: '歌曲名',
+        //   singer: '歌手名',
+        //   album: '专辑名',
+        //   time: '4:00'
+        // },
+        // {
+        //   song: '歌曲名',
+        //   singer: '歌手名',
+        //   album: '专辑名',
+        //   time: '4:00'
+        // },
+        // {
+        //   song: '歌曲名',
+        //   singer: '歌手名',
+        //   album: '专辑名',
+        //   time: '4:00'
+        // },
+        // {
+        //   song: '歌曲名',
+        //   singer: '歌手名',
+        //   album: '专辑名',
+        //   time: '4:00'
+        // },
+        // {
+        //   song: '歌曲名',
+        //   singer: '歌手名',
+        //   album: '专辑名',
+        //   time: '4:00'
+        // },
+        // {
+        //   song: '歌曲名',
+        //   singer: '歌手名',
+        //   album: '专辑名',
+        //   time: '4:00'
+        // },
+        // {
+        //   song: '歌曲名',
+        //   singer: '歌手名',
+        //   album: '专辑名',
+        //   time: '4:00'
+        // },
+        // {
+        //   song: '歌曲名',
+        //   singer: '歌手名',
+        //   album: '专辑名',
+        //   time: '4:00'
+        // }
       ]
     }
   },
   methods: {
+    selectFolder() {
+
+    //   window.electron.remote.dialog.showOpenDialog({
+    //   title: 'Import Audio Files',
+    //   properties: ['openFile', 'multiSelections'],
+    //   filters: [{
+    //     name: '.MP3 Files',
+    //     extensions: ['mp3']
+    //   }]
+    // }, (data) => {
+    //   this.importLocalFiles(data)
+    // })
+
+      var t = this;
+      this.$electron.ipcRenderer.send("open-directory-dialog",'openDirectory');
+      this.$electron.ipcRenderer.once('selectedItem', function(e, path){
+        if (path != null) {
+          fs.readdir(path, (err, files) => {
+    if (err) {
+      t.$message({
+        message: err,
+        type: 'error'
+      })
+      return
+    }
+    console.log(`${path}`);
+    files.forEach((file) => {
+      if (pathModule.extname(file).toLowerCase() === '.mp3') {
+        console.log(`${path}/${file}`);
+        jsmediatags.read(path + '/' + file, {
+          onSuccess: function(tag) {
+            console.log(tag);
+            t.tableData.push({
+            song: tag.tags.title,
+            singer: tag.tags.artist,
+            album: tag.tags.album,
+            time: tag.tags.time
+        })
+          },
+          onError: function(error) {
+            console.log(':(', error.type, error.info);
+          }
+        });
+        // audioLoader(path + '/' + file).then(function (res) {
+        //   console.log(res)
+        //   t.tableData.push({
+        //   song: '歌曲名',
+        //   singer: '歌手名',
+        //   album: '专辑名',
+        //   time: res.duration
+        // })
+        // })
+      }
+    });
+  });
+        } else {
+          t.$message({
+            message: "您未选择任何文件夹！",
+            type: 'error'
+          })
+        }
+        });
+    },
     toggleSelection (rows) {
       if (rows) {
         rows.forEach(row => {

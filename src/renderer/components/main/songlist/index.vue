@@ -5,7 +5,7 @@
         <img src="../../../assets/default_cover.jpg" />
       </div>
       <div class="info">
-        <div class="title">歌单标题：歌单{{input}}</div>
+        <div class="title">歌单标题：{{input}}</div>
         <div class="author">
           <img src="../../../assets/default_cover.jpg" />
           <span>用户名</span>
