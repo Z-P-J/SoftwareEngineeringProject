@@ -93,6 +93,8 @@ body {
   scroll-behavior: smooth;
   line-height: 1.15;
   background: transparent;
+  
+  /* background: #e9e0e0; */
 }
 
 /* .box-card {
@@ -130,9 +132,9 @@ body {
   flex: 1;
   flex-shrink: 0;
 }
-.header {
-  /* margin: 0;
-  padding: 0; */
+.container .el-header {
+  margin: 0;
+  padding: 5px 10px;
   /* margin-top: 5px; */
   /* padding-top: 5px; */
   /* background: #bdbaba; */

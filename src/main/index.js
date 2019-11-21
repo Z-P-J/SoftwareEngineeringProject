@@ -35,12 +35,11 @@ function createWindow () {
    * Initial window options
    */
   let size = screen.getPrimaryDisplay().workAreaSize
-  let width = parseInt(size.width * 0.7)
-  let height = parseInt(size.height * 0.8)
+  // let width = parseInt(size.width * 0.7)
+  // let height = parseInt(size.height * 0.8)
   const options = {
-    height: height,
-    width: width,
-    show: true,
+    height: 800,
+    width: 1200,
     center: true,
     fullscreenable: false,
     resizable: false,
@@ -49,7 +48,7 @@ function createWindow () {
     // backgroundColor: '#ffffff', // 背景色
     transparent: true,
     frame: false,
-    hasShadow: false,
+    // hasShadow: false,
     webPreferences: {
       backgroundThrottling: false,
       webSecurity: false
