@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  name: "VideosList"
-};
+  name: 'VideosList'
+}
 </script>
 <style>
 </style>

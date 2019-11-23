@@ -113,31 +113,31 @@
   </div>
 </template>
 <script>
-import "../../js/iconfont";
-import Icon from "./Icon.vue";
-import Progress from "./Progress.vue";
-import { secondsToReadable } from "../../js/utils";
+import '../../js/iconfont'
+import Icon from './Icon.vue'
+import Progress from './Progress.vue'
+import { secondsToReadable } from '../../js/utils'
 
 export default {
-  name: "vv-nm-player",
-  data() {
+  name: 'vv-nm-player',
+  data () {
     return {
       audioElem: {},
       currentAudio: {},
       currentIndex: 0,
       paused: true,
-      duration: "00:00",
-      playedTime: "00:00",
+      duration: '00:00',
+      playedTime: '00:00',
       playedRatio: 0,
       loadedRatio: 0,
       volume: 0,
-      playModes: ["play-circle-list", "play-circle-single", "play-random"],
+      playModes: ['play-circle-list', 'play-circle-single', 'play-random'],
       playMode: 0,
-      speakerIcon: "speaker",
+      speakerIcon: 'speaker',
       isShowVolumeSlider: false,
       isShowSheet: false,
       canPlay: !this.audios.length
-    };
+    }
   },
   props: {
     preload: Boolean,
@@ -147,206 +147,206 @@ export default {
     pos: String,
     unique: {
       type: String,
-      default: "id"
+      default: 'id'
     },
     sheetHeight: Number,
     defaultPlayMode: Number,
     defaultVolume: Number
   },
   computed: {
-    playModeIcon() {
-      return this.playModes[this.playMode];
+    playModeIcon () {
+      return this.playModes[this.playMode]
     }
   },
   watch: {
-    currentIndex: "updateCurrentAudio"
+    currentIndex: 'updateCurrentAudio'
   },
   components: {
     [Icon.name]: Icon,
     [Progress.name]: Progress
   },
   methods: {
-    init() {
-      const audio = this.$el.querySelector("audio");
-      this.defaultVolume && (audio.volume = this.defaultVolume);
+    init () {
+      const audio = this.$el.querySelector('audio')
+      this.defaultVolume && (audio.volume = this.defaultVolume)
 
-      this.audioElem = audio;
-      this.volume = audio.volume;
+      this.audioElem = audio
+      this.volume = audio.volume
 
       /* Bind audio events */
-      audio.addEventListener("canplay", this.play);
-      audio.addEventListener("canplaythrough", () => {
-        this.loadedRatio = 1;
-      });
-      audio.addEventListener("durationchange", () => {
-        this.duration = secondsToReadable(audio.duration);
-      });
-      audio.addEventListener("pause", () => (this.paused = true));
-      audio.addEventListener("play", () => (this.paused = false));
-      audio.addEventListener("ended", this.playEndHandler);
-      audio.addEventListener("timeupdate", () => {
-        this.playedTime = secondsToReadable(audio.currentTime);
-        this.playedRatio = audio.currentTime / audio.duration;
-      });
-      audio.addEventListener("progress", () => {
+      audio.addEventListener('canplay', this.play)
+      audio.addEventListener('canplaythrough', () => {
+        this.loadedRatio = 1
+      })
+      audio.addEventListener('durationchange', () => {
+        this.duration = secondsToReadable(audio.duration)
+      })
+      audio.addEventListener('pause', () => (this.paused = true))
+      audio.addEventListener('play', () => (this.paused = false))
+      audio.addEventListener('ended', this.playEndHandler)
+      audio.addEventListener('timeupdate', () => {
+        this.playedTime = secondsToReadable(audio.currentTime)
+        this.playedRatio = audio.currentTime / audio.duration
+      })
+      audio.addEventListener('progress', () => {
         this.loadedRatio = audio.buffered.length
           ? audio.buffered.end(audio.buffered.length - 1) / audio.duration
-          : 0;
-      });
-      audio.addEventListener("volumechange", () => {
-        this.volume = audio.volume;
-      });
+          : 0
+      })
+      audio.addEventListener('volumechange', () => {
+        this.volume = audio.volume
+      })
     },
-    goToPlayer() {
-      this.$router.push({ path: `/player` });
+    goToPlayer () {
+      this.$router.push({ path: `/player` })
     },
-    async updateCurrentAudio(index) {
-      const audio = this.audios[index];
+    async updateCurrentAudio (index) {
+      const audio = this.audios[index]
 
-      if (audio === undefined) return (this.paused = true);
+      if (audio === undefined) return (this.paused = true)
       if (audio.url) {
-        this.currentAudio = audio;
-        return;
+        this.currentAudio = audio
+        return
       }
 
-      if (this.asyncPlay) await this.asyncPlay(index);
+      if (this.asyncPlay) await this.asyncPlay(index)
 
-      this.currentAudio = audio;
+      this.currentAudio = audio
     },
-    addAudio(audio) {
-      const { unique } = this;
-      if (audio[unique] === undefined) return;
+    addAudio (audio) {
+      const { unique } = this
+      if (audio[unique] === undefined) return
 
       if (this.audios.length === 0) {
-        this.audios.push(Object.assign({}, audio));
-        this.canPlay = false;
-        this.updateCurrentAudio(0);
+        this.audios.push(Object.assign({}, audio))
+        this.canPlay = false
+        this.updateCurrentAudio(0)
       }
 
       const index = this.audios.findIndex(
         $audio => $audio[unique] === audio[unique]
-      );
-      if (index > -1) return;
+      )
+      if (index > -1) return
 
-      this.audios.push(Object.assign({}, audio));
+      this.audios.push(Object.assign({}, audio))
     },
-    async playNewAudio(audio) {
-      const { unique } = this;
-      if (audio[unique] === undefined) return;
+    async playNewAudio (audio) {
+      const { unique } = this
+      if (audio[unique] === undefined) return
 
       const index = this.audios.findIndex(
         $audio => $audio[unique] === audio[unique]
-      );
+      )
       if (index === -1) {
-        this.audios.unshift(Object.assign({}, audio));
-        this.playIndex(0);
-        return;
+        this.audios.unshift(Object.assign({}, audio))
+        this.playIndex(0)
+        return
       }
 
-      this.playIndex(index);
+      this.playIndex(index)
     },
-    async playIndex(index) {
+    async playIndex (index) {
       if (this.currentIndex === index) {
-        this.updateCurrentAudio(index);
+        this.updateCurrentAudio(index)
       } else {
-        this.currentIndex = index;
+        this.currentIndex = index
       }
     },
-    play() {
-      if (!this.canPlay) return (this.canPlay = true);
+    play () {
+      if (!this.canPlay) return (this.canPlay = true)
       // if (isEmptyObject(this.currentAudio)) return
       if (!this.currentAudio) {
-        return;
+        return
       }
 
-      const promise = this.audioElem.play();
+      const promise = this.audioElem.play()
       if (promise) {
         promise.catch(e => {
-          if (e.name === "NotAllowedError") this.pause();
-        });
+          if (e.name === 'NotAllowedError') this.pause()
+        })
       }
     },
-    pause() {
-      this.audioElem.pause();
+    pause () {
+      this.audioElem.pause()
     },
-    prev() {
+    prev () {
       if (this.currentIndex === 0) {
-        this.currentIndex = this.audios.length - 1;
+        this.currentIndex = this.audios.length - 1
       } else {
-        this.currentIndex--;
+        this.currentIndex--
       }
     },
-    next() {
+    next () {
       if (this.currentIndex === this.audios.length - 1) {
-        this.currentIndex = 0;
+        this.currentIndex = 0
       } else {
-        this.currentIndex++;
+        this.currentIndex++
       }
     },
-    clickAudioBar(ratio) {
-      this.audioElem.currentTime = this.audioElem.duration * ratio;
+    clickAudioBar (ratio) {
+      this.audioElem.currentTime = this.audioElem.duration * ratio
     },
-    clickVolumeBar(ratio) {
-      this.audioElem.volume = ratio;
+    clickVolumeBar (ratio) {
+      this.audioElem.volume = ratio
     },
-    changePlayMode() {
-      if (this.playMode === 2) return (this.playMode = 0);
-      this.playMode++;
+    changePlayMode () {
+      if (this.playMode === 2) return (this.playMode = 0)
+      this.playMode++
     },
-    playEndHandler() {
-      const { playMode } = this;
-      if (playMode === 0) this.next();
-      if (playMode === 1) this.audioElem.load();
+    playEndHandler () {
+      const { playMode } = this
+      if (playMode === 0) this.next()
+      if (playMode === 1) this.audioElem.load()
       if (playMode === 2) {
-        const random = Math.floor(Math.random() * this.audios.length);
+        const random = Math.floor(Math.random() * this.audios.length)
         if (random === this.currentIndex) {
-          this.next();
+          this.next()
         } else {
-          this.currentIndex = random;
+          this.currentIndex = random
         }
       }
     },
-    toggleMute() {
-      this.audioElem.muted = !this.audioElem.muted;
-      this.speakerIcon = this.audioElem.muted ? "speaker-mute" : "speaker";
+    toggleMute () {
+      this.audioElem.muted = !this.audioElem.muted
+      this.speakerIcon = this.audioElem.muted ? 'speaker-mute' : 'speaker'
     },
-    toggleShowVolume() {
-      this.isShowSheet = false;
-      this.isShowVolumeSlider = !this.isShowVolumeSlider;
+    toggleShowVolume () {
+      this.isShowSheet = false
+      this.isShowVolumeSlider = !this.isShowVolumeSlider
     },
-    toggleShowSheet() {
-      this.isShowSheet = !this.isShowSheet;
-      this.isShowVolumeSlider = false;
+    toggleShowSheet () {
+      this.isShowSheet = !this.isShowSheet
+      this.isShowVolumeSlider = false
     },
-    remove(i) {
-      if (this.currentIndex === i) this.next();
-      this.audios.splice(i, 1);
-      if (this.audios.length <= 1) this.isShowSheet = false;
+    remove (i) {
+      if (this.currentIndex === i) this.next()
+      this.audios.splice(i, 1)
+      if (this.audios.length <= 1) this.isShowSheet = false
     },
-    clearSheet() {
-      this.audios.splice(0, this.audios.length);
-      this.currentAudio = {};
-      this.paused = true;
-      this.duration = "00:00";
-      this.playedTime = "00:00";
-      this.playedRatio = 0;
-      this.audioElem.load();
-      this.isShowSheet = false;
+    clearSheet () {
+      this.audios.splice(0, this.audios.length)
+      this.currentAudio = {}
+      this.paused = true
+      this.duration = '00:00'
+      this.playedTime = '00:00'
+      this.playedRatio = 0
+      this.audioElem.load()
+      this.isShowSheet = false
     }
   },
-  created() {
-    this.defaultPlayMode && (this.playMode = this.defaultPlayMode);
+  created () {
+    this.defaultPlayMode && (this.playMode = this.defaultPlayMode)
   },
-  mounted() {
-    this.init();
+  mounted () {
+    this.init()
 
-    this.updateCurrentAudio(this.currentIndex);
-    window.addEventListener("click", () => {
-      this.isShowSheet = false;
-      this.isShowVolumeSlider = false;
-    });
+    this.updateCurrentAudio(this.currentIndex)
+    window.addEventListener('click', () => {
+      this.isShowSheet = false
+      this.isShowVolumeSlider = false
+    })
   }
-};
+}
 </script>
 
 <style>

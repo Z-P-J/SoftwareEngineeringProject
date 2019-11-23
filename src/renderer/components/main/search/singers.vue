@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  name: "SingersResults"
-};
+  name: 'SingersResults'
+}
 </script>
 <style>
 </style>

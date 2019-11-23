@@ -113,7 +113,7 @@ export default {
     }
   },
   methods: {
-      
+
     toggleSelection (rows) {
       if (rows) {
         rows.forEach(row => {
@@ -145,9 +145,9 @@ export default {
         type: 'success'
       })
     },
-    format(percentage) {
-        return percentage === 100 ? '满' : `${percentage}%`;
-      }
+    format (percentage) {
+      return percentage === 100 ? '满' : `${percentage}%`
+    }
   }
 }
 </script>

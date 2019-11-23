@@ -110,47 +110,47 @@
 </template>
 
 <script>
-import FooterView from "../footer/";
+import FooterView from '../footer/'
 export default {
-  data() {
+  data () {
     return {
       cover_url:
-        "https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png",
-      song: "音乐标题",
-      singer: "xxx",
-      album: "xxx",
+        'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+      song: '音乐标题',
+      singer: 'xxx',
+      album: 'xxx',
       lyrics: [
-        "111111111111111111111111111111111",
-        "222222222222222222222222222222222",
-        "333333333333333333333333333333333",
-        "444444444444444444444444444444444",
-        "555555555555555555555555555555555"
+        '111111111111111111111111111111111',
+        '222222222222222222222222222222222',
+        '333333333333333333333333333333333',
+        '444444444444444444444444444444444',
+        '555555555555555555555555555555555'
       ]
-    };
+    }
   },
   components: {
     FooterView
   },
   methods: {
-    down() {
-      this.$router.go(-1);
+    down () {
+      this.$router.go(-1)
     },
-    close() {
-      this.$confirm("是否退出?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
+    close () {
+      this.$confirm('是否退出?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
         .then(() => {
-          this.$electron.ipcRenderer.send("close");
+          this.$electron.ipcRenderer.send('close')
         })
-        .catch(() => {});
+        .catch(() => {})
     },
-    minimize() {
-      this.$electron.ipcRenderer.send("minimize");
+    minimize () {
+      this.$electron.ipcRenderer.send('minimize')
     }
   }
-};
+}
 </script>
 
 <style>

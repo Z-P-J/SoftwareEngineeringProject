@@ -72,87 +72,87 @@
 <script>
 export default {
   props: {},
-  data() {
+  data () {
     return {
       restaurants: [],
-      state: "",
+      state: '',
       timeout: null
-    };
+    }
   },
   methods: {
-    close() {
-      this.$confirm("是否退出?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
+    close () {
+      this.$confirm('是否退出?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
         .then(() => {
-          this.$electron.ipcRenderer.send("close");
+          this.$electron.ipcRenderer.send('close')
         })
-        .catch(() => {});
+        .catch(() => {})
     },
-    minimize() {
-      this.$electron.ipcRenderer.send("minimize");
+    minimize () {
+      this.$electron.ipcRenderer.send('minimize')
     },
-    back() {
-      if (this.$route.name !== "music") {
-        this.$router.go(-1);
+    back () {
+      if (this.$route.name !== 'music') {
+        this.$router.go(-1)
       }
     },
-    forward() {
-      this.$router.go(1);
+    forward () {
+      this.$router.go(1)
     },
-    refresh() {
-      this.$bus.$emit("page-refresh", this.$route.name);
+    refresh () {
+      this.$bus.$emit('page-refresh', this.$route.name)
     },
-    loadAll() {
+    loadAll () {
       return [
-        { value: "1111111111111111111", address: "xxxxxxxxxxxxxxxxxx" },
+        { value: '1111111111111111111', address: 'xxxxxxxxxxxxxxxxxx' },
         {
-          value: "222222222222222222222",
-          address: "yyyyyyyyyyyyyyyyyyyyyyy"
+          value: '222222222222222222222',
+          address: 'yyyyyyyyyyyyyyyyyyyyyyy'
         },
         {
-          value: "333333333333333333333",
-          address: "zzzzzzzzzzzzzzzzzzzzzzz"
+          value: '333333333333333333333',
+          address: 'zzzzzzzzzzzzzzzzzzzzzzz'
         }
-      ];
+      ]
     },
-    querySearchAsync(queryString, cb) {
-      var restaurants = this.restaurants;
+    querySearchAsync (queryString, cb) {
+      var restaurants = this.restaurants
       var results = queryString
         ? restaurants.filter(this.createStateFilter(queryString))
-        : restaurants;
+        : restaurants
 
-      clearTimeout(this.timeout);
+      clearTimeout(this.timeout)
       this.timeout = setTimeout(() => {
-        cb(results);
-      }, 3000 * Math.random());
+        cb(results)
+      }, 3000 * Math.random())
     },
-    createStateFilter(queryString) {
+    createStateFilter (queryString) {
       return input => {
         return (
           input.value.toLowerCase().indexOf(queryString.toLowerCase()) !== -1
-        );
-      };
+        )
+      }
     },
-    handleSelect(item) {
-      console.log(item);
-      console.log(1111);
+    handleSelect (item) {
+      console.log(item)
+      console.log(1111)
     },
-    search() {
+    search () {
       this.$router.push({
-        path: "/searchResults",
+        path: '/searchResults',
         query: {
           state: this.state
         }
-      });
+      })
     }
   },
-  mounted() {
-    this.restaurants = this.loadAll();
+  mounted () {
+    this.restaurants = this.loadAll()
   }
-};
+}
 </script>
 
 <style>

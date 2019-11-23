@@ -11,14 +11,14 @@ export default {
   components: {
     aaplayer
   },
-  data() {
+  data () {
     return {
       audio: {
         name: 'The Party We Have Never Seen',
         artist: 'Nana Takahashi',
         url: 'https://cdn.moefe.org/music/mp3/thepartywehaveneverseen.mp3',
         cover: 'https://p1.music.126.net/IwclpJu4gaqhSZrKunEFWg==/3297435379408525.jpg?param=300y300', // prettier-ignore
-        lrc: 'https://cdn.moefe.org/music/lrc/thepartywehaveneverseen.lrc',
+        lrc: 'https://cdn.moefe.org/music/lrc/thepartywehaveneverseen.lrc'
       },
       audios: [
         {
@@ -44,14 +44,14 @@ export default {
           author: '展展与罗罗'
         }
       ]
-    };
+    }
   },
   methods: {
     toggleLyrics () {
-      this.$router.push({path: `/player`});
+      this.$router.push({path: `/player`})
     }
   }
-};
+}
 </script>
 
 <style>

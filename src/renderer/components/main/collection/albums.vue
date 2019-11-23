@@ -22,17 +22,17 @@
 </template>
 <script>
 export default {
-  name: "AlbumsList",
- data() {
-      return {
-        tableData: [
-          {name:'范特西',singer:'周杰伦',num:10},
-          {name:'依然范特西',singer:'周杰伦',num:10},
-        ],
-        search: ''
-      }
-    },
-};
+  name: 'AlbumsList',
+  data () {
+    return {
+      tableData: [
+        {name: '范特西', singer: '周杰伦', num: 10},
+        {name: '依然范特西', singer: '周杰伦', num: 10}
+      ],
+      search: ''
+    }
+  }
+}
 </script>
 <style>
 .album-page {

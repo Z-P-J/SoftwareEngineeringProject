@@ -75,73 +75,73 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      input: "",
+      input: '',
       mySongList: [
-        { name: "歌单1" },
-        { name: "歌单2" },
-        { name: "歌单3" },
-        { name: "歌单4" },
-        { name: "歌单5" },
-        { name: "歌单6" },
-        { name: "歌单7" }
+        { name: '歌单1' },
+        { name: '歌单2' },
+        { name: '歌单3' },
+        { name: '歌单4' },
+        { name: '歌单5' },
+        { name: '歌单6' },
+        { name: '歌单7' }
       ],
       starSongList: [
-        { name: "歌单1" },
-        { name: "歌单2" },
-        { name: "歌单3" },
-        { name: "歌单4" },
-        { name: "歌单5" },
-        { name: "歌单6" },
-        { name: "歌单7" }
+        { name: '歌单1' },
+        { name: '歌单2' },
+        { name: '歌单3' },
+        { name: '歌单4' },
+        { name: '歌单5' },
+        { name: '歌单6' },
+        { name: '歌单7' }
       ]
-    };
+    }
   },
   methods: {
-    login() {},
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+    login () {},
+    handleOpen (key, keyPath) {
+      console.log(key, keyPath)
     },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+    handleClose (key, keyPath) {
+      console.log(key, keyPath)
     },
-    createSongList() {
-      this.$prompt("请输入歌单名", "提示", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消"
-        })
-          .then(({ value }) => {
-            this.mySongList.push({ name: value });
-            this.$message({
-              type: "success",
-              message: "新建歌单成功"
-            });
+    createSongList () {
+      this.$prompt('请输入歌单名', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      })
+        .then(({ value }) => {
+          this.mySongList.push({ name: value })
+          this.$message({
+            type: 'success',
+            message: '新建歌单成功'
           })
-          .catch(() => {
-            // this.$message({
-            //   type: "info",
-            //   message: "取消输入"
-            // });
-          });
+        })
+        .catch(() => {
+          // this.$message({
+          //   type: "info",
+          //   message: "取消输入"
+          // });
+        })
     },
-    showSongListDetail(pos) {
+    showSongListDetail (pos) {
       // this.$router.push({ path: '/songlist' + pos, query: { userId: 123 }});
       // this.$router.push({ name: 'songlist', params: { index: this.songList[pos], position: pos }})
       // this.$message({
       //   message: "成功！" + this.$route.name + " " + this.$route.path + " " + this.$route.params,
       //   type: "success"
       // });
-      this.$router.push({ path: `/songlist#` + this.mySongList[pos].name });
+      this.$router.push({ path: `/songlist#` + this.mySongList[pos].name })
     },
-    showStartSongListDetail(pos) {
-      this.$router.push({ path: `/songlist#` + this.starSongList[pos].name });
+    showStartSongListDetail (pos) {
+      this.$router.push({ path: `/songlist#` + this.starSongList[pos].name })
     },
-    deleteSongList(i) {
-      this.mySongList.splice(i, 1);
+    deleteSongList (i) {
+      this.mySongList.splice(i, 1)
     }
   }
-};
+}
 </script>
 
 <style>

@@ -57,10 +57,10 @@
 </template>
 
 <script>
-const fs = require('fs');
-const pathModule = require('path');
+const fs = require('fs')
+const pathModule = require('path')
 const audioLoader = require('audio-loader')
-const jsmediatags = require("jsmediatags");
+const jsmediatags = require('jsmediatags')
 export default {
   name: 'recent-play',
   data () {
@@ -137,8 +137,7 @@ export default {
     }
   },
   methods: {
-    selectFolder() {
-
+    selectFolder () {
     //   window.electron.remote.dialog.showOpenDialog({
     //   title: 'Import Audio Files',
     //   properties: ['openFile', 'multiSelections'],
@@ -150,55 +149,55 @@ export default {
     //   this.importLocalFiles(data)
     // })
 
-      var t = this;
-      this.$electron.ipcRenderer.send("open-directory-dialog",'openDirectory');
-      this.$electron.ipcRenderer.once('selectedItem', function(e, path){
+      var t = this
+      this.$electron.ipcRenderer.send('open-directory-dialog', 'openDirectory')
+      this.$electron.ipcRenderer.once('selectedItem', function (e, path) {
         if (path != null) {
           fs.readdir(path, (err, files) => {
-    if (err) {
-      t.$message({
-        message: err,
-        type: 'error'
-      })
-      return
-    }
-    console.log(`${path}`);
-    files.forEach((file) => {
-      if (pathModule.extname(file).toLowerCase() === '.mp3') {
-        console.log(`${path}/${file}`);
-        jsmediatags.read(path + '/' + file, {
-          onSuccess: function(tag) {
-            console.log(tag);
-            t.tableData.push({
-            song: tag.tags.title,
-            singer: tag.tags.artist,
-            album: tag.tags.album,
-            time: tag.tags.time
-        })
-          },
-          onError: function(error) {
-            console.log(':(', error.type, error.info);
-          }
-        });
-        // audioLoader(path + '/' + file).then(function (res) {
-        //   console.log(res)
-        //   t.tableData.push({
-        //   song: '歌曲名',
-        //   singer: '歌手名',
-        //   album: '专辑名',
-        //   time: res.duration
-        // })
-        // })
-      }
-    });
-  });
+            if (err) {
+              t.$message({
+                message: err,
+                type: 'error'
+              })
+              return
+            }
+            console.log(`${path}`)
+            files.forEach((file) => {
+              if (pathModule.extname(file).toLowerCase() === '.mp3') {
+                console.log(`${path}/${file}`)
+                jsmediatags.read(path + '/' + file, {
+                  onSuccess: function (tag) {
+                    console.log(tag)
+                    t.tableData.push({
+                      song: tag.tags.title,
+                      singer: tag.tags.artist,
+                      album: tag.tags.album,
+                      time: tag.tags.time
+                    })
+                  },
+                  onError: function (error) {
+                    console.log(':(', error.type, error.info)
+                  }
+                })
+                // audioLoader(path + '/' + file).then(function (res) {
+                //   console.log(res)
+                //   t.tableData.push({
+                //   song: '歌曲名',
+                //   singer: '歌手名',
+                //   album: '专辑名',
+                //   time: res.duration
+                // })
+                // })
+              }
+            })
+          })
         } else {
           t.$message({
-            message: "您未选择任何文件夹！",
+            message: '您未选择任何文件夹！',
             type: 'error'
           })
         }
-        });
+      })
     },
     toggleSelection (rows) {
       if (rows) {
