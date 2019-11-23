@@ -167,8 +167,8 @@ export default {
   color: #8c8c8c;
 }
 .btn {
-  font-size: 15px;
-  color: #999;
+  font-size: 17px;
+  color: #333;
 }
 .btn:hover {
   color: #31c27c;
@@ -177,7 +177,7 @@ export default {
   height: 45;
   padding: 0;
   margin: 0;
-  margin-top: 5px;
+  
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -187,5 +187,6 @@ export default {
 .middle-icon {
   /* display: flex;
   align-self: middle; */
+  margin-top: 5px;
 }
 </style>
