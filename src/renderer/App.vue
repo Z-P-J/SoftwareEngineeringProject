@@ -42,6 +42,7 @@ export default {
 </script>
 
 <style>
+@import url(./assets/iconfont/iconfont.css);
 .content {
   width: 100%;
   height: 100%;

@@ -29,7 +29,8 @@
 <script>
 import SideBar from './sidebar/'
 import TopBar from './topbar'
-import FooterView from './footer/'
+// import FooterView from './footer/'
+import FooterView from './footer2/'
 export default {
   name: 'MainPage',
   components: {
