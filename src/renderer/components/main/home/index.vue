@@ -28,7 +28,7 @@
 
 
 <script>
-import RecommendPage from './Recommend'
+import RecommendPage from './Recommend/index'
 import Singer from './singer/'
 import SongList from './songlist/SongList'
 import SongRanking from './SongRanking'
