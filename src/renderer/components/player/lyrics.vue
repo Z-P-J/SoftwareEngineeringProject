@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       vindex: 0,
       prd: prd,
@@ -31,65 +31,65 @@ export default {
       scroll: 100,
       play: 0,
       currenttime: 0
-    };
+    }
   },
   mounted: function () {
-            	this.vmakedata();
+            	this.vmakedata()
        		 },
   methods: {
-    vmakedata: function() {
-      var vm = this;
-      setTimeout(function() {
-        vm.makedata();
-      }, 100);
+    vmakedata: function () {
+      var vm = this
+      setTimeout(function () {
+        vm.makedata()
+      }, 100)
     },
-    playaudio: function() {
-      this.vindex--;
-      this.go();
+    playaudio: function () {
+      this.vindex--
+      this.go()
     },
-    pauseaudio: function() {
-      clearTimeout(this.play);
+    pauseaudio: function () {
+      clearTimeout(this.play)
     },
-    makedata: function() {
-      var content = document.getElementById("cont");
-      prd[0].scrolltop = 0;
-      prd[0].time = prd[0].end * 1000;
+    makedata: function () {
+      var content = document.getElementById('cont')
+      prd[0].scrolltop = 0
+      prd[0].time = prd[0].end * 1000
 
-      /*console.log("ido");*/
-      console.log(prd.length);
+      /* console.log("ido"); */
+      console.log(prd.length)
       for (i = 1; i < prd.length - 1; i++) {
-        prd[i].time = (prd[i].end - prd[i - 1].end) * 1000;
+        prd[i].time = (prd[i].end - prd[i - 1].end) * 1000
         prd[i].scrolltop =
-          prd[i - 1].scrolltop + content.children[i - 1].scrollHeight + 16;
+          prd[i - 1].scrolltop + content.children[i - 1].scrollHeight + 16
       }
     },
-    go: function() {
-      this.vindex++;
-      var audio = document.getElementById("myaudio");
-      this.currenttime = audio.currentTime;
+    go: function () {
+      this.vindex++
+      var audio = document.getElementById('myaudio')
+      this.currenttime = audio.currentTime
       if (this.currenttime < prd[this.vindex].start) {
-        this.vindex = this.binarySearch(prd, this.currenttime);
+        this.vindex = this.binarySearch(prd, this.currenttime)
       }
-      this.scroll = -prd[this.vindex].scrolltop;
-      var needtime = prd[this.vindex].end - this.currenttime;
-      this.play = setTimeout(this.go.bind(this), needtime * 1000);
+      this.scroll = -prd[this.vindex].scrolltop
+      var needtime = prd[this.vindex].end - this.currenttime
+      this.play = setTimeout(this.go.bind(this), needtime * 1000)
     },
-    binarySearch: function(data, dest) {
+    binarySearch: function (data, dest) {
       var r = data.length - 1,
-        l = 0;
+        l = 0
       while (l <= r) {
-        var m = Math.floor((l + r) / 2);
+        var m = Math.floor((l + r) / 2)
         if (data[m].end == dest) {
-          return m;
+          return m
         }
         if (dest > data[m].end) {
-          l = m + 1;
+          l = m + 1
         } else {
-          r = m - 1;
+          r = m - 1
         }
       }
-      return l;
+      return l
     }
   }
-};
+}
 </script>

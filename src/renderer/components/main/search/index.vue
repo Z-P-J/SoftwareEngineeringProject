@@ -18,29 +18,29 @@
 </template>
 
 <script>
-import SongsResults from "./songs";
-import AlbumsResults from "./albums";
-import SingersResults from "./singers";
-import SheetsResults from "./sheets";
+import SongsResults from './songs'
+import AlbumsResults from './albums'
+import SingersResults from './singers'
+import SheetsResults from './sheets'
 export default {
-  name: "search-results",
+  name: 'search-results',
   components: {
     SongsResults,
     AlbumsResults,
     SingersResults,
     SheetsResults
   },
-  data() {
+  data () {
     return {
-      activeName: "songs"
-    };
+      activeName: 'songs'
+    }
   },
   methods: {
-    handleClick(tab, event) {
-      console.log(tab, event);
+    handleClick (tab, event) {
+      console.log(tab, event)
     }
   }
-};
+}
 </script>
 <style>
 </style>

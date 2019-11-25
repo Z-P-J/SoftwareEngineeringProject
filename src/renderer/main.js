@@ -1,7 +1,7 @@
 import Vue from 'vue'
 // import { Vue } from 'vue'
 import axios from 'axios'
-import APlayer from '@moefe/vue-aplayer';
+import APlayer from '@moefe/vue-aplayer'
 
 import App from './App'
 import router from './router'

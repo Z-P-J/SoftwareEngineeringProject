@@ -1,10 +1,6 @@
 <template>
   <div class="recommend-page">
-    <el-carousel :interval="4000" type="card" height="200px">
-      <el-carousel-item v-for="item in 6" :key="item">
-        <h3 class="medium">{{ item }}</h3>
-      </el-carousel-item>
-    </el-carousel>
+    <banner/>
     <div class="test">
       <el-row>
         <el-button class="nav-button" icon="el-icon-search" circle></el-button>
@@ -15,6 +11,7 @@
         <el-button class="nav-button" type="danger" icon="el-icon-delete" circle></el-button>
       </el-row>
     </div>
+        <personalized/>
     <div class="new">
       <el-divider content-position="left">
         <span style="font-size: 25px;">最新音乐</span>
@@ -46,68 +43,76 @@
         </el-col>
       </el-row>
     </div>
-    <div class="recommand-songlist" style="padding-top: 20px;">
-      <el-divider content-position="left">
-        <span style="font-size: 25px;">推荐歌单</span>
-      </el-divider>
-      <el-row :gutter="15" class="mt-10">
-        <el-col :span="6" v-for="(item,index) in songlist" :key="index">
-          <el-card :body-style="{ padding: '0px' }" style="margin: 5px;">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-            />
-            <div style="padding: 14px;">
-              <span>{{item}}</span>
-            </div>
-            <div style="padding-right: 14px; padding-left: 14px; padding-bottom: 14px;">
-              <i class="el-icon-user">用户名</i>
-            </div>
-          </el-card>
-        </el-col>
-      </el-row>
-    </div>
+
   </div>
 </template>
 
 <script>
+import {personalized} from "../../../../api/index";
+import Banner from './banner'
+import Personalized from './personalized'
 export default {
-  data () {
+    components:{
+        Banner,
+        Personalized,
+    },
+  data() {
     return {
+      id: '',
       newMusics: [
-        '情歌',
-        '网络歌曲',
-        '经典',
-        'KTV热歌',
-        '背景音乐',
-        '伤感',
-        '英语',
-        '国语'
+        "情歌",
+        "网络歌曲",
+        "经典",
+        "KTV热歌",
+        "背景音乐",
+        "伤感",
+        "英语",
+        "国语"
       ],
-      songlist: [
-        '情歌',
-        '网络歌曲',
-        '经典',
-        'KTV热歌',
-        '背景音乐',
-        '伤感',
-        '英语',
-        '国语'
-      ],
+      songlist: [],
       class_list: [
-        '情歌',
-        '网络歌曲',
-        '经典',
-        'KTV热歌',
-        '背景音乐',
-        '伤感',
-        '英语',
-        '国语',
-        '全部分类'
+        "情歌",
+        "网络歌曲",
+        "经典",
+        "KTV热歌",
+        "背景音乐",
+        "伤感",
+        "英语",
+        "国语",
+        "全部分类"
       ]
+    };
+  },
+  mounted(){
+    this.getPersonalized();
+    console.log('getPersonalized1')
+  },
+  activated(){
+    this.getPersonalized();
+  },
+  methods: {
+    getPersonalized() {
+    console.log('getPersonalized2')
+      personalized().then(res => {
+        console.log(res);
+        this.songlist = res.result;
+      });
+      console.log('id:'+this.id)
+    },
+    itemClick(){
+      // this.id = item.id;
+      console.log(11111111111111)
+      console.log('id:' + this.id)
+      this.$router.push({
+        path: '/songlist',
+        query: {
+          id: this.id
+        }
+      })
+      
     }
   }
-}
+};
 </script>
 
 <style>
@@ -137,8 +142,6 @@ export default {
 .test.nav-button {
   margin: 15px;
 }
-
-
 
 .time {
   font-size: 13px;

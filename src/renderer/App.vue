@@ -15,12 +15,12 @@
 
 <script>
 export default {
-  name: "music-player",
-  data() {
+  name: 'music-player',
+  data () {
     return {
-      transitionName: "none",
+      transitionName: 'none',
       show_player: false
-    };
+    }
   },
   computed: {
     play_list() {
@@ -75,15 +75,15 @@ export default {
     }
   },
   watch: {
-    $route(to, from) {
-      if (to.path == "/player") {
-        this.show_player = true;
-        this.transitionName = "slide-up";
-      } else if (from.path == "/player") {
-        this.show_player = false;
-        this.transitionName = "slide-down";
+    $route (to, from) {
+      if (to.path == '/player') {
+        this.show_player = true
+        this.transitionName = 'slide-up'
+      } else if (from.path == '/player') {
+        this.show_player = false
+        this.transitionName = 'slide-down'
       } else {
-        this.transitionName = "none";
+        this.transitionName = 'none'
       }
     },
     is_play(val) {
@@ -130,7 +130,7 @@ export default {
       }, 1000);
     }
   }
-};
+}
 </script>
 
 <style>

@@ -16,27 +16,27 @@
   </div>
 </template>
 <script>
-import VideosList from "./videos";
-import AlbumsList from "./albums";
-import SingersList from "./singers";
+import VideosList from './videos'
+import AlbumsList from './albums'
+import SingersList from './singers'
 export default {
-  name: "collection",
+  name: 'collection',
   components: {
     AlbumsList,
     VideosList,
     SingersList
   },
-  data() {
+  data () {
     return {
-      activeName: "albums"
-    };
+      activeName: 'albums'
+    }
   },
   methods: {
-    handleClick(tab, event) {
-      console.log(tab, event);
+    handleClick (tab, event) {
+      console.log(tab, event)
     }
   }
-};
+}
 </script>
 <style>
 .collection-page {

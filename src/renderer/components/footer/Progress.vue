@@ -13,7 +13,7 @@
 <script>
   export default {
     name: 'nmp-progress',
-    data() {
+    data () {
       return {
         fullWidth: 0,
         startX: 0,
@@ -30,33 +30,33 @@
       width: Number
     },
     computed: {
-      playedPercentage() {
+      playedPercentage () {
         if (this.decimal) {
           return Math.trunc(this.played * 10000) / 100
         } else {
           return this.played * 100 | 0
         }
       },
-      loadedPercentage() {
+      loadedPercentage () {
         if (this.decimal) {
           return Math.trunc(this.loaded * 10000) / 100
         } else {
           return this.loaded * 100 | 0
         }
       },
-      offsetX() {
+      offsetX () {
         return this.played * this.fullWidth
       }
     },
     methods: {
-      clickBar(ev) {
+      clickBar (ev) {
         this.$emit('click-bar', ev.offsetX / this.fullWidth)
       },
-      dragStart(ev) {
+      dragStart (ev) {
         this.startX = ev.pageX
         this.dragFlag = true
       },
-      dragging(ev) {
+      dragging (ev) {
         if (!this.dragFlag) return
 
         const deltaX = ev.pageX - this.startX
@@ -68,7 +68,7 @@
         this.$emit('drag-bar', newOffsetX / this.fullWidth)
       }
     },
-    mounted() {
+    mounted () {
       this.fullWidth = this.$el.offsetWidth
       if (this.width) this.fullWidth = this.width
 
