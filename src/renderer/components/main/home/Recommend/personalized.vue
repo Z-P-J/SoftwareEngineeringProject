@@ -16,7 +16,7 @@
       </el-divider>
       <el-row :gutter="15" class="mt-10">
         <el-col :span="6" v-for="(item,index) in personalized" :key="index">
-          <el-card :body-style="{ padding: '0px' }" style="margin: 5px;">
+          <el-card :body-style="{ padding: '0px' }" style="margin: 5px; height: 250px;">
             <img
               :src="item.picUrl"
               class="image"

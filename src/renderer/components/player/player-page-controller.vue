@@ -61,7 +61,7 @@
             trigger="click"
             style="padding: 0 10px;"
           >
-            <!-- <playlist/> -->
+            <playlist/>
             <el-button type="text" @click.native="showPlaylist" slot="reference">
               <i class="iconfont icon-liebiao"></i>
             </el-button>
@@ -73,7 +73,11 @@
 </template>
 
 <script>
+import playlist from './play-list.vue'
 export default {
+  components: {
+      playlist
+  },
   data() {
     return {
       audio: null,
@@ -128,6 +132,24 @@ export default {
     },
     currentTime() {
       return this.$store.state.player.currentTime;
+    },
+    before_song() {
+      let s_index = -1;
+      this.play_list.map((item, index) => {
+        if (this.song.path === item.path && index > 0) {
+          s_index = index - 1;
+        }
+      });
+      return s_index >= 0 ? this.play_list[s_index] : false;
+    },
+    after_song() {
+      let s_index = -1;
+      this.play_list.map((item, index) => {
+        if (this.song.path === item.path && index < this.play_list.length - 1) {
+          s_index = index + 1;
+        }
+      });
+      return s_index >= 0 ? this.play_list[s_index] : false;
     }
   },
   methods: {
