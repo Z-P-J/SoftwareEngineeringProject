@@ -1,8 +1,11 @@
 <template>
 <transition>
   <div>
-    <el-card class="box-card" body-style="padding: 0">
-      <el-container class="container">
+    <!-- <el-card class="box-card" body-style="padding: 0">
+      
+  
+    </el-card> -->
+    <el-container class="container">
         <el-aside width="230px" class="aside">
           <side-bar />
         </el-aside>
@@ -20,8 +23,6 @@
           </el-footer>
         </el-container>
       </el-container>
-  
-    </el-card>
     </div>
 </transition>
 </template>
@@ -116,6 +117,10 @@ body {
   display: flex;
   flex: 1;
   flex-shrink: 0;
+  background-color: #fff;
+  border-radius: 5px;
+  /* overflow: scroll;
+  -webkit-overflow-scrolling: touch; */
 }
 
 .aside {

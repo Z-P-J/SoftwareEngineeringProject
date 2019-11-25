@@ -18,42 +18,51 @@ export default new Router({
       name: 'MainPage',
       redirect: { name: 'home' },
       component: require('@/components/MainPage').default,
+      meta: {keepAlive: true},
       children: [
         {
           path: 'home',
           name: 'home',
-          component: home
+          component: home,
+          meta: {keepAlive: true}
         }, {
           path: 'local',
           name: 'local',
-          component: local
+          component: local,
+          meta: {keepAlive: true}
         }, {
           path: 'download',
           name: 'download',
-          component: download
+          component: download,
+          meta: {keepAlive: true}
         }, {
           path: 'collection',
           name: 'collection',
-          component: collection
+          component: collection,
+          meta: {keepAlive: true}
         }, {
           path: 'recentPlay',
           name: 'recentPlay',
-          component: recentPlay
+          component: recentPlay,
+          meta: {keepAlive: true}
         }, {
           path: 'searchResults',
           name: 'searchResults',
-          component: searchResults
+          component: searchResults,
+          meta: {keepAlive: true}
         }, {
           path: 'songlist',
           name: 'songlist',
-          component: songlist
+          component: songlist,
+          meta: {keepAlive: true}
         }
       ]
     },
     {
       path: '/player',
       name: 'player',
-      component: player
+      component: player,
+      meta: {keepAlive: true}
     },
     {
       path: '*',

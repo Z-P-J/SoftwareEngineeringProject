@@ -68,7 +68,7 @@
               </el-row>
             </el-col>
             <el-col class="right" span="12">
-              <span style="font-size: 24px; color: #fff;padding: 10px;" justify="center">{{song}}</span>
+              <span style="font-size: 24px; color: #fff;padding: 10px;" justify="center">{{song_name}}</span>
               <el-row type="flex">
                 <span style="font-size: 16px; color: #fff;padding: 10px;" justify="center">
                   歌手：
@@ -101,8 +101,8 @@
             </el-col>
           </el-row>
         </el-main>
-        <el-footer height="100px">
-          <footer-view></footer-view>
+        <el-footer height="70px">
+          <player-controller></player-controller>
         </el-footer>
       </el-container>
     </div>
@@ -110,15 +110,15 @@
 </template>
 
 <script>
-import FooterView from "../footer/";
+import PlayerController from "./player-page-controller";
 export default {
   data() {
     return {
       cover_url:
         "https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png",
-      song: "音乐标题",
-      singer: "xxx",
-      album: "xxx",
+      // song: "音乐标题",
+      // singer: "xxx",
+      // album: "xxx",
       lyrics: [
         "111111111111111111111111111111111",
         "222222222222222222222222222222222",
@@ -129,7 +129,7 @@ export default {
     };
   },
   components: {
-    FooterView
+    PlayerController
   },
   methods: {
     down() {
@@ -149,7 +149,78 @@ export default {
     minimize() {
       this.$electron.ipcRenderer.send("minimize");
     }
-  }
+  },
+  computed: {
+    play_list() {
+      return this.$store.state.player.list;
+    },
+    song() {
+      return this.$store.state.player.song;
+    },
+    music_urls() {
+      return this.$store.state.player.music_urls;
+    },
+    cover() {
+      try {
+        return this.song.al.picUrl;
+      } catch (e) {
+        return "http://p1.music.126.net/dPn_6T9d5VUuCDvhJdZ_8A==/109951163399691488.jpg";
+      }
+    },
+    song_name() {
+      try {
+        if (this.song.song) {
+          return this.song.song
+        }
+      } catch (e) {
+        
+      }
+      return "音乐播放器";
+    },
+    singer() {
+      try {
+        return this.song.singer;
+      } catch (e) {
+        return "未知";
+      }
+    },
+    album() {
+      try {
+        return this.song.album;
+      } catch (e) {
+        return "未知";
+      }
+    },
+    play_url() {
+      // console.log(music_urls());
+      console.log(this.$store.state.player.music_urls.path);
+      return this.$store.state.player.music_urls.path || false;
+    },
+    is_play() {
+      return this.$store.state.player.is_play;
+    },
+    currentTime() {
+      return this.$store.state.player.currentTime;
+    },
+    before_song() {
+      let s_index = -1;
+      this.play_list.map((item, index) => {
+        if (this.song.id === item.id && index > 0) {
+          s_index = index - 1;
+        }
+      });
+      return s_index >= 0 ? this.play_list[s_index] : false;
+    },
+    after_song() {
+      let s_index = -1;
+      this.play_list.map((item, index) => {
+        if (this.song.id === item.id && index < this.play_list.length - 1) {
+          s_index = index + 1;
+        }
+      });
+      return s_index >= 0 ? this.play_list[s_index] : false;
+    }
+  },
 };
 </script>
 
@@ -167,6 +238,8 @@ export default {
   background: url("https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png")
     no-repeat center center fixed;
   background-size: cover;
+  /* overflow: scroll;
+  -webkit-overflow-scrolling: touch; */
 }
 
 .player-container::before {

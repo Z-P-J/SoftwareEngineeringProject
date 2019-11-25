@@ -4,7 +4,7 @@
       <div class="cover">
         <img src="../../../assets/default_cover.jpg" />
       </div>
-      <div class="info">
+      <div class="songlist-info">
         <div class="title">歌单标题：{{input}}</div>
         <div class="author">
           <img src="../../../assets/default_cover.jpg" />
@@ -174,7 +174,7 @@ export default {
   padding: 10px 10px;
   display: flex;
 }
-.info {
+.songlist-info {
   margin-left: 20px;
   display: flex;
   flex-direction: column;

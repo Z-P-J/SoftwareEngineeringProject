@@ -5,7 +5,7 @@
     </el-divider>
     <!-- <p style="font-size: 25px; color: #333">发现音乐</p> -->
     <div class="div-tabs">
-      <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tabs v-model="activeName">
         <el-tab-pane label="推荐" name="a">
           <recommend-page/>
         </el-tab-pane>

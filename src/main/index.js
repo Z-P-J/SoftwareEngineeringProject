@@ -48,6 +48,7 @@ function createWindow () {
     // backgroundColor: '#ffffff', // 背景色
     transparent: true,
     frame: false,
+    show: false,
     // hasShadow: false,
     webPreferences: {
       backgroundThrottling: false,

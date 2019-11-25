@@ -27,6 +27,7 @@
 11. [element-ui]( https://element.eleme.cn/#/zh-CN/component/installation )
 12. [聚合音乐api](https://github.com/sunzongzheng/musicApi)
 13. [网易云api](https://github.com/Binaryify/NeteaseCloudMusicApi)
+14. [数据存储](https://github.com/typicode/lowdb)
 
 ## 如何运行
 

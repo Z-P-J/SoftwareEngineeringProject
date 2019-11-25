@@ -6,32 +6,31 @@
         v-model="play_time"
         input-size="mini"
         :min="1"
-        :max="song.dt/1000"
+        :max="song.time"
         @change="playTimeChange"
       ></el-slider>
     </div>
     <div class="player">
-      <div class="cover">
+      <div class="cover" @click="goToPlayer">
         <img class="cover-image" :src="cover" />
-        <audio v-show="false" ref="audio" v-if="play_url" :src="play_url.url" preload />
       </div>
       <div class="info">
         <div class="top">
           <div class="names">
             <div>
               <span class="name">{{name}}</span>
-              <span class="ar_name" v-if="ar_name">- {{ar_name}}</span>
+              <!-- <span class="ar_name" v-if="ar_name">- {{ar_name}}</span> -->
             </div>
           </div>
         </div>
         <div class="actions1">
-        <el-button type="text">
-          <i class="iconfont icon-xiai"></i>
-        </el-button>
-        <el-button type="text">
-          <i class="iconfont icon-xiazai2"></i>
-        </el-button>
-      </div>
+          <el-button type="text">
+            <i class="iconfont icon-xiai"></i>
+          </el-button>
+          <el-button type="text">
+            <i class="iconfont icon-xiazai2"></i>
+          </el-button>
+        </div>
       </div>
 
       <!-- <div class="tone">
@@ -74,30 +73,40 @@
             <el-dropdown-item>关闭</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-      </div> -->
+      </div>-->
 
       <div class="control">
         <div class="control_container">
-            <el-button class="action-button-small" type="text">
-          <i class="iconfont icon-liebiaoxunhuan"></i>
-        </el-button>
-          <el-button class="action-button-mid" type="text" @click="playBefore" :disabled="!before_song">
-            <i class="el-icon-d-arrow-left"></i>
+          <el-button class="action-button-small" type="text">
+            <i class="iconfont icon-liebiaoxunhuan"></i>
+          </el-button>
+          <el-button
+            class="action-button-mid"
+            type="text"
+            @click="playBefore"
+            :disabled="!before_song"
+          >
+            <i class="iconfont icon-kuaitui"></i>
           </el-button>
           <el-button class="play-btn" type="text" @click="playClick">
-            <i class="el-icon-video-pause" v-if="!is_play"></i>
-            <i class="el-icon-video-play" v-else></i>
+            <i class="iconfont icon-zanting" v-if="!is_play"></i>
+            <i class="iconfont icon-bofang" v-else></i>
           </el-button>
-          <el-button class="action-button-mid" type="text" @click="playAfter" :disabled="!after_song">
-            <i class="el-icon-d-arrow-right"></i>
+          <el-button
+            class="action-button-mid"
+            type="text"
+            @click="playAfter"
+            :disabled="!after_song"
+          >
+            <i class="iconfont icon-kuaijin"></i>
           </el-button>
           <el-button class="action-button-small" type="text">
-          <i class="iconfont icon-shengyin"></i>
-        </el-button>
+            <i class="iconfont icon-shengyin"></i>
+          </el-button>
         </div>
       </div>
-      <div class="time">02:10 / 04:00</div>
-      <!-- <div class="time">{{play_time*1000|formatDuring}} / {{song.dt|formatDuring}}</div> -->
+      <!-- <div class="time">02:10 / 04:00</div> -->
+      <div class="time">{{play_time*1000|formatDuring}} / {{song.time*1000|formatDuring}}</div>
       <div class="actions">
         <el-popover
           placement="top-start"
@@ -117,8 +126,9 @@
 </template>
 
 <script>
-// import playlist from '../Playlist'
-
+// import playlist from './play-list.vue'
+// const btoa = require('btoa');
+let Base64 = require('js-base64').Base64
 export default {
   // components: {
   //     playlist
@@ -127,36 +137,21 @@ export default {
     return {
       audio: null,
       play_time: 0,
-      max_time: 0,
+      music_time: 0,
       interval: null,
       play_type: 1 //播放次序 0单曲循环 1列表循环 2随机播放
     };
   },
   mounted() {},
   watch: {
-    is_play(val) {
-      try {
-        this.$nextTick(() => {
-          this.audio = this.$refs["audio"];
-          if (val) {
-            this.audio.play();
-            this.max_time = this.audio.duration;
-            this.getPlayTime();
-            this.audio.addEventListener("ended", () => {
-              this.playEnded();
-            });
-          } else {
-            this.audio.pause();
-            clearInterval(this.interval);
-          }
-        });
-      } catch (e) {
-        console.log("play error");
-      }
-    },
     currentTime(val) {
+      console.log("currentTime=" + val);
       this.play_time = val;
     }
+    // musicTime(val) {
+    //   console.log("musicTime" + val);
+    //   this.music_time = val;
+    // }
   },
   computed: {
     play_list() {
@@ -165,22 +160,29 @@ export default {
     song() {
       return this.$store.state.player.song;
     },
-    music_urls() {
-      return this.$store.state.player.music_urls;
-    },
+    // music_urls() {
+    //   return this.$store.state.player.music_urls;
+    // },
     cover() {
-      try {
-        return this.song.al.picUrl;
-      } catch (e) {
-        return "http://p1.music.126.net/dPn_6T9d5VUuCDvhJdZ_8A==/109951163399691488.jpg";
-      }
+      // try {
+      //   let base64String = "";
+      //   this.song.picture.data.map((d, j) => {
+      //     base64String += String.fromCharCode(d);
+      //   });
+      //   // return this.song.picture.picUrl;
+      //   return Base64.encode(base64String);
+      // } catch (e) {
+      //   return "http://p1.music.126.net/dPn_6T9d5VUuCDvhJdZ_8A==/109951163399691488.jpg";
+      // }
+      return "http://p1.music.126.net/dPn_6T9d5VUuCDvhJdZ_8A==/109951163399691488.jpg";
     },
     name() {
       try {
-        return this.song.name || "音乐播放器";
-      } catch (e) {
-        return "音乐播放器";
-      }
+        if (this.song.song) {
+          return this.song.song + " - " + this.song.singer;
+        }
+      } catch (e) {}
+      return "音乐播放器";
     },
     ar_name() {
       try {
@@ -189,19 +191,19 @@ export default {
         return false;
       }
     },
-    play_url() {
-      return this.music_urls[0] || false;
-    },
     is_play() {
       return this.$store.state.player.is_play;
     },
     currentTime() {
       return this.$store.state.player.currentTime;
     },
+    // musicTime() {
+    //   return this.$store.state.player.musicTime;
+    // },
     before_song() {
       let s_index = -1;
       this.play_list.map((item, index) => {
-        if (this.song.id === item.id && index > 0) {
+        if (this.song.path === item.path && index > 0) {
           s_index = index - 1;
         }
       });
@@ -210,7 +212,7 @@ export default {
     after_song() {
       let s_index = -1;
       this.play_list.map((item, index) => {
-        if (this.song.id === item.id && index < this.play_list.length - 1) {
+        if (this.song.path === item.path && index < this.play_list.length - 1) {
           s_index = index + 1;
         }
       });
@@ -218,51 +220,30 @@ export default {
     }
   },
   methods: {
+    goToPlayer() {
+      this.$router.push({ path: `/player` });
+    },
     //播放/暂停按钮点击
     playClick() {
-      this.$store.commit("SET_PLAYER_DATA", { is_play: !this.is_play });
-    },
-    //获取当前已播放时间
-    getPlayTime() {
-      this.interval = setInterval(() => {
-        this.$store.commit("SET_PLAYER_DATA", {
-          currentTime: this.audio.currentTime
+      if (this.song.song) {
+        this.$store.commit("SET_PLAYER_DATA", { is_play: !this.is_play });
+      } else {
+        this.$store.commit("SET_PLAYER_DATA", { is_play: false });
+        this.$message({
+          type: "error",
+          message: "播放列表为空"
         });
-      }, 1000);
+      }
     },
     //改变播放时间
     playTimeChange(val) {
-      this.audio.currentTime = val;
-      this.$store.commit("SET_PLAYER_DATA", { currentTime: val });
-    },
-    //播放结束事件
-    playEnded() {
-      switch (this.play_type) {
-        case 0:
-          this.rePlay();
-          break;
-        case 1:
-          this.playAfter();
-          break;
-      }
-    },
-    //重新播放
-    rePlay() {
-      this.$store.commit("SET_PLAYER_DATA", { is_play: false, currentTime: 0 });
-      setTimeout(() => {
-        this.$store.commit("SET_PLAYER_DATA", { is_play: true });
-      }, 1000);
+      this.$store.commit("SET_PLAYER_DATA", { goToTime: val });
     },
     playBefore() {
-      if (this.before_song) {
-        this.$store.dispatch("playMusic", this.before_song.id);
-      }
+      this.$store.dispatch("playBefore");
     },
     playAfter() {
-      console.log(this.after_song);
-      if (this.after_song) {
-        this.$store.dispatch("playMusic", this.after_song.id);
-      }
+      this.$store.dispatch("playAfter");
     },
     // 弹出播放列表
     showPlaylist() {
@@ -400,7 +381,7 @@ export default {
 
 .player .info {
   /* flex: 1; */
-  /* width: 100px; */
+  width: 150px;
   display: flex;
   flex-direction: column;
   padding: 0px;
@@ -426,39 +407,9 @@ export default {
 
 .player .info button {
   color: #999;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
-
-/* .player .info .progress {
-  margin-top: 10px;
-}
-
-.player .info .progress .el-progress .el-progress-bar__outer {
-  border-radius: 0;
-}
-
-.player .info .progress .el-progress .el-progress-bar__inner {
-  border-radius: 0;
-}
-
-.player .info .progress .el-slider .el-slider__runway {
-  height: 2px;
-  margin: 2px 0;
-}
-
-.player .info .progress .el-slider .el-slider__bar {
-  height: 2px;
-}
-
-.player .info .progress .el-slider .el-slider__button-wrapper {
-  width: 6px;
-  height: 6px;
-  top: -10px;
-}
-
-.player .info .progress .el-slider .el-slider__button {
-  width: 2px;
-  height: 2px;
-} */
 
 .player .actions {
   /* width: 200px; */
