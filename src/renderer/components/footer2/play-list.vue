@@ -10,16 +10,16 @@
                 </div>
             </div>
             <el-scrollbar class="song-view scroll-page">
-                <div class="song-item"  v-for="(item,index) in list" :key="index" :class="{'active':item.id===song.id}">
+                <div class="song-item"  v-for="(item,index) in list" :key="index" :class="{'active':item.song===song.song}">
                     <div class="name">
-                        {{item.name}}
+                        {{item.song}}
                         <img class="tag" src="../../assets/sq.png"/>
                         <img v-if="item.mv>0" class="tag" src="../../assets/mv.png"/>
-                        <div class="spin" v-show="item.id===song.id"><i class="iconfont icon-yinleren"></i></div>
+                        <div class="spin" v-show="item.song===song.song"><i class="iconfont icon-yinleren"></i></div>
                     </div>
-                    <div class="info" ><div class="singer">{{item.ar[0].name}}</div><div class="time">{{item.dt|formatDuring}}</div></div>
+                    <div class="info" ><div class="singer">{{item.singer}}</div><div class="time">{{item.time|formatDuring}}</div></div>
                     <div class="icon">
-                        <i class="iconfont icon-bofangsanjiaoxing" :class="{'icon-zanting1':item.id===song.id}" @click="play(item)"></i>
+                        <i class="iconfont icon-bofangsanjiaoxing" :class="{'icon-zanting1':item.song===song.song}" @click="play(item)"></i>
                         <i class="iconfont icon-shoucang"></i>
                     </div>
                 </div>
@@ -68,8 +68,8 @@ import {mapState} from 'vuex'
         },
         methods:{
             play(item) {
-                console.log('item.id=',item.id)
-                this.$store.dispatch('playMusic', item.id);
+                console.log('item.id=',item)
+                this.$store.dispatch('playMusic', item);
 
             },
             hidePlaylist(){
@@ -130,7 +130,7 @@ import {mapState} from 'vuex'
   }
 }
 
-div.spin {
+.playlist div.spin {
   animation: spin 4s linear infinite;
   /*border: 1px red solid;*/
   width: 20px;
@@ -147,7 +147,7 @@ div.spin {
   /*}*/
 }
 
-.top {
+.playlist .top {
   height: 80px;
   background: #f8f8f8;
   display: flex;
@@ -157,7 +157,7 @@ div.spin {
   box-sizing: border-box;
 }
 
-.top .act-grid {
+.playlist .top .act-grid {
   display: flex;
   font-size: 12px;
   justify-content: space-between;
@@ -165,26 +165,26 @@ div.spin {
   margin-top: 5px;
 }
 
-.top .act-grid .act-item {
+.playlist .top .act-grid .act-item {
   display: flex;
   align-items: center;
 }
 
-.scroll-page {
+.playlist .scroll-page {
   overflow: hidden;
 }
 
-.scroll-page /deep/ .el-scrollbar__wrap {
+.playlist .scroll-page /deep/ .el-scrollbar__wrap {
   overflow-x: hidden;
 }
 
-.song-view {
+.playlist .song-view {
   flex: 1;
   overflow: hidden;
   /*border: 1px red solid;*/
 }
 
-.song-item {
+.playlist .song-item {
   font-size: 14px;
   padding: 10px 20px;
   border-bottom: 1px #f4f4f4 solid;
@@ -193,28 +193,28 @@ div.spin {
   /*overflow: hidden;*/
 }
 
-.song-item .name {
+.playlist .song-item .name {
   width: 220px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
-.song-item .name .iconfont {
+.playlist .song-item .name .iconfont {
   /*margin-left: 5px;*/
   /*transform:rotate(0deg);*/
   /*animation:3s round;*/
   /*animation: spin 3s linear infinite;*/
 }
 
-.song-item .tag {
+.playlist .song-item .tag {
   height: 20px;
   margin-left: 5px;
   margin-top: -2px;
   cursor: pointer;
 }
 
-.song-item .info {
+.playlist .song-item .info {
   display: flex;
   margin-top: 5px;
   font-size: 13px;
@@ -222,15 +222,15 @@ div.spin {
   z-index: 1;
 }
 
-.song-item .info .singer {
+.playlist .song-item .info .singer {
   color: #666;
 }
 
-.song-item .info .time {
+.playlist .song-item .info .time {
   color: #aaa;
 }
 
-.song-item .icon {
+.playlist .song-item .icon {
   position: absolute;
   width: 80px;
   background: #fafafa;
@@ -248,45 +248,45 @@ div.spin {
   box-sizing: border-box;
 }
 
-.song-item .icon .iconfont {
+.playlist .song-item .icon .iconfont {
   margin-left: 5px;
   font-size: 17px;
 }
 
-.song-item .icon .iconfont:hover {
+.playlist .song-item .icon .iconfont:hover {
   cursor: pointer;
-  color: #31C27C;
+  color: #409EFF;
 }
 
-.song-item.active {
+.playlist .song-item.active {
   background-color: #f8f8f8;
 }
 
-.song-item.active .name {
-  color: #31C27C;
+.playlist .song-item.active .name {
+  color: #409EFF;
 }
 
-.song-item.active .name .iconfont {
+.playlist .song-item.active .name .iconfont {
   /*animation:3s round;*/
 }
 
-.song-item.active .info .singer {
-  color: #31C27C;
+.playlist .song-item.active .info .singer {
+  color: #409EFF;
 }
 
-.song-item.active .icon {
+.playlist .song-item.active .icon {
   z-index: 1;
 }
 
-.song-item:hover {
+.playlist .song-item:hover {
   background-color: #f8f8f8;
 }
 
-.song-item:hover .name {
+.playlist .song-item:hover .name {
   width: 180px;
 }
 
-.song-item:hover .icon {
+.playlist .song-item:hover .icon {
   z-index: 1;
   /*display: block;*/
 }

@@ -115,7 +115,7 @@
           trigger="click"
           style="padding: 0 10px;"
         >
-          <!-- <playlist/> -->
+          <playlist/>
           <el-button type="text" @click.native="showPlaylist" slot="reference">
             <i class="iconfont icon-liebiao"></i>
           </el-button>
@@ -126,13 +126,13 @@
 </template>
 
 <script>
-// import playlist from './play-list.vue'
+import playlist from './play-list.vue'
 // const btoa = require('btoa');
 let Base64 = require('js-base64').Base64
 export default {
-  // components: {
-  //     playlist
-  // },
+  components: {
+      playlist
+  },
   data() {
     return {
       audio: null,
