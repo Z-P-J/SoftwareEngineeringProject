@@ -69,7 +69,7 @@ export default {
         "英语",
         "国语"
       ],
-      songlist: [],
+      recommendSongList: [],
       class_list: [
         "情歌",
         "网络歌曲",
@@ -95,7 +95,7 @@ export default {
     console.log('getPersonalized2')
       personalized().then(res => {
         console.log(res);
-        this.songlist = res.result;
+        this.recommendSongList = res.result;
       });
       console.log('id:'+this.id)
     },

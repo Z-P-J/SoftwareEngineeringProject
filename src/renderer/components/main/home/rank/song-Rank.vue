@@ -1,5 +1,5 @@
 <template>
-  <div class="=song-ranking" style="border-radius: 2px">
+  <div class="song-rank" style="border-radius: 2px">
     <el-divider content-position="left">
       <span style="font-size: 15px;">官方榜</span>
     </el-divider>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import RankItem from "./rank-item";
+import RankItem from "./song-rank-item";
 export default {
   data() {
     return {

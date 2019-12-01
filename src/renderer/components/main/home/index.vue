@@ -30,7 +30,7 @@
 <script>
 import RecommendPage from './Recommend/index'
 import Singer from './singer/'
-import SongList from './songlist/SongList'
+import SongList from './songlist/song-list'
 import SongRank from './rank/song-rank'
 export default {
   name: 'home',
