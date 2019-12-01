@@ -66,7 +66,7 @@
           v-for="(item, pos) in starSongList"
           :key="pos"
           :index="'star-' + pos"
-          @click="showStartSongListDetail(pos)"
+          @click="showStarSongListDetail(pos)"
         >{{item.name}}</el-menu-item>
       </el-submenu>
     </el-menu>
@@ -132,10 +132,12 @@ export default {
       //   message: "成功！" + this.$route.name + " " + this.$route.path + " " + this.$route.params,
       //   type: "success"
       // });
-      this.$router.push({ path: `/songlist#` + this.mySongList[pos].name })
+      // this.$router.push({ path: `/songlist#` + this.mySongList[pos].name })
+      this.$router.push({name: 'songlist', query: {id: pos}})
     },
-    showStartSongListDetail (pos) {
-      this.$router.push({ path: `/songlist#` + this.starSongList[pos].name })
+    showStarSongListDetail (pos) {
+      // this.$router.push({ path: `/songlist#` + this.starSongList[pos].name })
+      this.$router.push({name: 'songlist', query: {id: pos}})
     },
     deleteSongList (i) {
       this.mySongList.splice(i, 1)

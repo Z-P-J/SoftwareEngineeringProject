@@ -1,9 +1,9 @@
 <template>
   <el-card class="song-list-item" :body-style="{ padding: '0px' }">
     <div class="cover-wrapper">
-      <img :src="this.data.coverImgUrl" class="song-list-cover" />
+      <img :src="this.data.coverImgUrl" class="song-list-cover"/>
       <div class="song-list-cover-hover">
-        <i class="iconfont icon-iconset0481" @click="playClick" onClick="event.cancelBubble = true"></i>
+        <i class="iconfont icon-iconset0481" onClick="event.cancelBubble = true"></i>
       </div>
       <div class="play-count">
         <i class="el-icon-service"></i>

@@ -30,7 +30,7 @@
       </el-popover>-->
     </el-dropdown>
     <el-row :gutter="15" class="mt-10">
-      <el-col :span="6" v-for="(item,index) in songlist" :key="index">
+      <el-col :span="6" v-for="(item,index) in songlist" :key="index" @click.native="showSongListDetail(item.id)">
         <song-list-item :data="item"></song-list-item>
       </el-col>
     </el-row>
@@ -93,6 +93,9 @@ export default {
       console.log("onSelect value=" + this.value);
       this.getList();
       // this.songlist = [];
+    },
+    showSongListDetail(id) {
+      this.$router.push({ name: "songlist", query: { id: id } });
     }
   }
 };
