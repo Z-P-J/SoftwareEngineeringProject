@@ -1,32 +1,23 @@
 <template>
-  <!-- <div class="personalized">
-        <div class="title">为你推荐歌单</div>
-        <div class="class-list mt-5">
-            <div class="class-item hover-bg" v-for="item in class_list" :key="item">{{item}}</div>
-        </div>
-        <el-row :gutter="15" class="mt-10">
-            <el-col :span="20" v-for="(item,index) in personalized" :key="index">
-                <personalized-item :item="item"  />
-            </el-col>
-        </el-row>
-  </div>-->
+  
   <div class="recommand-songlist" style="padding-top: 20px;">
     <el-divider content-position="left">
       <span style="font-size: 25px;">推荐歌单</span>
     </el-divider>
-    <el-row :gutter="15" class="mt-10">
-      <el-col :span="6" v-for="(item, index) in personalized" :key="index" @click.native="onCardClick(item.id)">
+    <el-row :gutter="10" class="mt-10">
+      <el-col :span="4" v-for="(item, index) in personalized" :key="index" @click.native="onCardClick(item.id)">
         <el-card
           :body-style="{ padding: '0px' }"
-          style="margin: 5px; height: 250px;"
+          style="margin-top: 10px; height: 230px;"
         >
           <img :src="item.picUrl" class="image" />
           <div style="padding: 14px;">
-            <span>{{item.name}}</span>
+            <span class="line-1">{{item.name}}</span>
           </div>
-          <!-- <div style="padding-right: 14px; padding-left: 14px; padding-bottom: 14px;">
-              <i class="el-icon-user">用户名</i>
-          </div>-->
+          <div style="padding-right: 14px; padding-left: 14px; padding-bottom: 14px;">
+            <span style="font-size: 12px;">{{item.copywriter}}</span>
+              <!-- <i class="el-icon-user line-1">{{item.copywriter}}</i> -->
+          </div>
         </el-card>
       </el-col>
     </el-row>
@@ -75,8 +66,15 @@ export default {
 </script>
 
 <style>
-.image {
+.recommand-songlist .image {
   width: 100%;
   display: block;
+}
+.line-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 12px;
 }
 </style>

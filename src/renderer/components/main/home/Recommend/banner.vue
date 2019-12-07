@@ -32,6 +32,13 @@ export default {
 .carousel {
   padding: 20px 40px;
 }
+.carousel .el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 200px;
+  margin: 0;
+}
 .carousel .el-carousel__item .carousel-item-image {
     background-size: cover;
     width: 445px;

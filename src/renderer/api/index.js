@@ -12,6 +12,10 @@ export function personalized () {
   return http.get('/personalized?limit=12')
 }
 
+export function newSong () {
+  return http.get('/personalized/newsong?limit=20')
+}
+
 export function getPlaylistDetail (id) {
   return http.get('/playlist/detail?id=' + id)
 }

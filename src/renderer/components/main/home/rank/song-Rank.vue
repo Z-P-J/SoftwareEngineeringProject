@@ -4,7 +4,7 @@
       <span style="font-size: 15px;">官方榜</span>
     </el-divider>
     <el-row>
-      <el-col :span="6" v-for="(item, index) in list1" :key="index">
+      <el-col :span="6" v-for="(item, index) in list1" :key="index" @click.native="showDetail(item)">
         <rank-item :id="item"></rank-item>
       </el-col>
     </el-row>
@@ -13,7 +13,7 @@
       <span style="font-size: 15px;">全球榜</span>
     </el-divider>
     <el-row :gutter="15" class="mt-10">
-      <el-col :span="6" v-for="(item,index) in list2" :key="index">
+      <el-col :span="6" v-for="(item,index) in list2" :key="index" @click.native="showDetail(item)">
         <rank-item :id="item"></rank-item>
       </el-col>
     </el-row>
@@ -31,6 +31,11 @@ export default {
   },
   components: {
     RankItem
+  },
+  methods: {
+    showDetail(id) {
+      this.$router.push({ name: "songlist", query: { id: id } });
+    }
   }
 };
 </script>
