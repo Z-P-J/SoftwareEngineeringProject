@@ -3,9 +3,11 @@
   <div class="side-bar" style="padding: 10dp">
     <div class="user-info drag">
       <div class="avatar no-drag" @click="login" style="margin: 10px">
-        <img src="../../assets/max.png" />
+        <!-- <img src="../../assets/max.png" /> -->
+        <img v-if="user.is_login" :src="user.profile.avatarUrl" />
+        <img v-else src="../../assets/max.png" />
       </div>
-      <el-row>
+      <el-row v-if="user.is_login">
         <el-tooltip class="item no-drag" effect="dark" content="编辑用户信息" placement="bottom">
           <el-button type="primary" icon="el-icon-edit" size="small" circle></el-button>
         </el-tooltip>
@@ -53,7 +55,12 @@
           </span>
         </el-menu-item>
 
-        <el-menu-item v-for="(item, pos) in mySongList" :key="pos" :index="'my-' + pos" @click="showSongListDetail(pos)">
+        <el-menu-item
+          v-for="(item, pos) in mySongList"
+          :key="pos"
+          :index="'my-' + pos"
+          @click="showSongListDetail(pos)"
+        >
           <span>{{item.name}}</span>
         </el-menu-item>
       </el-submenu>
@@ -75,57 +82,66 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      input: '',
+      input: "",
       mySongList: [
-        { name: '歌单1' },
-        { name: '歌单2' },
-        { name: '歌单3' },
-        { name: '歌单4' },
-        { name: '歌单5' },
-        { name: '歌单6' },
-        { name: '歌单7' }
+        { name: "歌单1" },
+        { name: "歌单2" },
+        { name: "歌单3" },
+        { name: "歌单4" },
+        { name: "歌单5" },
+        { name: "歌单6" },
+        { name: "歌单7" }
       ],
       starSongList: [
-        { name: '歌单1' },
-        { name: '歌单2' },
-        { name: '歌单3' },
-        { name: '歌单4' },
-        { name: '歌单5' },
-        { name: '歌单6' },
-        { name: '歌单7' }
+        { name: "歌单1" },
+        { name: "歌单2" },
+        { name: "歌单3" },
+        { name: "歌单4" },
+        { name: "歌单5" },
+        { name: "歌单6" },
+        { name: "歌单7" }
       ]
+    };
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
     }
   },
   methods: {
-    login () {},
-    handleOpen (key, keyPath) {
-      console.log(key, keyPath)
+    login() {
+      if (!this.user.is_login) {
+        this.$bus.$emit("login");
+      }
     },
-    handleClose (key, keyPath) {
-      console.log(key, keyPath)
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
     },
-    createSongList () {
-      this.$prompt('请输入歌单名', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消'
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    createSongList() {
+      this.$prompt("请输入歌单名", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消"
       })
         .then(({ value }) => {
-          this.mySongList.push({ name: value })
+          this.mySongList.push({ name: value });
           this.$message({
-            type: 'success',
-            message: '新建歌单成功'
-          })
+            type: "success",
+            message: "新建歌单成功"
+          });
         })
         .catch(() => {
           // this.$message({
           //   type: "info",
           //   message: "取消输入"
           // });
-        })
+        });
     },
-    showSongListDetail (pos) {
+    showSongListDetail(pos) {
       // this.$router.push({ path: '/songlist' + pos, query: { userId: 123 }});
       // this.$router.push({ name: 'songlist', params: { index: this.songList[pos], position: pos }})
       // this.$message({
@@ -133,17 +149,17 @@ export default {
       //   type: "success"
       // });
       // this.$router.push({ path: `/songlist#` + this.mySongList[pos].name })
-      this.$router.push({name: 'songlist', query: {id: pos}})
+      this.$router.push({ name: "songlist", query: { id: pos } });
     },
-    showStarSongListDetail (pos) {
+    showStarSongListDetail(pos) {
       // this.$router.push({ path: `/songlist#` + this.starSongList[pos].name })
-      this.$router.push({name: 'songlist', query: {id: pos}})
+      this.$router.push({ name: "songlist", query: { id: pos } });
     },
-    deleteSongList (i) {
-      this.mySongList.splice(i, 1)
+    deleteSongList(i) {
+      this.mySongList.splice(i, 1);
     }
   }
-}
+};
 </script>
 
 <style>
