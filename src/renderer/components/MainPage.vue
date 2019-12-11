@@ -31,8 +31,7 @@
 <script>
 import SideBar from './sidebar/'
 import TopBar from './topbar'
-// import FooterView from './footer/'
-import FooterView from './footer2/'
+import FooterView from './footer/'
 import LoginView from './login/'
 export default {
   name: 'MainPage',
