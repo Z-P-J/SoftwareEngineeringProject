@@ -62,3 +62,7 @@ export function djlist (catid) {
 export function djcat () {
   return http.get('/dj/catelist')
 }
+
+export function search(keywords){
+  return http.get('/search?keywords='+keywords)
+}
