@@ -2,7 +2,7 @@
   <el-table :data="data" style="width: 100%">
     <el-table-column>
       <template slot-scope="scope">
-        <img :src="scope.row.coverImgUrl || scope.row.picUrl" class="playListPic" />
+        <img :src="scope.row.coverImgUrl || scope.row.picUrl" draggable="false" class="playListPic" />
         <span style="margin-left: 10px">{{ scope.row.name }}</span>
       </template>
     </el-table-column>
