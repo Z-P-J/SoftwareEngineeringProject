@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="data" style="width: 100%">
+  <el-table :data="data" stripe style="width: 100%">
     <el-table-column>
       <template slot-scope="scope">
         <img :src="scope.row.picUrl" draggable="false" class="albumPic" />

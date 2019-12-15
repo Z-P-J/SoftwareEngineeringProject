@@ -182,18 +182,18 @@ router.get('/artists', (req, res, next) => {
     )
 })
 
-  createWebAPIRequest(
-    'music.163.com',
-    `/weapi/v1/artist/${id}`,
-    'POST',
-    data,
-    cookie,
-    music_req => {
-      res.send(music_req)
-    },
-    err => res.status(502).send('fetch error')
-  )
-})
+//   createWebAPIRequest(
+//     'music.163.com',
+//     `/weapi/v1/artist/${id}`,
+//     'POST',
+//     data,
+//     cookie,
+//     music_req => {
+//       res.send(music_req)
+//     },
+//     err => res.status(502).send('fetch error')
+//   )
+// })
 
 router.get('/banner', (req, res, next) => {
     const options = {
