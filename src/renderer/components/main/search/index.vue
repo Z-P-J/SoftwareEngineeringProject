@@ -10,7 +10,7 @@
     <el-tabs class="temp" v-model="activeName" @tab-click="tabPaneClicked">
       <el-tab-pane label="单曲" name="songs"></el-tab-pane>
       <el-tab-pane label="歌手" name="artists"></el-tab-pane>
-      <el-tab-pane label="歌单" name="sheets"></el-tab-pane>
+      <el-tab-pane label="歌单" name="playlists"></el-tab-pane>
       <el-tab-pane label="专辑" name="albums"></el-tab-pane>
     </el-tabs>
     <div>
@@ -28,7 +28,7 @@
           :loading="loading"
         ></singers-results>
         <sheets-results
-          v-if="activeName==='sheets'"
+          v-if="activeName==='playlists'"
           :data="searchResult.playlists"
           :loading="loading"
         ></sheets-results>

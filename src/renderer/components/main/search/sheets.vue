@@ -1,13 +1,37 @@
 <template>
-  <div>
-    歌单搜索结果页面
-  </div>
+  <el-table :data="data" style="width: 100%">
+    <el-table-column>
+      <template slot-scope="scope">
+        <img :src="scope.row.coverImgUrl || scope.row.picUrl" class="playListPic" />
+        <span style="margin-left: 10px">{{ scope.row.name }}</span>
+      </template>
+    </el-table-column>
+    <el-table-column>
+      <template slot-scope="scope">
+        <div class="count">{{ scope.row.trackCount }}首</div>
+      </template>
+    </el-table-column>
+    <el-table-column>
+      <template slot-scope="scope">
+        <div class="creator">by {{ scope.row.creator.nickname }}</div>
+      </template>
+    </el-table-column>
+  </el-table>
 </template>
 
 <script>
 export default {
-  name: 'SheetsResults'
-}
+  name: "SheetsResults",
+  props: {
+    data: Array,
+    type: String,
+    loading: Boolean
+  }
+};
 </script>
 <style>
+.playListPic {
+  width: 50px;
+  height: 50px;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <el-table :data="data" stripe style="width: 100%;" ref="multipleTable" tooltip-effect="dark">
-    <el-table-column label="歌手">
-      <template slot-scope="scope" class="searchArtist">
+    <el-table-column class="searchArtist">
+      <template slot-scope="scope">
         <img :src="scope.row.picUrl || scope.row.img1v1Url" alt="" draggable="false" class="artistPic"/>
         <span class="artistName">{{ scope.row.name }}</span>
       </template>
@@ -25,8 +25,8 @@ export default {
   align-items: center;
 }
 .artistPic{
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
 }
 .artistName{
   margin-left: 10px;
