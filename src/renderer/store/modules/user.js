@@ -14,10 +14,7 @@ export default {
     }
   },
   actions: {
-    SET_LOGIN ({
-      commit,
-      state
-    }, res) {
+    SET_LOGIN ({ commit, state }, res) {
       let data = {
         is_login: true,
         account: res.account,

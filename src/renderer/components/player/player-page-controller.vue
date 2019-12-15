@@ -160,7 +160,8 @@ export default {
     //播放/暂停按钮点击
     playClick() {
       if (this.song.song) {
-        this.$store.commit("SET_PLAYER_DATA", { is_play: !this.is_play });
+        // this.$store.commit("SET_PLAYER_DATA", { is_play: !this.is_play });
+        this.$store.dispatch('playOrPause')
       }
     },
     //改变播放时间

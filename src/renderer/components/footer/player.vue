@@ -226,7 +226,11 @@ export default {
     //播放/暂停按钮点击
     playClick() {
       if (this.song.song) {
-        this.$store.commit("SET_PLAYER_DATA", { is_play: !this.is_play });
+        // if (!this.is_play) {
+        //   this.$store.dispatch('addRecentPlay', this.song.song)
+        // }
+        // this.$store.commit("SET_PLAYER_DATA", { is_play: !this.is_play });
+        this.$store.dispatch('playOrPause')
       } else {
         this.$store.commit("SET_PLAYER_DATA", { is_play: false });
         this.$message({

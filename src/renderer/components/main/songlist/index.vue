@@ -37,7 +37,7 @@
                 <img v-if="scope.row.mv>0" class="tag" src="../../assets/images/mv.png" />-->
               </div>
               <div class="btns">
-                <i class="iconfont icon-zanting play" @click="play(scope.row)"></i>
+                <i class="iconfont icon-zanting play" @click="playSong(scope.row)"></i>
                 <i class="iconfont icon-gengduo more"></i>
               </div>
             </div>

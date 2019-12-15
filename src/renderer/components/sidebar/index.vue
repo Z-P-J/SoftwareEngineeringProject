@@ -9,7 +9,7 @@
       </div>
       <el-row v-if="user.is_login">
         <el-tooltip class="item no-drag" effect="dark" content="编辑用户信息" placement="bottom">
-          <el-button type="primary" icon="el-icon-edit" size="small" circle></el-button>
+          <el-button type="primary" icon="el-icon-edit" size="small" circle  @click="getUserSongList()"></el-button>
         </el-tooltip>
         <el-tooltip class="item no-drag" effect="dark" content="用户消息" placement="bottom">
           <el-button type="info" icon="el-icon-message" size="small" circle></el-button>
@@ -49,11 +49,11 @@
           <i class="el-icon-tickets"></i>
           <span>创建的歌单</span>
         </template>
-        <el-menu-item @click="createSongList()">
+        <!-- <el-menu-item @click="createSongList()">
           <span>
             <i class="el-icon-folder-add"></i>新建歌单
           </span>
-        </el-menu-item>
+        </el-menu-item> -->
 
         <el-menu-item
           v-for="(item, pos) in mySongList"
@@ -61,7 +61,7 @@
           :index="'my-' + pos"
           @click="showSongListDetail(pos)"
         >
-          <span>{{item.name}}</span>
+          <span style="font-size: 10px;"><i class="el-icon-folder-add"></i>{{item.name}}</span>
         </el-menu-item>
       </el-submenu>
       <el-submenu index="7" id="starred_song_list">
@@ -74,43 +74,50 @@
           :key="pos"
           :index="'star-' + pos"
           @click="showStarSongListDetail(pos)"
-        >{{item.name}}</el-menu-item>
+        ><span style="font-size: 10px;"><i class="el-icon-folder-add"></i>{{item.name}}</span></el-menu-item>
       </el-submenu>
     </el-menu>
   </div>
 </template>
 
 <script>
+import { userSongList } from "../../api";
 export default {
   data() {
     return {
       input: "",
-      mySongList: [
-        { name: "歌单1" },
-        { name: "歌单2" },
-        { name: "歌单3" },
-        { name: "歌单4" },
-        { name: "歌单5" },
-        { name: "歌单6" },
-        { name: "歌单7" }
-      ],
-      starSongList: [
-        { name: "歌单1" },
-        { name: "歌单2" },
-        { name: "歌单3" },
-        { name: "歌单4" },
-        { name: "歌单5" },
-        { name: "歌单6" },
-        { name: "歌单7" }
-      ]
+      mySongList: [],
+      starSongList: []
     };
   },
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    account() {
+      return this.$store.state.user.account;
     }
   },
+  mounted() {
+    this.getUserSongList();
+  },
   methods: {
+    getUserSongList() {
+      if (this.user.is_login) {
+        // console.log('uid=' + JSON.stringify(this.account))
+        // console.log('uid=' + this.account.id)
+        userSongList(this.account.id).then(res => {
+          console.log("getUserSongList res=" + JSON.stringify(res))
+          res.playlist.forEach(element => {
+            if (element.creator.userId === this.account.id) {
+              this.mySongList.push(element)
+            } else {
+              this.starSongList.push(element)
+            }
+          });
+        })
+      }
+    },
     login() {
       if (!this.user.is_login) {
         this.$bus.$emit("login");
@@ -142,18 +149,10 @@ export default {
         });
     },
     showSongListDetail(pos) {
-      // this.$router.push({ path: '/songlist' + pos, query: { userId: 123 }});
-      // this.$router.push({ name: 'songlist', params: { index: this.songList[pos], position: pos }})
-      // this.$message({
-      //   message: "成功！" + this.$route.name + " " + this.$route.path + " " + this.$route.params,
-      //   type: "success"
-      // });
-      // this.$router.push({ path: `/songlist#` + this.mySongList[pos].name })
-      this.$router.push({ name: "songlist", query: { id: pos } });
+      this.$router.push({ name: "songlist", query: { id: this.mySongList[pos].id } });
     },
     showStarSongListDetail(pos) {
-      // this.$router.push({ path: `/songlist#` + this.starSongList[pos].name })
-      this.$router.push({ name: "songlist", query: { id: pos } });
+      this.$router.push({ name: "songlist", query: { id: this.starSongList[pos].id } });
     },
     deleteSongList(i) {
       this.mySongList.splice(i, 1);
@@ -163,6 +162,11 @@ export default {
 </script>
 
 <style>
+
+.side-bar el-menu-item {
+
+}
+
 .user-info {
   height: 120px;
   display: flex;

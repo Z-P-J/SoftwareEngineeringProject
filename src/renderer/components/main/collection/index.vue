@@ -1,6 +1,7 @@
 <template>
   <div class="collection-page">
     <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tab-pane label="歌曲" name="songs"></el-tab-pane>
       <el-tab-pane label="专辑" name="albums"></el-tab-pane>
       <el-tab-pane label="歌手" name="singers"></el-tab-pane>
       <el-tab-pane label="视频" name="videos"></el-tab-pane>
@@ -8,6 +9,7 @@
     <div>
       <!-- <albums-list v-if="activeName===albums"></albums-list> -->
       <transition name="el-zoom-in-top">
+        <song-list v-if="activeName==='songs'"></song-list>
         <albums-list v-if="activeName==='albums'"></albums-list>
         <singers-list v-if="activeName==='singers'"></singers-list>
         <videos-list v-if="activeName==='videos'"></videos-list>
@@ -16,12 +18,14 @@
   </div>
 </template>
 <script>
+import songList from './song-list'
 import VideosList from './videos'
 import AlbumsList from './albums'
 import SingersList from './singers'
 export default {
   name: 'collection',
   components: {
+    songList,
     AlbumsList,
     VideosList,
     SingersList
