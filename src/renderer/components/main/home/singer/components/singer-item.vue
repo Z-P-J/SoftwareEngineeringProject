@@ -1,7 +1,7 @@
 <template>
   <div class="singer-item">
-    <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="singer-img"/>
-    <div class="name">{{item}}</div>
+    <img :src="item.picUrl" class="singer-img"/>
+    <div class="name">{{ item.name }}</div>
   </div>
 </template>
 <script>
@@ -12,7 +12,13 @@ export default {
   data () {
     return {}
   },
-  methods: {}
+  methods: {
+    test() {
+      console.log('item=' + JSON.stringify(this.item))
+      return "srjfh"
+      
+    }
+  }
 }
 </script>
 <style>

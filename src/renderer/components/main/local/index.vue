@@ -61,10 +61,10 @@
 </template>
 
 <script>
-const fs = require("fs");
-const pathModule = require("path");
-const audioLoader = require("audio-loader");
-const jsmediatags = require("jsmediatags");
+const fs = require('fs')
+const pathModule = require('path')
+const audioLoader = require('audio-loader')
+const jsmediatags = require('jsmediatags')
 export default {
   name: "recent-play",
   // data() {
@@ -78,23 +78,23 @@ export default {
     },
   },
   methods: {
-    cacheAlbumCover(album, picture, callback) {
+    cacheAlbumCover (album, picture, callback) {
       let cacheFilePath = path.resolve(
         albumDir,
-        album + "." + picture.format.split("/")[1]
-      );
+        album + '.' + picture.format.split('/')[1]
+      )
 
       if (!fs.existsSync(cacheFilePath)) {
-        let fileContent = this.convertPicture(picture);
+        let fileContent = this.convertPicture(picture)
         if (fileContent) {
-          fs.writeFile(cacheFilePath, fileContent, "binary", error => {
-            callback(cacheFilePath, error);
-          });
+          fs.writeFile(cacheFilePath, fileContent, 'binary', error => {
+            callback(cacheFilePath, error)
+          })
         } else {
-          callback(null, true);
+          callback(null, true)
         }
       } else {
-        callback(cacheFilePath);
+        callback(cacheFilePath)
       }
     },
     selectFolder() {
@@ -106,17 +106,17 @@ export default {
             if (err) {
               t.$message({
                 message: err,
-                type: "error"
-              });
-              return;
+                type: 'error'
+              })
+              return
             }
-            console.log(`${path}`);
+            console.log(`${path}`)
             files.forEach(file => {
-              if (pathModule.extname(file).toLowerCase() === ".mp3") {
-                console.log(`${path}/${file}`);
-                jsmediatags.read(path + "/" + file, {
-                  onSuccess: function(tag) {
-                    console.log(tag.tags.picture);
+              if (pathModule.extname(file).toLowerCase() === '.mp3') {
+                console.log(`${path}/${file}`)
+                jsmediatags.read(path + '/' + file, {
+                  onSuccess: function (tag) {
+                    console.log(tag.tags.picture)
 
                     // cacheAlbumCover(
                     //   tag.tags.album,
@@ -148,15 +148,15 @@ export default {
                       path: path + "/" + file,
                       song: tag.tags.title,
                       singer: tag.tags.artist,
-                      album: tag.tags.album.replace(/\#|\?|\&\/\\/g, ""),
+                      album: tag.tags.album.replace(/\#|\?|\&\/\\/g, ''),
                       time: 0,
                       picture: "" //tag.tags.picture
                     });
                   },
-                  onError: function(error) {
-                    console.log(":(", error.type, error.info);
+                  onError: function (error) {
+                    console.log(':(', error.type, error.info)
                   }
-                });
+                })
                 // audioLoader(path + '/' + file).then(function (res) {
                 //   console.log(res)
                 //   t.tableData.push({
@@ -167,27 +167,27 @@ export default {
                 // })
                 // })
               }
-            });
-          });
+            })
+          })
         } else {
           t.$message({
-            message: "您未选择任何文件夹！",
-            type: "error"
-          });
+            message: '您未选择任何文件夹！',
+            type: 'error'
+          })
         }
-      });
+      })
     },
-    toggleSelection(rows) {
+    toggleSelection (rows) {
       if (rows) {
         rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row);
-        });
+          this.$refs.multipleTable.toggleRowSelection(row)
+        })
       } else {
-        this.$refs.multipleTable.clearSelection();
+        this.$refs.multipleTable.clearSelection()
       }
     },
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
+    handleSelectionChange (val) {
+      this.multipleSelection = val
     },
     collectSong(index, row) {
       this.$message({
@@ -203,10 +203,10 @@ export default {
     deleteSong(index, row) {
       this.localSongs.splice(index, 1);
       this.$message({
-        message: "删除音乐历史 index=" + index + " row=" + row,
-        type: "success"
-      });
+        message: '删除音乐历史 index=' + index + ' row=' + row,
+        type: 'success'
+      })
     }
   }
-};
+}
 </script>

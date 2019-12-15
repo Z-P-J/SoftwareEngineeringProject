@@ -26,7 +26,7 @@ export default {
     Personalized,
     newSongs
   }
-};
+}
 </script>
 
 <style>

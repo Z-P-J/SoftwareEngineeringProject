@@ -58,7 +58,6 @@ export function djlist (catid) {
     return http.get('/dj/recommend/type?type=' + catid)
   }
 }
-
 export function djcat () {
   return http.get('/dj/catelist')
 }

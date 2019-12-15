@@ -29,53 +29,50 @@
 </template>
 <script>
 import {mapState} from 'vuex'
-    export default {
-        components: {
+export default {
+  components: {
 
-        },
-        data(){
-            return{
-                showPlaylist:false
-            }
-
-        },
-        computed: {
-            ...mapState({
-                list: state => state.player.list,
-                song:state => state.player.song,
-
-            })
-        },
-        mounted(){
-            console.log('---Play list=',this.list)
-            console.log('---Play song=',this.song)
-            this.$bus.$on('showPlaylist',res=>{
-                if(this.list.length>0){
-                    if(this.showPlaylist){
-                        this.showPlaylist=false
-                    }else {
-                        this.showPlaylist=true
-                    }
-                }
-
-            })
-
-            this.globalClick(this.hidePlaylist);
-            this.playlistClick(()=>{
-                // console.log('-----click in playlist----')
-            })
-
-        },
-        methods:{
-            play(item) {
-                console.log('item.id=',item)
-                this.$store.dispatch('playMusic', item);
-            },
-            hidePlaylist(){
-                // console.log('-----globalClick -> hidePlaylist-----',this.$refs.playlist)
-            }
-        },
+  },
+  data () {
+    return {
+      showPlaylist: false
     }
+  },
+  computed: {
+    ...mapState({
+      list: state => state.player.list,
+      song: state => state.player.song
+
+    })
+  },
+  mounted () {
+    console.log('---Play list=', this.list)
+    console.log('---Play song=', this.song)
+    this.$bus.$on('showPlaylist', res => {
+      if (this.list.length > 0) {
+        if (this.showPlaylist) {
+          this.showPlaylist = false
+        } else {
+          this.showPlaylist = true
+        }
+      }
+    })
+
+    this.globalClick(this.hidePlaylist)
+    this.playlistClick(() => {
+      // console.log('-----click in playlist----')
+    })
+  },
+  methods: {
+    play (item) {
+      console.log('item.id=', item)
+      this.$store.dispatch('playMusic', item)
+    },
+    hidePlaylist () {
+      // console.log('-----globalClick -> hidePlaylist-----',this.$refs.playlist)
+    }
+  }
+}
 </script>
 <style>
 .playlist {

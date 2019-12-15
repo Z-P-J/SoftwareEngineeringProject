@@ -2,21 +2,25 @@
 
 export default {
   state: {
-    download_task_list: []
+    download_list: [],
+    on_download: {}
   },
   actions: {
-    downloadMusic ({ commit, state }, song) {
-      console.log('collectSong song=' + JSON.stringify(song))
-      for (let i in state.collection_songs) {
-        if (state.download_task_list[i].path === song.path) {
+    downloadMusic ({ commit, state }, task) {
+      console.log('song=' + JSON.stringify(task))
+      for (let i in state.download_list) {
+        if (state.download_list[i].url === task.url) {
+          state.on_download = {}
+          setTimeout(() => {
+            state.on_download = task
+          }, 500)
           return
         }
       }
-      state.download_task_list.push({
-        song: song,
-        size: 0,
-        status: 0 // downloading: 0, finished: 1, pause: 2, waitting: 4, error: 5
-      })
+      state.download_list.push(task)
+      setTimeout(() => {
+        state.on_download = task
+      }, 500)
     }
   }
 }
