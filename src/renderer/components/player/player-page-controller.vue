@@ -87,6 +87,10 @@ export default {
       play_type: 1 //播放次序 0单曲循环 1列表循环 2随机播放
     };
   },
+  activated() {
+    console.log("play_controller activated");
+    this.$store.commit("SET_PLAYER_DATA", { is_play: false });
+  },
   mounted() {},
   computed: {
     play_list() {

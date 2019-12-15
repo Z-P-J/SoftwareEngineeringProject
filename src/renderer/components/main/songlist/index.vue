@@ -1,6 +1,6 @@
 <template>
   <el-scrollbar class="song-list-detail scroll-page" v-loading="loading">
-    <div class="song-list">
+    <div class="song-list" v-if="!loading">
       <el-row class="row">
         <div class="cover">
           <img :src="playlist.coverImgUrl" />
@@ -127,16 +127,21 @@ export default {
   // },
   watch: {
     $route(to, from) {
-      // var str = "" + to.fullPath;
-      // this.id = str.replace("/songlist#", "");
-      let id = this.$route.query.id;
-      this.loading = true;
-      this.playlist = [];
-      if (id !== this.id) {
-        this.id = id;
-        this.getPlaylistDetail();
+      if (to.path == "/songlist") {
+        let id = this.$route.query.id;
+        this.playlist = [];
+        this.loading = true;
+        if (id !== this.id) {
+          this.show = false;
+          this.id = id;
+          this.getPlaylistDetail();
+        } else {
+          this.show = true;
+        }
       } else {
-        this.show = true;
+        this.show = false;
+        this.loading = true;
+        this.playlist = [];
       }
     }
   },
@@ -144,8 +149,8 @@ export default {
     getPlaylistDetail() {
       getPlaylistDetail(this.id).then(res => {
         console.log("getPlaylistDetail res=" + JSON.stringify(res));
-        this.loading = false;
         this.playlist = res.playlist;
+        this.loading = false;
       });
     },
     handleSelectionChange(val) {
