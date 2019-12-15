@@ -183,4 +183,14 @@ export default {
 };
 </script>
 <style>
+.cm-search-head{
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 13px;
+}
+.cm-search-head span{
+  color:rgb(11, 191, 236);
+  padding: 0 5px;
+}
 </style>

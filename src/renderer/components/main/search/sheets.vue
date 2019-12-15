@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="data" style="width: 100%">
+  <el-table :data="data" @row-click="clickToSelect" style="width: 100%">
     <el-table-column>
       <template slot-scope="scope">
         <img :src="scope.row.coverImgUrl || scope.row.picUrl" draggable="false" class="playListPic" />
@@ -26,6 +26,11 @@ export default {
     data: Array,
     type: String,
     loading: Boolean
+  },
+  methods:{
+    clickToSelect(row, column, event) {
+      this.$router.push({ name: "songlist", query: { id: row.id } });
+    },
   }
 };
 </script>
