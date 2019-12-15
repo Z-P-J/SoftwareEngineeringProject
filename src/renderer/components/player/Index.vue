@@ -110,12 +110,12 @@
 </template>
 
 <script>
-import PlayerController from "./player-page-controller";
+import PlayerController from './player-page-controller'
 export default {
   data () {
     return {
       cover_url:
-        "https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png",
+        'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
       // song: "音乐标题",
       // singer: "xxx",
       // album: "xxx",
@@ -151,77 +151,77 @@ export default {
     }
   },
   computed: {
-    play_list() {
-      return this.$store.state.player.list;
+    play_list () {
+      return this.$store.state.player.list
     },
-    song() {
-      return this.$store.state.player.song;
+    song () {
+      return this.$store.state.player.song
     },
-    music_urls() {
-      return this.$store.state.player.music_urls;
+    music_urls () {
+      return this.$store.state.player.music_urls
     },
-    cover() {
+    cover () {
       try {
-        return this.song.al.picUrl;
+        return this.song.al.picUrl
       } catch (e) {
-        return "http://p1.music.126.net/dPn_6T9d5VUuCDvhJdZ_8A==/109951163399691488.jpg";
+        return 'http://p1.music.126.net/dPn_6T9d5VUuCDvhJdZ_8A==/109951163399691488.jpg'
       }
     },
-    song_name() {
+    song_name () {
       try {
         if (this.song.song) {
           return this.song.song
         }
       } catch (e) {
-        
+
       }
-      return "音乐播放器";
+      return '音乐播放器'
     },
-    singer() {
+    singer () {
       try {
-        return this.song.singer;
+        return this.song.singer
       } catch (e) {
-        return "未知";
+        return '未知'
       }
     },
-    album() {
+    album () {
       try {
-        return this.song.album;
+        return this.song.album
       } catch (e) {
-        return "未知";
+        return '未知'
       }
     },
-    play_url() {
+    play_url () {
       // console.log(music_urls());
-      console.log(this.$store.state.player.music_urls.path);
-      return this.$store.state.player.music_urls.path || false;
+      console.log(this.$store.state.player.music_urls.path)
+      return this.$store.state.player.music_urls.path || false
     },
-    is_play() {
-      return this.$store.state.player.is_play;
+    is_play () {
+      return this.$store.state.player.is_play
     },
-    currentTime() {
-      return this.$store.state.player.currentTime;
+    currentTime () {
+      return this.$store.state.player.currentTime
     },
-    before_song() {
-      let s_index = -1;
+    before_song () {
+      let s_index = -1
       this.play_list.map((item, index) => {
         if (this.song.id === item.id && index > 0) {
-          s_index = index - 1;
+          s_index = index - 1
         }
-      });
-      return s_index >= 0 ? this.play_list[s_index] : false;
+      })
+      return s_index >= 0 ? this.play_list[s_index] : false
     },
-    after_song() {
-      let s_index = -1;
+    after_song () {
+      let s_index = -1
       this.play_list.map((item, index) => {
         if (this.song.id === item.id && index < this.play_list.length - 1) {
-          s_index = index + 1;
+          s_index = index + 1
         }
-      });
-      return s_index >= 0 ? this.play_list[s_index] : false;
+      })
+      return s_index >= 0 ? this.play_list[s_index] : false
     }
-  },
-};
+  }
+}
 </script>
 
 <style>

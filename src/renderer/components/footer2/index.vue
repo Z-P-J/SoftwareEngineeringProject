@@ -7,12 +7,12 @@
 <script>
     import PlayerView from './player'
     export default {
-        components:{
-            PlayerView
-        },
-        props:{
-            height:String
-        }
+      components: {
+        PlayerView
+      },
+      props: {
+        height: String
+      }
     }
 </script>
 

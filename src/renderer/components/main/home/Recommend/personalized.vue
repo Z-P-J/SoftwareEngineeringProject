@@ -34,39 +34,39 @@
 </template>
 
 <script>
-    import { personalized } from "../../../../api";
-    import PersonalizedItem from './personalized-item'
+    import { personalized } from '../../../../api'
+import PersonalizedItem from './personalized-item'
 
     export default {
-        components: {
-            PersonalizedItem
-        },
-        data() {
-            return {
-                personalized: [],
-                class_list: [
-                    '情歌',
-                    '网络歌曲',
-                    '经典',
-                    'KTV热歌',
-                    '背景音乐',
-                    '伤感',
-                    '英语',
-                    '国语',
-                    '全部分类',
-                ]
-            }
-        },
-        mounted() {
-            this.getPersonalized()
-        },
-        methods: {
-            getPersonalized() {
-                personalized().then(res => {
-                    this.personalized = res.result
-                })
-            }
+      components: {
+        PersonalizedItem
+      },
+      data () {
+        return {
+          personalized: [],
+          class_list: [
+            '情歌',
+            '网络歌曲',
+            '经典',
+            'KTV热歌',
+            '背景音乐',
+            '伤感',
+            '英语',
+            '国语',
+            '全部分类'
+          ]
         }
+      },
+      mounted () {
+        this.getPersonalized()
+      },
+      methods: {
+        getPersonalized () {
+          personalized().then(res => {
+            this.personalized = res.result
+          })
+        }
+      }
     }
 </script>
 

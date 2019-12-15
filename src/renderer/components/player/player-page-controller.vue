@@ -76,111 +76,111 @@
 import playlist from './play-list.vue'
 export default {
   components: {
-      playlist
+    playlist
   },
-  data() {
+  data () {
     return {
       audio: null,
       play_time: 0,
       max_time: 0,
       interval: null,
-      play_type: 1 //播放次序 0单曲循环 1列表循环 2随机播放
-    };
+      play_type: 1 // 播放次序 0单曲循环 1列表循环 2随机播放
+    }
   },
-  mounted() {},
+  mounted () {},
   computed: {
-    play_list() {
-      return this.$store.state.player.list;
+    play_list () {
+      return this.$store.state.player.list
     },
-    song() {
-      return this.$store.state.player.song;
+    song () {
+      return this.$store.state.player.song
     },
-    music_urls() {
-      return this.$store.state.player.music_urls;
+    music_urls () {
+      return this.$store.state.player.music_urls
     },
-    cover() {
+    cover () {
       try {
-        return this.song.al.picUrl;
+        return this.song.al.picUrl
       } catch (e) {
-        return "http://p1.music.126.net/dPn_6T9d5VUuCDvhJdZ_8A==/109951163399691488.jpg";
+        return 'http://p1.music.126.net/dPn_6T9d5VUuCDvhJdZ_8A==/109951163399691488.jpg'
       }
     },
-    name() {
+    name () {
       try {
         if (this.song.song) {
-          return this.song.song + " - " + this.song.singer;
+          return this.song.song + ' - ' + this.song.singer
         }
-        return "音乐播放器";
+        return '音乐播放器'
       } catch (e) {
-        return "音乐播放器";
+        return '音乐播放器'
       }
     },
-    ar_name() {
+    ar_name () {
       try {
-        return this.song.ar[0].name;
+        return this.song.ar[0].name
       } catch (e) {
-        return false;
+        return false
       }
     },
-    play_url() {
+    play_url () {
       // console.log(music_urls());
-      console.log(this.$store.state.player.music_urls.path);
-      return this.$store.state.player.music_urls.path || false;
+      console.log(this.$store.state.player.music_urls.path)
+      return this.$store.state.player.music_urls.path || false
     },
-    is_play() {
-      return this.$store.state.player.is_play;
+    is_play () {
+      return this.$store.state.player.is_play
     },
-    currentTime() {
-      return this.$store.state.player.currentTime;
+    currentTime () {
+      return this.$store.state.player.currentTime
     },
-    before_song() {
-      let s_index = -1;
+    before_song () {
+      let s_index = -1
       this.play_list.map((item, index) => {
         if (this.song.path === item.path && index > 0) {
-          s_index = index - 1;
+          s_index = index - 1
         }
-      });
-      return s_index >= 0 ? this.play_list[s_index] : false;
+      })
+      return s_index >= 0 ? this.play_list[s_index] : false
     },
-    after_song() {
-      let s_index = -1;
+    after_song () {
+      let s_index = -1
       this.play_list.map((item, index) => {
         if (this.song.path === item.path && index < this.play_list.length - 1) {
-          s_index = index + 1;
+          s_index = index + 1
         }
-      });
-      return s_index >= 0 ? this.play_list[s_index] : false;
+      })
+      return s_index >= 0 ? this.play_list[s_index] : false
     }
   },
   methods: {
-    //播放/暂停按钮点击
-    playClick() {
+    // 播放/暂停按钮点击
+    playClick () {
       if (this.song.song) {
-        this.$store.commit("SET_PLAYER_DATA", { is_play: !this.is_play });
+        this.$store.commit('SET_PLAYER_DATA', { is_play: !this.is_play })
       }
     },
-    //改变播放时间
-    playTimeChange(val) {
-      this.$store.commit("SET_PLAYER_DATA", { goToTime: val });
+    // 改变播放时间
+    playTimeChange (val) {
+      this.$store.commit('SET_PLAYER_DATA', { goToTime: val })
     },
-    playBefore() {
-      this.$store.dispatch("playBefore");
+    playBefore () {
+      this.$store.dispatch('playBefore')
     },
-    playAfter() {
-      this.$store.dispatch("playAfter");
+    playAfter () {
+      this.$store.dispatch('playAfter')
     },
     // 弹出播放列表
-    showPlaylist() {
-      this.$bus.$emit("showPlaylist");
+    showPlaylist () {
+      this.$bus.$emit('showPlaylist')
     }
   },
   watch: {
-    currentTime(val) {
+    currentTime (val) {
       // console.log("currentTime=" + val);
-      this.play_time = val;
+      this.play_time = val
     }
-  },
-};
+  }
+}
 </script>
 
 <style>

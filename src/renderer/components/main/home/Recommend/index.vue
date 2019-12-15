@@ -48,58 +48,58 @@
 </template>
 
 <script>
-import {personalized} from "../../../../api/index";
+import {personalized} from '../../../../api/index'
 import Banner from './banner'
 import Personalized from './personalized'
 export default {
-    components:{
-        Banner,
-        Personalized,
-    },
-  data() {
+  components: {
+    Banner,
+    Personalized
+  },
+  data () {
     return {
       id: '',
       newMusics: [
-        "情歌",
-        "网络歌曲",
-        "经典",
-        "KTV热歌",
-        "背景音乐",
-        "伤感",
-        "英语",
-        "国语"
+        '情歌',
+        '网络歌曲',
+        '经典',
+        'KTV热歌',
+        '背景音乐',
+        '伤感',
+        '英语',
+        '国语'
       ],
       songlist: [],
       class_list: [
-        "情歌",
-        "网络歌曲",
-        "经典",
-        "KTV热歌",
-        "背景音乐",
-        "伤感",
-        "英语",
-        "国语",
-        "全部分类"
+        '情歌',
+        '网络歌曲',
+        '经典',
+        'KTV热歌',
+        '背景音乐',
+        '伤感',
+        '英语',
+        '国语',
+        '全部分类'
       ]
-    };
+    }
   },
-  mounted(){
-    this.getPersonalized();
+  mounted () {
+    this.getPersonalized()
     console.log('getPersonalized1')
   },
-  activated(){
-    this.getPersonalized();
+  activated () {
+    this.getPersonalized()
   },
   methods: {
-    getPersonalized() {
-    console.log('getPersonalized2')
+    getPersonalized () {
+      console.log('getPersonalized2')
       personalized().then(res => {
-        console.log(res);
-        this.songlist = res.result;
-      });
-      console.log('id:'+this.id)
+        console.log(res)
+        this.songlist = res.result
+      })
+      console.log('id:' + this.id)
     },
-    itemClick(){
+    itemClick () {
       // this.id = item.id;
       console.log(11111111111111)
       console.log('id:' + this.id)
@@ -109,10 +109,9 @@ export default {
           id: this.id
         }
       })
-      
     }
   }
-};
+}
 </script>
 
 <style>
