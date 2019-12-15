@@ -7,11 +7,11 @@
       searchParams[nowSearchType[0]].count
       }}条记录
     </div>
-    <el-tabs class="temp" v-model="activeName" @tab-click="handleClick">
+    <el-tabs class="temp" v-model="activeName" @tab-click="tabPaneClicked">
       <el-tab-pane label="单曲" name="songs"></el-tab-pane>
-      <el-tab-pane label="歌手" name="singers"></el-tab-pane>
-      <el-tab-pane label="专辑" name="albums"></el-tab-pane>
+      <el-tab-pane label="歌手" name="artists"></el-tab-pane>
       <el-tab-pane label="歌单" name="sheets"></el-tab-pane>
+      <el-tab-pane label="专辑" name="albums"></el-tab-pane>
     </el-tabs>
     <div>
       <transition name="el-zoom-in-top">
@@ -20,10 +20,19 @@
           :data="searchResult.songs"
           :loading="loading"
           :page="false"
+          @scroll-end="loadMore"
         ></songs-results>
-        <singers-results v-if="activeName==='singers'"></singers-results>
-        <albums-results v-if="activeName==='albums'"></albums-results>
-        <sheets-results v-if="activeName==='sheets'"></sheets-results>
+        <singers-results
+          v-if="activeName==='artists'"
+          :data="searchResult.artists"
+          :loading="loading"
+        ></singers-results>
+        <sheets-results
+          v-if="activeName==='sheets'"
+          :data="searchResult.playlists"
+          :loading="loading"
+        ></sheets-results>
+        <albums-results v-if="activeName==='albums'" :data="searchResult.albums" :loading="loading"></albums-results>
       </transition>
     </div>
   </div>
@@ -133,6 +142,10 @@ export default {
     tabBarSelect(item, index) {
       this.changeType(item, index, true);
     },
+    tabPaneClicked(tab,event){
+      console.log(this.searchType[tab.index]);
+      this.changeType(this.searchType[tab.index], tab.index, true);
+    },
     changeType(type, index, flag) {
       this.nowSearchType = [type.type, type.value, type.name];
       if (flag) {
@@ -144,8 +157,8 @@ export default {
     searchPost(page) {
       let type = this.nowSearchType[0];
       this.loading = page === 0;
-      search(this.$route.params.keywords).then(rs => {
-        console.log('rs=' + JSON.stringify(rs))
+      search(this.$route.params.keywords,this.nowSearchType[1]).then(rs => {
+        console.log("rs=" + JSON.stringify(rs));
         this.loading = false;
         let data = rs.result[type] || [];
         let countType = type.substring(0, type.length - 1) + "Count"; //拼接记录总数的key

@@ -1,6 +1,7 @@
 <template>
   <el-table
       :data="data"
+      stripe
       style="width: 100%;"
       ref="multipleTable"
       tooltip-effect="dark"

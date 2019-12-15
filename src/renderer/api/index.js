@@ -63,6 +63,6 @@ export function djcat () {
   return http.get('/dj/catelist')
 }
 
-export function search(keywords){
-  return http.get('/search?keywords='+keywords)
+export function search(keywords,type){
+  return http.get('/search?keywords=' + keywords + '&type=' + type)
 }
