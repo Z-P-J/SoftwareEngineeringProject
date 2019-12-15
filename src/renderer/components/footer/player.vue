@@ -174,6 +174,9 @@ export default {
       // } catch (e) {
       //   return "http://p1.music.126.net/dPn_6T9d5VUuCDvhJdZ_8A==/109951163399691488.jpg";
       // }
+      if (this.song.picture) {
+        return this.song.picture
+      }
       return 'http://p1.music.126.net/dPn_6T9d5VUuCDvhJdZ_8A==/109951163399691488.jpg'
     },
     name () {
