@@ -142,10 +142,7 @@ export default {
     },
     search () {
       this.$router.push({
-        path: '/searchResults',
-        query: {
-          state: this.state
-        }
+        path: '/searchResults/' + this.state
       })
     }
   },

@@ -46,7 +46,7 @@ export default new Router({
           component: recentPlay,
           meta: {keepAlive: true}
         }, {
-          path: 'searchResults',
+          path: '/searchResults/:keywords',
           name: 'searchResults',
           component: searchResults,
           meta: {keepAlive: true}

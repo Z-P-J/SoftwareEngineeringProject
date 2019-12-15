@@ -62,6 +62,9 @@ export function djcat () {
   return http.get('/dj/catelist')
 }
 
+export function search(keywords,type){
+  return http.get('/search?keywords=' + keywords + '&type=' + type)
+}
 export function userSongList (uid) {
   return http.get('/user/playlist?uid=' + uid)
 }
