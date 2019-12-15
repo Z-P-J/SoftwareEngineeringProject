@@ -22,6 +22,8 @@ Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
 
+Vue.prototype.$bus = new Vue()
+
 /* eslint-disable no-new */
 new Vue({
   components: { App },
