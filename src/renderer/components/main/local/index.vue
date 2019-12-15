@@ -13,7 +13,7 @@
     </el-row>
 
     <el-table
-      :data="tableData"
+      :data="localSongs"
       style="width: 100%;"
       ref="multipleTable"
       tooltip-effect="dark"
@@ -26,7 +26,7 @@
       <el-table-column prop="time" label="时长" width="100px">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
-          <span style="margin-left: 10px">{{ scope.row.time }}</span>
+          <span style="margin-left: 10px">{{ scope.row.time * 1000 | formatDuring }}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作">
@@ -47,7 +47,7 @@
             </el-button>
           </el-tooltip>
           <el-tooltip class="item" effect="dark" content="我喜欢" placement="bottom">
-            <el-button size="mini" type="info" @click="starSong(scope.$index, scope.row)" circle>
+            <el-button size="mini" type="info" @click="collectSong(scope.$index, scope.row)" circle>
               <i class="el-icon-star-off" />
             </el-button>
           </el-tooltip>
@@ -61,117 +61,43 @@
 </template>
 
 <script>
-const fs = require("fs");
-const pathModule = require("path");
-const audioLoader = require("audio-loader");
-const jsmediatags = require("jsmediatags");
+const fs = require('fs')
+const pathModule = require('path')
+const audioLoader = require('audio-loader')
+const jsmediatags = require('jsmediatags')
 export default {
   name: "recent-play",
-  data() {
-    return {
-      // hasMusic: true,
-      tableData: [
-        // {
-        //   song: '歌曲名',
-        //   singer: '歌手名',
-        //   album: '专辑名',
-        //   time: '4:00'
-        // },
-        // {
-        //   song: '歌曲名',
-        //   singer: '歌手名',
-        //   album: '专辑名',
-        //   time: '4:00'
-        // },
-        // {
-        //   song: '歌曲名',
-        //   singer: '歌手名',
-        //   album: '专辑名',
-        //   time: '4:00'
-        // },
-        // {
-        //   song: '歌曲名',
-        //   singer: '歌手名',
-        //   album: '专辑名',
-        //   time: '4:00'
-        // },
-        // {
-        //   song: '歌曲名',
-        //   singer: '歌手名',
-        //   album: '专辑名',
-        //   time: '4:00'
-        // },
-        // {
-        //   song: '歌曲名',
-        //   singer: '歌手名',
-        //   album: '专辑名',
-        //   time: '4:00'
-        // },
-        // {
-        //   song: '歌曲名',
-        //   singer: '歌手名',
-        //   album: '专辑名',
-        //   time: '4:00'
-        // },
-        // {
-        //   song: '歌曲名',
-        //   singer: '歌手名',
-        //   album: '专辑名',
-        //   time: '4:00'
-        // },
-        // {
-        //   song: '歌曲名',
-        //   singer: '歌手名',
-        //   album: '专辑名',
-        //   time: '4:00'
-        // },
-        // {
-        //   song: '歌曲名',
-        //   singer: '歌手名',
-        //   album: '专辑名',
-        //   time: '4:00'
-        // },
-        // {
-        //   song: '歌曲名',
-        //   singer: '歌手名',
-        //   album: '专辑名',
-        //   time: '4:00'
-        // }
-      ]
-    };
+  // data() {
+  //   return {
+  //     tableData: localSongs()
+  //   };
+  // },
+  computed: {
+    localSongs() {
+      return this.$store.state.player.local_songs;
+    },
   },
   methods: {
-    cacheAlbumCover(album, picture, callback) {
+    cacheAlbumCover (album, picture, callback) {
       let cacheFilePath = path.resolve(
         albumDir,
-        album + "." + picture.format.split("/")[1]
-      );
+        album + '.' + picture.format.split('/')[1]
+      )
 
       if (!fs.existsSync(cacheFilePath)) {
-        let fileContent = this.convertPicture(picture);
+        let fileContent = this.convertPicture(picture)
         if (fileContent) {
-          fs.writeFile(cacheFilePath, fileContent, "binary", error => {
-            callback(cacheFilePath, error);
-          });
+          fs.writeFile(cacheFilePath, fileContent, 'binary', error => {
+            callback(cacheFilePath, error)
+          })
         } else {
-          callback(null, true);
+          callback(null, true)
         }
       } else {
-        callback(cacheFilePath);
+        callback(cacheFilePath)
       }
     },
     selectFolder() {
-      //   window.electron.remote.dialog.showOpenDialog({
-      //   title: 'Import Audio Files',
-      //   properties: ['openFile', 'multiSelections'],
-      //   filters: [{
-      //     name: '.MP3 Files',
-      //     extensions: ['mp3']
-      //   }]
-      // }, (data) => {
-      //   this.importLocalFiles(data)
-      // })
-
       var t = this;
       this.$electron.ipcRenderer.send("open-directory-dialog", "openDirectory");
       this.$electron.ipcRenderer.once("selectedItem", function(e, path) {
@@ -180,17 +106,17 @@ export default {
             if (err) {
               t.$message({
                 message: err,
-                type: "error"
-              });
-              return;
+                type: 'error'
+              })
+              return
             }
-            console.log(`${path}`);
+            console.log(`${path}`)
             files.forEach(file => {
-              if (pathModule.extname(file).toLowerCase() === ".mp3") {
-                console.log(`${path}/${file}`);
-                jsmediatags.read(path + "/" + file, {
-                  onSuccess: function(tag) {
-                    console.log(tag.tags.picture);
+              if (pathModule.extname(file).toLowerCase() === '.mp3') {
+                console.log(`${path}/${file}`)
+                jsmediatags.read(path + '/' + file, {
+                  onSuccess: function (tag) {
+                    console.log(tag.tags.picture)
 
                     // cacheAlbumCover(
                     //   tag.tags.album,
@@ -200,19 +126,37 @@ export default {
                     //     resolve(tag.tags);
                     //   }
                     // );
-                    t.tableData.push({
+
+                    // t.tableData.push({
+                    //   path: path + "/" + file,
+                    //   song: tag.tags.title,
+                    //   singer: tag.tags.artist,
+                    //   album: tag.tags.album.replace(/\#|\?|\&\/\\/g, ""),
+                    //   time: 0,
+                    //   picture: tag.tags.picture
+                    // });
+
+                    // t.localSongs.push({
+                    //   path: path + "/" + file,
+                    //   song: tag.tags.title,
+                    //   singer: tag.tags.artist,
+                    //   album: tag.tags.album.replace(/\#|\?|\&\/\\/g, ""),
+                    //   time: 0,
+                    //   picture: tag.tags.picture
+                    // });
+                    t.$store.commit("ADD_LOCAL_SONG", {
                       path: path + "/" + file,
                       song: tag.tags.title,
                       singer: tag.tags.artist,
-                      album: tag.tags.album.replace(/\#|\?|\&\/\\/g, ""),
+                      album: tag.tags.album.replace(/\#|\?|\&\/\\/g, ''),
                       time: 0,
-                      picture: tag.tags.picture
+                      picture: "" //tag.tags.picture
                     });
                   },
-                  onError: function(error) {
-                    console.log(":(", error.type, error.info);
+                  onError: function (error) {
+                    console.log(':(', error.type, error.info)
                   }
-                });
+                })
                 // audioLoader(path + '/' + file).then(function (res) {
                 //   console.log(res)
                 //   t.tableData.push({
@@ -223,45 +167,46 @@ export default {
                 // })
                 // })
               }
-            });
-          });
+            })
+          })
         } else {
           t.$message({
-            message: "您未选择任何文件夹！",
-            type: "error"
-          });
+            message: '您未选择任何文件夹！',
+            type: 'error'
+          })
         }
-      });
+      })
     },
-    toggleSelection(rows) {
+    toggleSelection (rows) {
       if (rows) {
         rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row);
-        });
+          this.$refs.multipleTable.toggleRowSelection(row)
+        })
       } else {
-        this.$refs.multipleTable.clearSelection();
+        this.$refs.multipleTable.clearSelection()
       }
     },
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
+    handleSelectionChange (val) {
+      this.multipleSelection = val
     },
-    starSong(index, row) {
+    collectSong(index, row) {
       this.$message({
         message: "我喜欢 index=" + index + " row=" + row,
         type: "success"
       });
+      this.$store.dispatch('collectSong', this.localSongs[index])
     },
     playSong(index, row) {
-      this.$store.dispatch("playMusic", this.tableData[index]);
-      this.$store.commit("SET_PLAYER_LIST", this.tableData);
+      this.$store.commit("SET_PLAYER_LIST", this.localSongs);
+      this.$store.dispatch("playMusic", this.localSongs[index]);
     },
     deleteSong(index, row) {
-      this.tableData.splice(index, 1);
+      this.localSongs.splice(index, 1);
       this.$message({
-        message: "删除音乐历史 index=" + index + " row=" + row,
-        type: "success"
-      });
+        message: '删除音乐历史 index=' + index + ' row=' + row,
+        type: 'success'
+      })
     }
   }
-};
+}
 </script>

@@ -9,11 +9,17 @@ export default {
     currentTime: 0,
     goToTime: 0,
     // 播放次序 0单曲循环 1列表循环 2随机播放
-    play_type: 1
+    play_type: 1,
+    recent_play: [],
+    local_songs: [],
+    collection_songs: []
   },
   mutations: {
     SET_PLAYER_LIST: (state, data) => {
       state.list = data
+    },
+    ADD_LOCAL_SONG: (state, song) => {
+      state.local_songs.push(song)
     },
     SET_PLAYER_DATA: (state, data) => {
       Object.keys(data).forEach(function (key) {
@@ -22,12 +28,68 @@ export default {
     }
   },
   actions: {
-    playMusic ({ commit, state }, song) {
-      console.log('song=' + song)
+    addRecentPlay ({ commit, state }, song) {
+      console.log('addRecentPlay song=' + JSON.stringify(song))
+      let recentPlay = state.recent_play
+      let lastPos = recentPlay.length - 1
+      if (lastPos >= 0 && recentPlay[lastPos].song.path === song.path) {
+        recentPlay[lastPos].time = new Date().getTime()
+        console.log('addRecentPlay 1')
+      } else {
+        recentPlay.push({
+          'song': song,
+          'time': new Date().getTime()
+        })
+        console.log('addRecentPlay 2')
+      }
+    },
+    playOrPause ({ commit, state, dispatch }) {
+      if (!state.is_play) {
+        dispatch('addRecentPlay', {
+          'song': state.song,
+          'time': new Date().getTime()
+        })
+      }
+      commit('SET_PLAYER_DATA', { is_play: !state.is_play })
+    },
+    addToPlayList ({ commit, state, dispatch }, recentSong) {
+      // songs.forEach(function (song) {
+      //   state.list.push(song)
+      // })
+      for (let index in state.list) {
+        console.log('song.path=' + state.list[index].path + '   recentSong.path=' + recentSong.path + '   state.list[index].path === recentSong.path = ' + (state.list[index].path === recentSong.path))
+        if (state.list[index].path === recentSong.path) {
+          console.log('============================================')
+          dispatch('playMusic', recentSong)
+          return
+        }
+      }
+      console.log('0000000000000000000000000000000000000')
+      state.list.push(recentSong)
+      dispatch('playMusic', recentSong)
+    },
+    playMusic ({ commit, state, dispatch }, song) {
+      console.log('playMusic song=' + JSON.stringify(song))
+      // let recentPlay = state.recent_play
+      // let lastPos = recentPlay.length - 1
+      // if (recentPlay[lastPos].song === song) {
+      //   // state.recent_play.push(song)
+      //   recentPlay[lastPos].time = new Date().getTime()
+      // } else {
+      //   recentPlay.push({
+      //     'song': song,
+      //     'time': new Date().getTime()
+      //   })
+      // }
+      // state.recent_play = []
       commit('SET_PLAYER_DATA', { is_play: false, currentTime: 0, song: song })
       setTimeout(() => {
         commit('SET_PLAYER_DATA', {is_play: true})
       }, 100)
+      dispatch('addRecentPlay', {
+        'song': song,
+        'time': new Date().getTime()
+      })
     },
     playPlaylist ({ commit, state, dispatch }, id) {
     //   getPlaylistDetail(id).then(res => {

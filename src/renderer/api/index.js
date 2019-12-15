@@ -52,17 +52,23 @@ export function getMusicUrl (id, br = 999000) {
 }
 
 export function djlist (catid) {
-  if (catid == 0) {
+  if (catid === 0) {
     return http.get('/dj/recommend')
   } else {
     return http.get('/dj/recommend/type?type=' + catid)
   }
 }
-
 export function djcat () {
   return http.get('/dj/catelist')
 }
 
 export function search(keywords,type){
   return http.get('/search?keywords=' + keywords + '&type=' + type)
+}
+export function userSongList (uid) {
+  return http.get('/user/playlist?uid=' + uid)
+}
+
+export function getCollectedAlbum () {
+  return http.get('/album/sublist')
 }

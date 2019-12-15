@@ -8,25 +8,25 @@
   </div>
 </template>
 <script>
-import { banner } from "../../../../api/index";
+import { banner } from '../../../../api/index'
 export default {
-  data() {
+  data () {
     return {
       banner: []
-    };
+    }
   },
-  mounted() {
-    this.getBanner();
+  mounted () {
+    this.getBanner()
   },
   methods: {
-    getBanner() {
+    getBanner () {
       banner().then(res => {
-        console.log(res);
-        this.banner = res.banners;
-      });
+        console.log(res)
+        this.banner = res.banners
+      })
     }
   }
-};
+}
 </script>
 <style>
 .carousel {
