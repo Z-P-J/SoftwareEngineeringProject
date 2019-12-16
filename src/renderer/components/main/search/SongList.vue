@@ -11,7 +11,7 @@
             <img v-if="scope.row.mv>0" class="tag" src="../../assets/images/mv.png" />-->
           </div>
           <div class="btns">
-            <i class="iconfont icon-zanting play" @click="playSong(scope.row)"></i>
+            <i class="iconfont icon-zanting play" @click="playSong(scope.$index, scope.row)"></i>
             <i class="iconfont icon-gengduo more"></i>
           </div>
         </div>
@@ -65,6 +65,23 @@ export default {
     toString(json) {
       console.log("search songs:" + JSON.stringify(json));
       return json;
+    },
+    playSong(index, row) {
+      this.$message({
+        message: "播放音乐 index=" + index + " row=" + row,
+        type: "success"
+      });
+      console.log("playSong row=" + JSON.stringify(row));
+
+      this.$store.dispatch("addToPlayList", {
+        path:
+          "https://music.163.com/song/media/outer/url?id=" + row.id + ".mp3",
+        song: row.name,
+        singer: row.artists[0].name,
+        album: row.album.name,
+        time: 0,
+        picture: row.artists.img1v1Url || row.artists.picUrl//tag.tags.picture
+      });
     }
   }
 };
