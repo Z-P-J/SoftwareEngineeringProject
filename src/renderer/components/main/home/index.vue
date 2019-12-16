@@ -18,9 +18,6 @@
         <el-tab-pane label="歌单" name="d">
           <song-list />
         </el-tab-pane>
-        <el-tab-pane label="电台" name="e">电台</el-tab-pane>
-        <el-tab-pane label="MV" name="f">MV</el-tab-pane>
-        <el-tab-pane label="数字专辑" name="g">数字专辑</el-tab-pane>
       </el-tabs>
     </div>
   </div>
