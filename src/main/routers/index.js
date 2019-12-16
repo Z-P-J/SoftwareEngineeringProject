@@ -1,8 +1,8 @@
-import { createWebAPIRequest, request } from '../util/util'
 const crypto = require('crypto')
 
 var express = require('express')
 var router = express.Router()
+import { createWebAPIRequest, request } from '../util/util'
 
 router.get('/album', (req, res, next) => {
     const cookie = req.get('Cookie') ? req.get('Cookie') : ''
@@ -60,6 +60,7 @@ router.get('/artist/desc', (req, res, next) => {
         err => res.status(502).send('fetch error')
     )
 })
+
 
 router.get('/artist/list', (req, res, next) => {
     const cookie = req.get('Cookie') ? req.get('Cookie') : ''
@@ -161,26 +162,6 @@ router.get('/artist/sublist', (req, res, next) => {
         err => res.status(502).send('fetch error')
     )
 })
-router.get('/album/sublist', (req, res, next) => {
-    const cookie = req.get('Cookie') ? req.get('Cookie') : ''
-
-    const data = {
-        offset: req.query.offset || 0,
-        total: req.query.total ? 'true' : 'false',
-        limit: req.query.limit || 25
-    }
-    createWebAPIRequest(
-        'music.163.com',
-        '/weapi/album/sublist',
-        'POST',
-        data,
-        cookie,
-        music_req => {
-            res.send(music_req)
-        },
-        err => res.status(502).send('fetch error')
-    )
-})
 router.get('/artists', (req, res, next) => {
     const cookie = req.get('Cookie') ? req.get('Cookie') : ''
     const id = req.query.id
@@ -202,18 +183,6 @@ router.get('/artists', (req, res, next) => {
     )
 })
 
-//   createWebAPIRequest(
-//     'music.163.com',
-//     `/weapi/v1/artist/${id}`,
-//     'POST',
-//     data,
-//     cookie,
-//     music_req => {
-//       res.send(music_req)
-//     },
-//     err => res.status(502).send('fetch error')
-//   )
-// })
 
 router.get('/banner', (req, res, next) => {
     const options = {
@@ -309,14 +278,14 @@ router.get('/comment/dj', (req, res, next) => {
 })
 router.get('/comment/like', (req, res, next) => {
     const cookie = req.get('Cookie') ? req.get('Cookie') : ''
-    const cid = req.query.cid //评论 id
+    const cid = req.query.cid // 评论 id
     const id = req.query.id //  歌曲 id
     const typeMap = {
-        0: 'R_SO_4_', //歌曲
-        1: 'R_MV_5_', //mv
-        2: 'A_PL_0_', //歌单
-        3: 'R_AL_3_', //专辑
-        4: 'A_DJ_1_' //电台
+        0: 'R_SO_4_', // 歌曲
+        1: 'R_MV_5_', // mv
+        2: 'A_PL_0_', // 歌单
+        3: 'R_AL_3_', // 专辑
+        4: 'A_DJ_1_' // 电台
     }
     const type = typeMap[req.query.type]
     const data = {
@@ -402,7 +371,7 @@ router.get('/comment/playlist', (req, res, next) => {
 })
 router.get('/daily/signin', (req, res, next) => {
     const cookie = req.get('Cookie') ? req.get('Cookie') : ''
-    let type = req.query.type || 0 //0为安卓端签到 3点经验,1为网页签到,2点经验
+    let type = req.query.type || 0 // 0为安卓端签到 3点经验,1为网页签到,2点经验
     const data = {
         csrf_token: '',
         type
@@ -804,8 +773,13 @@ router.get('/login/refresh', (req, res, next) => {
 })
 router.get('/lyric', (req, res, next) => {
     const cookie = req.get('Cookie') ? req.get('Cookie') : ''
-    const data = {}
+    // const data = {}
     const id = req.query.id
+    const data = {
+
+        id: query.id
+    
+      }
     createWebAPIRequest(
         'music.163.com',
         '/weapi/song/lyric?os=osx&id=' + id + '&lv=-1&kv=-1&tv=-1',
@@ -813,6 +787,9 @@ router.get('/lyric', (req, res, next) => {
         data,
         cookie,
         music_req => {
+            res.set({
+                'Set-Cookie': cookie
+            })
             res.send(music_req)
         },
         err => res.status(502).send('fetch error')
@@ -1230,15 +1207,15 @@ router.get('/related/playlist', (req, res, next) => {
         } else {
             try {
                 const pattern = /<div class="cver u-cover u-cover-3">[\s\S]*?<img src="([^"]+)">[\s\S]*?<a class="sname f-fs1 s-fc0" href="([^"]+)"[^>]*>([^<]+?)<\/a>[\s\S]*?<a class="nm nm f-thide s-fc3" href="([^"]+)"[^>]*>([^<]+?)<\/a>/g
-                const data = { playlists: [], code: 200 }
+                const data = {playlists:[],code:200}
                 let result
-                while ((result = pattern.exec(body)) != null) {
+                while ((result = pattern.exec(body)) != null)  {
                     data.playlists.push({
                         creator: {
                             userId: result[4].slice('/user/home?id='.length),
                             nickname: result[5]
                         },
-                        coverImgUrl: result[1].slice(0, -('?param=50y50'.length)),
+                        coverImgUrl: result[1].slice(0,-('?param=50y50'.length)),
                         name: result[3],
                         id: result[2].slice('/playlist?id='.length)
                     })
@@ -1894,7 +1871,7 @@ router.get('/user/playlist', (req, res, next) => {
     const data = {
         offset: req.query.offset || 0,
         uid: req.query.uid,
-        limit: req.query.limit || 30, //貌似无效
+        limit: req.query.limit || 30, // 貌似无效
         csrf_token: ''
     }
     createWebAPIRequest(
@@ -1916,7 +1893,7 @@ router.get('/user/record', (req, res, next) => {
     // type=1时只返回weekData, type=0时返回allData
     const data = {
         type: req.query.type || 0,
-        uid: req.query.uid, //用户 id,
+        uid: req.query.uid, // 用户 id,
         csrf_token: ''
     }
     const action = `/weapi/v1/play/record`
