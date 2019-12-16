@@ -31,7 +31,6 @@
 
 ## 如何运行
 
-1. 同步或克隆最新代码
-2. 确保已配置好node.js环境，然后在控制台中切换到工程目录
-3. 控制台中至少运行一次：npm install
-4. 控制台输入npm run dev启动程序
+    1. git clone https://github.com/Z-P-J/SoftwareEngineeringProject.git
+    2. npm install
+    3. npm run dev
