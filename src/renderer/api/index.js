@@ -37,7 +37,7 @@ export function toplist (idx) {
 }
 
 export function singerlist (cat, offset) {
-  if (cat == 0) {
+  if (cat === 0) {
     return http.get('/top/artists?offset=0')
   }
   return http.get('/artist/list?cat=' + cat + '&offset=' + offset)
@@ -62,7 +62,7 @@ export function djcat () {
   return http.get('/dj/catelist')
 }
 
-export function search(keywords,type){
+export function search (keywords, type) {
   return http.get('/search?keywords=' + keywords + '&type=' + type)
 }
 export function userSongList (uid) {
@@ -71,4 +71,8 @@ export function userSongList (uid) {
 
 export function getCollectedAlbum () {
   return http.get('/album/sublist')
+}
+
+export function lyric (id) {
+  return http.get('/lyric?id=' + id)
 }
